@@ -1,0 +1,65 @@
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:time4deal/controller/forgot_password_controller/forgot_password_provider.dart';
+import 'package:time4deal/helpers/app_padding.dart';
+import 'package:time4deal/helpers/app_text_styles.dart';
+import 'package:time4deal/helpers/sized_boxes.dart';
+import 'package:time4deal/utils/common_validations.dart';
+import 'package:time4deal/widgets/custom_app_bar_leading.dart';
+import 'package:time4deal/widgets/custome_text_form_field.dart';
+import 'package:time4deal/widgets/long_elevated_button.dart';
+
+class ForgotPassword extends StatelessWidget {
+  ForgotPassword({super.key});
+  final formKey = GlobalKey<FormState>();
+
+  @override
+  Widget build(BuildContext context) {
+    final forgotProvider = Provider.of<ForgotPasswordProvider>(context);
+    return Scaffold(
+      appBar: AppBar(
+        automaticallyImplyLeading: true,
+        leading: const CustomAppBarWidget(),
+      ),
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: AppPadding.horizPadding15,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              SizedBoxes.heightBox50,
+              const Text(
+                'Forgot Password',
+                style: AppTextStyles.mainTitle,
+              ),
+              SizedBoxes.heightBox50,
+              const Text(
+                'Please enter your registered email address',
+                style: AppTextStyles.normalText,
+                textAlign: TextAlign.justify,
+              ),
+              SizedBoxes.heightBox20,
+              Form(
+                key: formKey,
+                child: CustomTextFormField(
+                  controller: forgotProvider.emailFieldControl,
+                  text: 'Email',
+                  validation: (String? value) {
+                    return CommonValidations.emailValidation(value);
+                  },
+                ),
+              ),
+              SizedBoxes.heightBox30,
+              LongElevatedButton(
+                onPressed: () {
+                  forgotProvider.onSendButtonPressed(formKey, context);
+                },
+                text: 'SEND',
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
