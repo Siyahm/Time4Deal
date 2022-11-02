@@ -1,3 +1,3 @@
 class AppUrls {
-  static const String mainUrl = "http://172.16.4.47:5003/api/v1/";
+  static const String mainUrl = "http://192.168.0.150:5003/api/v1/";
 }

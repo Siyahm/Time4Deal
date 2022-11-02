@@ -8,6 +8,7 @@ import 'package:time4deal/models/sign_up_model/sign_up_model.dart';
 
 class SignUpService {
   Future<void> signUpFunction(SignUpModel signUpModel) async {
+    log('signup function called');
     try {
       const url = AppUrls.mainUrl + ApiEndPoints.signUp;
       final Response<dynamic> response = await Dio().post(

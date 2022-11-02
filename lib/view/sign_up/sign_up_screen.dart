@@ -44,6 +44,7 @@ class SignUpScreen extends StatelessWidget {
                     return CommonValidations.nameValidation(value);
                   },
                 ),
+                SizedBoxes.heightBox10,
                 CustomTextFormField(
                   controller: signUProvider.mobController,
                   text: 'Mobile Number',
@@ -70,7 +71,7 @@ class SignUpScreen extends StatelessWidget {
                 SizedBoxes.heightBox30,
                 LongElevatedButton(
                   onPressed: () {
-                    signUProvider.onSignUpButtonPressed(signUpFormKey);
+                    signUProvider.onSignUpButtonPressed(context);
                   },
                   text: 'SIGN UP',
                 ),

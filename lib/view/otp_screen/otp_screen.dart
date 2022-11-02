@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
+import 'package:provider/provider.dart';
+import 'package:time4deal/controller/sign_up_controller/sign_up_provider.dart';
 import 'package:time4deal/helpers/app_colors.dart';
 import 'package:time4deal/helpers/app_padding.dart';
 import 'package:time4deal/helpers/app_text_styles.dart';
 import 'package:time4deal/helpers/sized_boxes.dart';
+import 'package:time4deal/view/sign_up/sign_up_screen.dart';
 import 'package:time4deal/widgets/custom_app_bar_leading.dart';
 import 'package:time4deal/widgets/long_elevated_button.dart';
 
@@ -14,6 +15,7 @@ class OtpScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final signUpProvider = Provider.of<SignUpProvider>(context, listen: false);
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: true,
@@ -38,8 +40,9 @@ class OtpScreen extends StatelessWidget {
               ),
               SizedBoxes.heightBox20,
               OtpTextField(
+                numberOfFields: 6,
                 showFieldAsBox: true,
-                fieldWidth: 50,
+                fieldWidth: 35,
                 enabledBorderColor: AppColors.greyColor,
                 focusedBorderColor: AppColors.whiteColor,
                 cursorColor: AppColors.dimWhiteColor,
@@ -47,7 +50,9 @@ class OtpScreen extends StatelessWidget {
               SizedBoxes.heightBox20,
               SizedBoxes.heightBox30,
               LongElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  signUpProvider.onSignUp(SignUpScreen().signUpFormKey);
+                },
                 text: 'SUBMIT',
               ),
             ],
