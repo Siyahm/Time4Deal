@@ -20,11 +20,11 @@ class SignUpModel {
     };
   }
 
-  // factory SignUpModel.fomJson(Map<String, dynamic> json) {
-  //   return SignUpModel(
-  //       fullname: json['fullname'],
-  //       email: json['email'],
-  //       password: json['password'],
-  //       phone: json['phone']);
-  // }
+  factory SignUpModel.fomJson(Map<String, dynamic> json) {
+    return SignUpModel(
+        fullname: json['fullname'],
+        email: json['email'],
+        password: json['password'],
+        phone: json['phone']);
+  }
 }

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:time4deal/routs/rout_names.dart';
+import 'package:time4deal/routes/rout_names.dart';
 import 'package:time4deal/view/forgot_password/forgot_password_screen.dart';
 import 'package:time4deal/view/home/home.dart';
+import 'package:time4deal/view/otp_screen/otp_arguments.dart';
 import 'package:time4deal/view/otp_screen/otp_screen.dart';
 import 'package:time4deal/view/sign_in/sign_in_scren.dart';
 import 'package:time4deal/view/sign_up/sign_up_screen.dart';
@@ -28,8 +29,10 @@ class AppRouts {
           builder: (context) => ForgotPassword(),
         );
       case RoutNames.otpVerificationScreen:
+        final arg = settings.arguments as OtpArguments;
+
         return MaterialPageRoute(
-          builder: (context) => const OtpScreen(),
+          builder: (context) => OtpScreen(signUpModel: arg.signUpModel),
         );
       default:
         return MaterialPageRoute(

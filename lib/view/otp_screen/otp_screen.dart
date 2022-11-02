@@ -1,21 +1,30 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
 import 'package:provider/provider.dart';
+import 'package:time4deal/controller/otp_controller/otp_controller.dart';
 import 'package:time4deal/controller/sign_up_controller/sign_up_provider.dart';
 import 'package:time4deal/helpers/app_colors.dart';
 import 'package:time4deal/helpers/app_padding.dart';
 import 'package:time4deal/helpers/app_text_styles.dart';
 import 'package:time4deal/helpers/sized_boxes.dart';
-import 'package:time4deal/view/sign_up/sign_up_screen.dart';
+import 'package:time4deal/models/otp_verification/otp_verification.dart';
+import 'package:time4deal/models/sign_up_model/sign_up_model.dart';
 import 'package:time4deal/widgets/custom_app_bar_leading.dart';
 import 'package:time4deal/widgets/long_elevated_button.dart';
 
 class OtpScreen extends StatelessWidget {
-  const OtpScreen({super.key});
+  const OtpScreen({
+    super.key,
+    required this.signUpModel,
+  });
+  final SignUpModel? signUpModel;
 
   @override
   Widget build(BuildContext context) {
     final signUpProvider = Provider.of<SignUpProvider>(context, listen: false);
+    final otpProvider = Provider.of<OtpProvider>(context, listen: false);
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: true,
@@ -46,12 +55,19 @@ class OtpScreen extends StatelessWidget {
                 enabledBorderColor: AppColors.greyColor,
                 focusedBorderColor: AppColors.whiteColor,
                 cursorColor: AppColors.dimWhiteColor,
+                onSubmit: (code) {
+                  otpProvider.otp = code;
+                },
               ),
               SizedBoxes.heightBox20,
               SizedBoxes.heightBox30,
               LongElevatedButton(
                 onPressed: () {
-                  signUpProvider.onSignUp(SignUpScreen().signUpFormKey);
+                  final model = OtpVerificationModel(
+                      otp: otpProvider.otp, phone: signUpModel!.phone);
+
+                  log("I am model ${model.toJson().toString()}");
+                  otpProvider.onPressedSubmitButton(signUpModel!, model);
                 },
                 text: 'SUBMIT',
               ),

@@ -6,7 +6,7 @@ import 'package:time4deal/controller/sign_in_controller/sign_in_provider.dart';
 import 'package:time4deal/controller/sign_up_controller/sign_up_provider.dart';
 import 'package:time4deal/controller/spalsh_controller/splash_provider.dart';
 import 'package:time4deal/helpers/app_colors.dart';
-import 'package:time4deal/routs/routs.dart';
+import 'package:time4deal/routes/routs.dart';
 import 'package:time4deal/view/sign_in/sign_in_scren.dart';
 
 void main() {

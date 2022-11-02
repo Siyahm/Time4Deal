@@ -31,12 +31,12 @@ class SignUpScreen extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                SizedBoxes.heightBox20,
+                SizedBoxes.heightBox10,
                 const Text(
                   'Sign up',
                   style: AppTextStyles.mainTitle,
                 ),
-                SizedBoxes.heightBox50,
+                SizedBoxes.heightBox40,
                 CustomTextFormField(
                   controller: signUProvider.nameController,
                   text: 'Name',
@@ -68,10 +68,10 @@ class SignUpScreen extends StatelessWidget {
                     return CommonValidations.passwordValidation(value);
                   },
                 ),
-                SizedBoxes.heightBox30,
+                SizedBoxes.heightBox20,
                 LongElevatedButton(
                   onPressed: () {
-                    signUProvider.onSignUpButtonPressed(context);
+                    signUProvider.onSignUpButtonPressed(signUpFormKey, context);
                   },
                   text: 'SIGN UP',
                 ),
@@ -135,7 +135,7 @@ class SignUpScreen extends StatelessWidget {
                     ),
                   ],
                 ),
-                SizedBoxes.heightBox50,
+                SizedBoxes.heightBox30,
                 Align(
                   alignment: Alignment.center,
                   child: RichText(
