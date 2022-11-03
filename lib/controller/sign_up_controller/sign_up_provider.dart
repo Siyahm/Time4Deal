@@ -13,6 +13,8 @@ class SignUpProvider with ChangeNotifier {
   final TextEditingController passwordController = TextEditingController();
   final TextEditingController mobController = TextEditingController();
 
+  bool isObscure = false;
+
   void onSignUpButtonPressed(
       GlobalKey<FormState> signUpFormKey, BuildContext context) async {
     final signUpModel = SignUpModel(
@@ -34,5 +36,10 @@ class SignUpProvider with ChangeNotifier {
   //Function to go to sign in page
   void onSignInButtonPressed(BuildContext context) {
     Navigator.of(context).pushNamed('signInScreen');
+  }
+
+  void setObscure() {
+    isObscure = !isObscure;
+    notifyListeners();
   }
 }

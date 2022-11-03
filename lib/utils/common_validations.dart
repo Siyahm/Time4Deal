@@ -25,6 +25,8 @@ class CommonValidations {
   static String? passwordValidation(String? value) {
     if (value == null || value.isEmpty) {
       return 'Please enter password';
+    } else if (value.toString().length < 6) {
+      return 'Invalid Password';
     }
     return null;
   }

@@ -62,6 +62,13 @@ class SignUpScreen extends StatelessWidget {
                 ),
                 SizedBoxes.heightBox10,
                 CustomTextFormField(
+                  suffixIcon: GestureDetector(
+                    child: signUProvider.isObscure == false
+                        ? const Icon(Icons.visibility)
+                        : const Icon(Icons.visibility_off),
+                    onTap: () => signUProvider.setObscure(),
+                  ),
+                  isObscure: signUProvider.isObscure,
                   controller: signUProvider.passwordController,
                   text: 'Password',
                   validation: (String? value) {

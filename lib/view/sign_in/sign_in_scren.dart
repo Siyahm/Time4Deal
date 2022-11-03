@@ -1,6 +1,7 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:time4deal/controller/sign_up_controller/sign_up_provider.dart';
 import 'package:time4deal/utils/common_validations.dart';
 import 'package:time4deal/controller/sign_in_controller/sign_in_provider.dart';
 import 'package:time4deal/helpers/app_padding.dart';
@@ -17,6 +18,7 @@ class SignInScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final signInProvider = Provider.of<SignInProvider>(context);
+    final signUpProvider = Provider.of<SignUpProvider>(context);
     return Scaffold(
       body: SingleChildScrollView(
         child: Padding(
@@ -41,9 +43,18 @@ class SignInScreen extends StatelessWidget {
                 ),
                 SizedBoxes.heightBox10,
                 CustomTextFormField(
+                  isObscure: signUpProvider.isObscure,
+                  suffixIcon: GestureDetector(
+                    child: signUpProvider.isObscure == false
+                        ? const Icon(Icons.visibility)
+                        : const Icon(Icons.visibility_off),
+                    onTap: () => signUpProvider.setObscure(),
+                  ),
                   controller: signInProvider.passwordController,
                   text: 'Password',
-                  validation: (String? value) {},
+                  validation: (String? value) {
+                    return CommonValidations.passwordValidation(value);
+                  },
                 ),
                 Align(
                     alignment: Alignment.centerRight,
@@ -57,7 +68,9 @@ class SignInScreen extends StatelessWidget {
                     )),
                 SizedBoxes.heightBox30,
                 LongElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    signInProvider.onSignIn(signInFormKey, context);
+                  },
                   text: 'SIGN IN',
                 ),
                 SizedBoxes.heightBox50,

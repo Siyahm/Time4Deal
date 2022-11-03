@@ -22,7 +22,7 @@ class OtpProvider with ChangeNotifier {
       if (value == true) {
         SignUpService().signUpFunction(signUpModel);
       } else {
-        customToast('Invalid OTP', AppColors.redColor);
+        return customToast('Invalid OTP', AppColors.redColor);
       }
     });
   }

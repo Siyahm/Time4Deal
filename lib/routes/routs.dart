@@ -30,9 +30,12 @@ class AppRouts {
         );
       case RoutNames.otpVerificationScreen:
         final arg = settings.arguments as OtpArguments;
-
         return MaterialPageRoute(
           builder: (context) => OtpScreen(signUpModel: arg.signUpModel),
+        );
+      case RoutNames.homeScreen:
+        return MaterialPageRoute(
+          builder: (context) => const HomeScreen(),
         );
       default:
         return MaterialPageRoute(
