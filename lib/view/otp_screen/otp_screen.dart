@@ -3,12 +3,14 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
 import 'package:provider/provider.dart';
+import 'package:time4deal/controller/forgot_password_controller/forgot_password_provider.dart';
 import 'package:time4deal/controller/otp_controller/otp_controller.dart';
 import 'package:time4deal/controller/sign_up_controller/sign_up_provider.dart';
 import 'package:time4deal/helpers/app_colors.dart';
 import 'package:time4deal/helpers/app_padding.dart';
 import 'package:time4deal/helpers/app_text_styles.dart';
 import 'package:time4deal/helpers/sized_boxes.dart';
+import 'package:time4deal/models/otp_verification/otp_screen_action_enum.dart';
 import 'package:time4deal/models/otp_verification/otp_verification.dart';
 import 'package:time4deal/models/sign_up_model/sign_up_model.dart';
 import 'package:time4deal/widgets/custom_app_bar_leading.dart';
@@ -18,13 +20,18 @@ class OtpScreen extends StatelessWidget {
   const OtpScreen({
     super.key,
     required this.signUpModel,
+    required this.otpScreenActionEnum,
   });
   final SignUpModel? signUpModel;
+  final OtpScreenActionEnum otpScreenActionEnum;
 
   @override
   Widget build(BuildContext context) {
-    final signUpProvider = Provider.of<SignUpProvider>(context, listen: false);
+    // final signUpProvider = Provider.of<SignUpProvider>(context, listen: false);
     final otpProvider = Provider.of<OtpProvider>(context, listen: false);
+    final forgotPasswordProvider =
+        Provider.of<ForgotPasswordProvider>(context, listen: false);
+
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: true,
@@ -61,15 +68,34 @@ class OtpScreen extends StatelessWidget {
               ),
               SizedBoxes.heightBox20,
               SizedBoxes.heightBox30,
-              LongElevatedButton(
-                onPressed: () {
-                  final model = OtpVerificationModel(
-                      otp: otpProvider.otp, phone: signUpModel!.phone);
+              Consumer<OtpProvider>(
+                builder: (context, value, child) {
+                  return LongElevatedButton(
+                    onPressed: () {
+                      if (otpScreenActionEnum ==
+                          OtpScreenActionEnum.signUpOtp) {
+                        final model = OtpVerificationModel(
+                            otp: value.otp, phone: signUpModel!.phone);
 
-                  log("I am model ${model.toJson().toString()}");
-                  otpProvider.onPressedSubmitButton(signUpModel!, model);
+                        // log("I am model ${model.toJson().toString()}");
+                        value.onPressedSubmitButton(
+                            signUpModel, model, otpScreenActionEnum, context);
+                      } else if (otpScreenActionEnum ==
+                          OtpScreenActionEnum.forgotPasswordOtp) {
+                        final model = OtpVerificationModel(
+                            otp: value.otp,
+                            phone: forgotPasswordProvider.user!.phone);
+
+                        // log("I am model ${model.toJson().toString()}");
+                        value.onPressedSubmitButton(
+                            signUpModel, model, otpScreenActionEnum, context);
+                      }
+                    },
+                    child: value.isLoading == true
+                        ? const CircularProgressIndicator()
+                        : const Text('SUBMIT'),
+                  );
                 },
-                text: 'SUBMIT',
               ),
             ],
           ),

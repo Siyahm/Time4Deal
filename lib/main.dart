@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:time4deal/controller/forgot_password_controller/forgot_password_provider.dart';
+import 'package:time4deal/controller/new_password_conttoller/new_password_provider.dart';
 import 'package:time4deal/controller/otp_controller/otp_controller.dart';
 import 'package:time4deal/controller/sign_in_controller/sign_in_provider.dart';
 import 'package:time4deal/controller/sign_up_controller/sign_up_provider.dart';
@@ -34,6 +35,9 @@ class MyApp extends StatelessWidget {
         ),
         ChangeNotifierProvider(
           create: ((_) => OtpProvider()),
+        ),
+        ChangeNotifierProvider(
+          create: ((_) => NewPasswordProvider()),
         ),
       ],
       child: MaterialApp(

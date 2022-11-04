@@ -31,7 +31,7 @@ class SignUpScreen extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                SizedBoxes.heightBox10,
+                // SizedBoxes.heightBox10,
                 const Text(
                   'Sign up',
                   style: AppTextStyles.mainTitle,
@@ -48,6 +48,7 @@ class SignUpScreen extends StatelessWidget {
                 CustomTextFormField(
                   controller: signUProvider.mobController,
                   text: 'Mobile Number',
+                  keyboard: TextInputType.phone,
                   validation: (String? value) {
                     return CommonValidations.mobValidation(value);
                   },
@@ -75,12 +76,28 @@ class SignUpScreen extends StatelessWidget {
                     return CommonValidations.passwordValidation(value);
                   },
                 ),
-                SizedBoxes.heightBox20,
-                LongElevatedButton(
-                  onPressed: () {
-                    signUProvider.onSignUpButtonPressed(signUpFormKey, context);
+                SizedBoxes.heightBox10,
+                CustomTextFormField(
+                  isObscure: true,
+                  controller: signUProvider.confirmPasswordController,
+                  text: 'Confirm Password',
+                  validation: (String? value) {
+                    return CommonValidations.confirmPasswordValidation(
+                        value, signUProvider.passwordController.text);
                   },
-                  text: 'SIGN UP',
+                ),
+                SizedBoxes.heightBox20,
+                Consumer<SignUpProvider>(
+                  builder: (context, value, child) {
+                    return LongElevatedButton(
+                      onPressed: () {
+                        value.onSignUpButtonPressed(signUpFormKey, context);
+                      },
+                      child: value.isLoading == true
+                          ? const CircularProgressIndicator()
+                          : const Text('SIGN UP'),
+                    );
+                  },
                 ),
                 SizedBoxes.heightBox20,
                 Row(
@@ -105,42 +122,40 @@ class SignUpScreen extends StatelessWidget {
                     )
                   ],
                 ),
-                SizedBoxes.heightBox20,
-                const Center(
-                  child: Text('Sign up with'),
-                ),
                 SizedBoxes.heightBox10,
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    GestureDetector(
-                      child: Container(
-                        width: 45,
-                        height: 45,
-                        decoration: const BoxDecoration(
-                          image: DecorationImage(
-                              image: AssetImage(
-                            'lib/assets/google icon.png',
-                          )),
+                Align(
+                  alignment: Alignment.center,
+                  child: GestureDetector(
+                    onTap: () {},
+                    child: Container(
+                      width: 140,
+                      height: 40,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(20),
+                        border: Border.all(
+                          color: AppColors.whiteColor,
+                          width: 1.5,
                         ),
                       ),
-                      onTap: () {},
-                    ),
-                    SizedBoxes.widthBox20,
-                    GestureDetector(
-                      child: Container(
-                        width: 50,
-                        height: 50,
-                        decoration: const BoxDecoration(
-                          image: DecorationImage(
-                              image: AssetImage(
-                            'lib/assets/fb Icon.webp',
-                          )),
-                        ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          const Text('Sign up with'),
+                          SizedBoxes.widthBox10,
+                          Container(
+                            width: 25,
+                            height: 25,
+                            decoration: const BoxDecoration(
+                              image: DecorationImage(
+                                  image: AssetImage(
+                                'lib/assets/google icon.png',
+                              )),
+                            ),
+                          ),
+                        ],
                       ),
-                      onTap: () {},
                     ),
-                  ],
+                  ),
                 ),
                 SizedBoxes.heightBox30,
                 Align(

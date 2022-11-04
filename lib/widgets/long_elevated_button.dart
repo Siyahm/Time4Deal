@@ -4,10 +4,10 @@ import 'package:time4deal/helpers/app_colors.dart';
 class LongElevatedButton extends StatelessWidget {
   const LongElevatedButton({
     Key? key,
-    required this.text,
+    required this.child,
     required this.onPressed,
   }) : super(key: key);
-  final String text;
+  final Widget child;
   final void Function()? onPressed;
 
   @override
@@ -25,7 +25,7 @@ class LongElevatedButton extends StatelessWidget {
             ),
           ),
           onPressed: onPressed,
-          child: Text(text)),
+          child: child),
     );
   }
 }

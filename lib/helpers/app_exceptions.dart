@@ -16,8 +16,6 @@ class AppExceptions {
         customToast('Connection Time out', AppColors.redColor);
       } else if (e.type == DioErrorType.receiveTimeout) {
         customToast('Receiver Time out', AppColors.redColor);
-      } else if (e.type == DioErrorType.response) {
-        customToast('Response Error', AppColors.redColor);
       } else if (e.type == DioErrorType.sendTimeout) {
         customToast('Send Time out', AppColors.redColor);
       } else if (e.type == DioErrorType.other) {

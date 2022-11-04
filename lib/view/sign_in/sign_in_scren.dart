@@ -67,11 +67,15 @@ class SignInScreen extends StatelessWidget {
                       child: const Text('Forgot Password?'),
                     )),
                 SizedBoxes.heightBox30,
-                LongElevatedButton(
-                  onPressed: () {
-                    signInProvider.onSignIn(signInFormKey, context);
-                  },
-                  text: 'SIGN IN',
+                Consumer<SignInProvider>(
+                  builder: (context, value, child) => LongElevatedButton(
+                    onPressed: () {
+                      value.onSignIn(signInFormKey, context);
+                    },
+                    child: value.isLoading == true
+                        ? const CircularProgressIndicator()
+                        : const Text('SIGN IN'),
+                  ),
                 ),
                 SizedBoxes.heightBox50,
                 Align(

@@ -1,3 +1,6 @@
+import 'package:time4deal/controller/sign_in_controller/sign_in_provider.dart';
+import 'package:time4deal/controller/sign_up_controller/sign_up_provider.dart';
+
 class CommonValidations {
   static String? emailValidation(String? value) {
     if (value == null || value.isEmpty) {
@@ -27,6 +30,16 @@ class CommonValidations {
       return 'Please enter password';
     } else if (value.toString().length < 6) {
       return 'Invalid Password';
+    }
+    return null;
+  }
+
+  static String? confirmPasswordValidation(
+      String? value, String confirmPasswordControllerText) {
+    if (value == null || value.isEmpty) {
+      return 'Please enter password again';
+    } else if (value != confirmPasswordControllerText) {
+      return 'Password did not match';
     }
     return null;
   }
