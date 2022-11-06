@@ -140,7 +140,7 @@ class SignUpScreen extends StatelessWidget {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          const Text('Sign up with'),
+                          const Text('Sign Up with'),
                           SizedBoxes.widthBox10,
                           Container(
                             width: 25,

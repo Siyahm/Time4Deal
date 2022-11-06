@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:flutter/cupertino.dart';
 import 'package:time4deal/models/sign_in_model/sign_in_model.dart';
 import 'package:time4deal/routes/rout_names.dart';
+import 'package:time4deal/service/google_sign_in/google_sign_in_service.dart';
 import 'package:time4deal/service/sign_in_service/sign_in_servide.dart';
 
 class SignInProvider with ChangeNotifier {
@@ -35,5 +36,9 @@ class SignInProvider with ChangeNotifier {
         },
       );
     }
+  }
+
+  void googleLogin() {
+    GoogleSignInService().googleSignIn();
   }
 }

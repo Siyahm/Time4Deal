@@ -2,6 +2,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:time4deal/controller/sign_up_controller/sign_up_provider.dart';
+import 'package:time4deal/helpers/app_colors.dart';
 import 'package:time4deal/utils/common_validations.dart';
 import 'package:time4deal/controller/sign_in_controller/sign_in_provider.dart';
 import 'package:time4deal/helpers/app_padding.dart';
@@ -75,6 +76,66 @@ class SignInScreen extends StatelessWidget {
                     child: value.isLoading == true
                         ? const CircularProgressIndicator()
                         : const Text('SIGN IN'),
+                  ),
+                ),
+                SizedBoxes.heightBox10,
+                Row(
+                  children: const [
+                    Expanded(
+                      child: Divider(
+                        color: AppColors.greyColor,
+                        thickness: 1,
+                      ),
+                    ),
+                    SizedBoxes.widthBox5,
+                    Text(
+                      'or',
+                      style: TextStyle(fontSize: 16),
+                    ),
+                    SizedBoxes.widthBox5,
+                    Expanded(
+                      child: Divider(
+                        color: AppColors.greyColor,
+                        thickness: 1,
+                      ),
+                    )
+                  ],
+                ),
+                SizedBoxes.heightBox10,
+                Align(
+                  alignment: Alignment.center,
+                  child: GestureDetector(
+                    onTap: () {
+                      signInProvider.googleLogin();
+                    },
+                    child: Container(
+                      width: 140,
+                      height: 40,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(20),
+                        border: Border.all(
+                          color: AppColors.whiteColor,
+                          width: 1.5,
+                        ),
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          const Text('Sign In with'),
+                          SizedBoxes.widthBox10,
+                          Container(
+                            width: 25,
+                            height: 25,
+                            decoration: const BoxDecoration(
+                              image: DecorationImage(
+                                  image: AssetImage(
+                                'lib/assets/google icon.png',
+                              )),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
                   ),
                 ),
                 SizedBoxes.heightBox50,
