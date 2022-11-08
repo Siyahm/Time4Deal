@@ -21,28 +21,33 @@ class OtpProvider with ChangeNotifier {
       OtpVerificationModel otpVerificationModel,
       OtpScreenActionEnum otpEnum,
       BuildContext context) async {
-    isLoading = true;
-    notifyListeners();
-    OtpServices().verifyOtp(otpVerificationModel).then((value) {
-      if (value == true) {
-        if (otpEnum == OtpScreenActionEnum.signUpOtp) {
-          SignUpService().signUp(signUpModel!).then((value) {
+    if (otp == null) {
+      return customToast('Please enter OTP', AppColors.redColor);
+    } else {
+      isLoading = true;
+      notifyListeners();
+      OtpServices().verifyOtp(otpVerificationModel).then((value) {
+        if (value == true) {
+          if (otpEnum == OtpScreenActionEnum.signUpOtp) {
+            SignUpService().signUp(signUpModel!).then((value) {
+              isLoading = false;
+              notifyListeners();
+              Navigator.of(context).pushReplacementNamed(RouteNames.homeScreen);
+            });
+          } else if (otpEnum == OtpScreenActionEnum.forgotPasswordOtp) {
             isLoading = false;
             notifyListeners();
-            Navigator.of(context).pushReplacementNamed(RouteNames.homeScreen);
-          });
-        } else if (otpEnum == OtpScreenActionEnum.forgotPasswordOtp) {
+            Navigator.of(context)
+                .pushReplacementNamed(RouteNames.passwordReset);
+          } else if (otpEnum == OtpScreenActionEnum.editUserOtp) {
+            //
+          }
+        } else {
           isLoading = false;
           notifyListeners();
-          Navigator.of(context).pushReplacementNamed(RouteNames.passwordReset);
-        } else if (otpEnum == OtpScreenActionEnum.editUserOtp) {
-          //
+          return customToast('Invalid OTP', AppColors.redColor);
         }
-      } else {
-        isLoading = false;
-        notifyListeners();
-        return customToast('Invalid OTP', AppColors.redColor);
-      }
-    });
+      });
+    }
   }
 }

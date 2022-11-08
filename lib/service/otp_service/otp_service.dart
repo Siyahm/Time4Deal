@@ -9,12 +9,13 @@ import 'package:time4deal/models/otp_verification/otp_verification.dart';
 class OtpServices {
   final dio = Dio();
 
-  Future<String?> sendOtp(phone) async {
+  Future<String?> sendOtp(email) async {
     try {
       Response response = await dio.get(
         AppUrls.mainUrl + ApiEndPoints.verifyOrSendOtp,
-        queryParameters: {'phone': phone},
+        queryParameters: {'email': email},
       );
+      log(email.toString());
       log(
         response.statusCode.toString(),
       );
@@ -32,6 +33,7 @@ class OtpServices {
 
   Future<bool> verifyOtp(OtpVerificationModel otpVerificationModel) async {
     try {
+      log('try entered');
       const url = AppUrls.mainUrl + ApiEndPoints.verifyOrSendOtp;
       Response response = await Dio().post(
         url,

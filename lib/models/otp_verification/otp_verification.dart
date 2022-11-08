@@ -1,15 +1,15 @@
 class OtpVerificationModel {
   String? otp;
-  String? phone;
+  String? email;
 
   OtpVerificationModel({
     required this.otp,
-    required this.phone,
+    required this.email,
   });
 
   Map<String, dynamic> toJson() {
     return {
-      'phone': phone,
+      'email': email,
       'otp': otp,
     };
   }

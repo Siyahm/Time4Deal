@@ -8,7 +8,7 @@ import 'package:time4deal/helpers/app_exceptions.dart';
 import 'package:time4deal/models/sign_up_model/sign_up_model.dart';
 
 class SignUpService {
-  Future<void> signUp(SignUpModel signUpModel) async {
+  Future<SignUpModel?> signUp(SignUpModel signUpModel) async {
     log('signup function called');
     try {
       const url = AppUrls.mainUrl + ApiEndPoints.signUp;
@@ -19,8 +19,15 @@ class SignUpService {
         ),
       );
       log(response.data.toString());
+      log(response.statusCode.toString());
+      if (response.statusCode == 201) {
+        return SignUpModel.fomJson(response.data);
+      } else {
+        return null;
+      }
     } catch (e) {
       AppExceptions.handleError(e);
     }
+    return null;
   }
 }

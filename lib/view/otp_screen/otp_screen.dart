@@ -50,15 +50,15 @@ class OtpScreen extends StatelessWidget {
               ),
               SizedBoxes.heightBox50,
               const Text(
-                'Please enter One-Time Password received in your registered mobile number',
+                'Please enter One-Time Password received in your email',
                 style: AppTextStyles.normalText,
                 textAlign: TextAlign.justify,
               ),
               SizedBoxes.heightBox20,
               OtpTextField(
-                numberOfFields: 6,
+                numberOfFields: 4,
                 showFieldAsBox: true,
-                fieldWidth: 35,
+                fieldWidth: 50,
                 enabledBorderColor: AppColors.greyColor,
                 focusedBorderColor: AppColors.whiteColor,
                 cursorColor: AppColors.dimWhiteColor,
@@ -66,8 +66,7 @@ class OtpScreen extends StatelessWidget {
                   otpProvider.otp = code;
                 },
               ),
-              SizedBoxes.heightBox20,
-              SizedBoxes.heightBox30,
+              SizedBoxes.heightBox50,
               Consumer<OtpProvider>(
                 builder: (context, value, child) {
                   return LongElevatedButton(
@@ -75,7 +74,7 @@ class OtpScreen extends StatelessWidget {
                       if (otpScreenActionEnum ==
                           OtpScreenActionEnum.signUpOtp) {
                         final model = OtpVerificationModel(
-                            otp: value.otp, phone: signUpModel!.phone);
+                            otp: value.otp, email: signUpModel!.email);
 
                         // log("I am model ${model.toJson().toString()}");
                         value.onPressedSubmitButton(
@@ -84,7 +83,7 @@ class OtpScreen extends StatelessWidget {
                           OtpScreenActionEnum.forgotPasswordOtp) {
                         final model = OtpVerificationModel(
                             otp: value.otp,
-                            phone: forgotPasswordProvider.user!.phone);
+                            email: forgotPasswordProvider.user!.email);
 
                         // log("I am model ${model.toJson().toString()}");
                         value.onPressedSubmitButton(
