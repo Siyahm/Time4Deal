@@ -70,6 +70,7 @@ class OtpScreen extends StatelessWidget {
               Consumer<OtpProvider>(
                 builder: (context, value, child) {
                   return LongElevatedButton(
+                    color: AppColors.buttonColor,
                     onPressed: () {
                       if (otpScreenActionEnum ==
                           OtpScreenActionEnum.signUpOtp) {

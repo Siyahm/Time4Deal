@@ -71,6 +71,7 @@ class SignInScreen extends StatelessWidget {
                 SizedBoxes.heightBox30,
                 Consumer<SignInProvider>(
                   builder: (context, value, child) => LongElevatedButton(
+                    color: AppColors.buttonColor,
                     onPressed: () {
                       value.onSignIn(signInFormKey, context);
                     },

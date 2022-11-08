@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:time4deal/controller/forgot_password_controller/forgot_password_provider.dart';
 import 'package:time4deal/controller/new_password_conttoller/new_password_provider.dart';
+import 'package:time4deal/helpers/app_colors.dart';
 import 'package:time4deal/helpers/app_padding.dart';
 import 'package:time4deal/helpers/app_text_styles.dart';
 import 'package:time4deal/helpers/sized_boxes.dart';
@@ -68,6 +69,7 @@ class NewPasswordScreen extends StatelessWidget {
               ),
               SizedBoxes.heightBox30,
               LongElevatedButton(
+                color: AppColors.buttonColor,
                 onPressed: () {
                   newPasswordProvider.onResetButtonPressed(newPasswordFormKey,
                       context, forgotPasswordProvider.user!.email!);

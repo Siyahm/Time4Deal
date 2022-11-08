@@ -49,7 +49,7 @@ class SignInService {
       if (response.statusCode! >= 200 && response.statusCode! <= 299) {
         return UserModel.fromJson(response.data);
       }
-      log('kuuy');
+      log('hey');
       log(result.toString());
       log(result.displayName.toString());
       return null;

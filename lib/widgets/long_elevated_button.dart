@@ -6,18 +6,23 @@ class LongElevatedButton extends StatelessWidget {
     Key? key,
     required this.child,
     required this.onPressed,
+    required this.color,
+    this.decoration,
   }) : super(key: key);
   final Widget child;
   final void Function()? onPressed;
+  final Color color;
+  final Decoration? decoration;
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
+    return Container(
+      decoration: decoration,
       height: 50,
       width: double.infinity,
       child: ElevatedButton(
           style: ElevatedButton.styleFrom(
-            backgroundColor: AppColors.buttonColor,
+            backgroundColor: color,
             shape: const RoundedRectangleBorder(
               borderRadius: BorderRadius.all(
                 Radius.circular(35),

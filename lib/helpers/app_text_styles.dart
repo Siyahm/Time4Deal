@@ -3,6 +3,7 @@ import 'package:time4deal/helpers/app_colors.dart';
 
 class AppTextStyles {
   static const mainTitle = TextStyle(fontSize: 34, fontWeight: FontWeight.bold);
+  static const subTitle = TextStyle(fontSize: 25, fontWeight: FontWeight.bold);
   static final formFieldLabelTextStyle =
       TextStyle(color: AppColors.whiteColor.withOpacity(0.4));
   static const textFiledTextStyle = TextStyle(fontSize: 18);

@@ -90,6 +90,7 @@ class SignUpScreen extends StatelessWidget {
                 Consumer<SignUpProvider>(
                   builder: (context, value, child) {
                     return LongElevatedButton(
+                      color: AppColors.buttonColor,
                       onPressed: () {
                         value.onSignUpButtonPressed(signUpFormKey, context);
                       },

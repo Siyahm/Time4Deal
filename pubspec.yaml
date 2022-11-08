@@ -60,6 +60,9 @@ flutter:
     - lib/assets/fb icon.png
     - lib/assets/google icon.png
     - lib/assets/fb Icon.webp
+    - lib/assets/scrn 1 copy.jpg
+    - lib/assets/scrn 2 copy.jpg
+    - lib/assets/scrn 3 copy.jpg
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
   # For details regarding adding assets from package dependencies, see

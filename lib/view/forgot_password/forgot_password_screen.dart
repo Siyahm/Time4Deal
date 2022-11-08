@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:time4deal/controller/forgot_password_controller/forgot_password_provider.dart';
+import 'package:time4deal/helpers/app_colors.dart';
 import 'package:time4deal/helpers/app_padding.dart';
 import 'package:time4deal/helpers/app_text_styles.dart';
 import 'package:time4deal/helpers/sized_boxes.dart';
@@ -52,6 +53,7 @@ class ForgotPassword extends StatelessWidget {
               SizedBoxes.heightBox30,
               Consumer<ForgotPasswordProvider>(
                 builder: (context, value, child) => LongElevatedButton(
+                  color: AppColors.buttonColor,
                   onPressed: () {
                     value.onSendButtonPressed(formKey, context);
                   },
