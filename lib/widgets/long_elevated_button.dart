@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:time4deal/helpers/app_colors.dart';
 
 class LongElevatedButton extends StatelessWidget {
   const LongElevatedButton({

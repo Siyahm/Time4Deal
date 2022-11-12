@@ -46,7 +46,7 @@ class OnBordingScreen extends StatelessWidget {
                       SizedBox(
                         width: size.width * 0.7,
                         child: LongElevatedButton(
-                            color: AppColors.buttonColor,
+                            color: AppColors.themeColor,
                             onPressed: () {
                               if (index < 2) {
                                 onbordingProvidr.onbordingController
@@ -56,8 +56,10 @@ class OnBordingScreen extends StatelessWidget {
                                     RouteNames.signInScreen);
                               }
                             },
-                            child:
-                                Text(onBordingContentList[index].buttonText1!)),
+                            child: Text(
+                              onBordingContentList[index].buttonText1!,
+                              style: AppTextStyles.buttonTextBlack,
+                            )),
                       ),
                       SizedBoxes.heightBox10,
                       SizedBox(
@@ -65,7 +67,7 @@ class OnBordingScreen extends StatelessWidget {
                         child: LongElevatedButton(
                           decoration: BoxDecoration(
                             border: Border.all(
-                                color: AppColors.whiteColor, width: 1.5),
+                                color: AppColors.themeColor, width: 1.5),
                             borderRadius: const BorderRadius.all(
                               Radius.circular(35),
                             ),
@@ -80,7 +82,10 @@ class OnBordingScreen extends StatelessWidget {
                                   RouteNames.signUpScreen);
                             }
                           },
-                          child: Text(onBordingContentList[index].buttonText2!),
+                          child: Text(
+                            onBordingContentList[index].buttonText2!,
+                            style: AppTextStyles.buttonTextYellow,
+                          ),
                         ),
                       ),
                       SizedBox(

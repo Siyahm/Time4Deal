@@ -70,7 +70,7 @@ class OtpScreen extends StatelessWidget {
               Consumer<OtpProvider>(
                 builder: (context, value, child) {
                   return LongElevatedButton(
-                    color: AppColors.buttonColor,
+                    color: AppColors.themeColor,
                     onPressed: () {
                       if (otpScreenActionEnum ==
                           OtpScreenActionEnum.signUpOtp) {
@@ -93,7 +93,10 @@ class OtpScreen extends StatelessWidget {
                     },
                     child: value.isLoading == true
                         ? const CircularProgressIndicator()
-                        : const Text('SUBMIT'),
+                        : const Text(
+                            'SUBMIT',
+                            style: AppTextStyles.buttonTextBlack,
+                          ),
                   );
                 },
               ),

@@ -8,4 +8,5 @@ class RouteNames {
   static const otpVerificationScreen = 'otpVerificationScreen';
   static const homeScreen = 'homeScreen';
   static const passwordReset = 'passwordReset';
+  static const bottomNavBar = 'bottomNavBar';
 }

@@ -53,7 +53,7 @@ class SignInProvider with ChangeNotifier {
       if (value != null) {
         isLoadingGoogle = false;
         notifyListeners();
-        Navigator.of(context).pushReplacementNamed(RouteNames.homeScreen);
+        Navigator.of(context).pushReplacementNamed(RouteNames.bottomNavBar);
       } else {
         isLoadingGoogle = false;
         notifyListeners();

@@ -1,6 +1,7 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:time4deal/controller/sign_in_controller/sign_in_provider.dart';
 import 'package:time4deal/controller/sign_up_controller/sign_up_provider.dart';
 import 'package:time4deal/helpers/app_colors.dart';
 import 'package:time4deal/helpers/app_padding.dart';
@@ -8,6 +9,7 @@ import 'package:time4deal/helpers/app_text_styles.dart';
 import 'package:time4deal/helpers/sized_boxes.dart';
 import 'package:time4deal/utils/common_validations.dart';
 import 'package:time4deal/widgets/custom_app_bar_leading.dart';
+import 'package:time4deal/widgets/google_sign_in_widget.dart';
 import 'package:time4deal/widgets/long_elevated_button.dart';
 
 import '../../widgets/custome_text_form_field.dart';
@@ -90,13 +92,16 @@ class SignUpScreen extends StatelessWidget {
                 Consumer<SignUpProvider>(
                   builder: (context, value, child) {
                     return LongElevatedButton(
-                      color: AppColors.buttonColor,
+                      color: AppColors.themeColor,
                       onPressed: () {
                         value.onSignUpButtonPressed(signUpFormKey, context);
                       },
                       child: value.isLoading == true
                           ? const CircularProgressIndicator()
-                          : const Text('SIGN UP'),
+                          : const Text(
+                              'SIGN UP',
+                              style: AppTextStyles.buttonTextBlack,
+                            ),
                     );
                   },
                 ),
@@ -127,51 +132,57 @@ class SignUpScreen extends StatelessWidget {
                 Align(
                   alignment: Alignment.center,
                   child: GestureDetector(
-                    onTap: () {},
-                    child: Container(
-                      width: 140,
-                      height: 40,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(20),
-                        border: Border.all(
-                          color: AppColors.whiteColor,
-                          width: 1.5,
-                        ),
-                      ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          const Text('Sign Up with'),
-                          SizedBoxes.widthBox10,
-                          Container(
-                            width: 25,
-                            height: 25,
-                            decoration: const BoxDecoration(
-                              image: DecorationImage(
-                                  image: AssetImage(
-                                'lib/assets/google icon.png',
-                              )),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
+                    onTap: () {
+                      Provider.of<SignInProvider>(context, listen: false)
+                          .googleLogin(context);
+                    },
+                    child: const GoogleSignInWidget(),
+                    // Container(
+                    //   width: 140,
+                    //   height: 40,
+                    //   decoration: BoxDecoration(
+                    //     borderRadius: BorderRadius.circular(20),
+                    //     border: Border.all(
+                    //       color: AppColors.whiteColor,
+                    //       width: 1.5,
+                    //     ),
+                    //   ),
+                    //   child: Row(
+                    //     mainAxisAlignment: MainAxisAlignment.center,
+                    //     children: [
+                    //       const Text('Sign Up with'),
+                    //       SizedBoxes.widthBox10,
+                    //       Container(
+                    //         width: 25,
+                    //         height: 25,
+                    //         decoration: const BoxDecoration(
+                    //           image: DecorationImage(
+                    //               image: AssetImage(
+                    //             'lib/assets/google icon.png',
+                    //           )),
+                    //         ),
+                    //       ),
+                    //     ],
+                    //   ),
+                    // ),
                   ),
                 ),
                 SizedBoxes.heightBox30,
                 Align(
                   alignment: Alignment.center,
                   child: RichText(
-                    text:
-                        TextSpan(text: 'Already have an account?  ', children: [
-                      TextSpan(
-                          text: 'Sign In',
-                          style: AppTextStyles.butonTextStyle,
-                          recognizer: TapGestureRecognizer()
-                            ..onTap = (() {
-                              signUProvider.onSignInButtonPressed(context);
-                            })),
-                    ]),
+                    text: TextSpan(
+                        text: 'Already have an account?  ',
+                        style: const TextStyle(color: AppColors.themeColor),
+                        children: [
+                          TextSpan(
+                              text: 'Sign In',
+                              style: AppTextStyles.butonTextStyle,
+                              recognizer: TapGestureRecognizer()
+                                ..onTap = (() {
+                                  signUProvider.onSignInButtonPressed(context);
+                                })),
+                        ]),
                   ),
                 ),
               ],

@@ -69,12 +69,15 @@ class NewPasswordScreen extends StatelessWidget {
               ),
               SizedBoxes.heightBox30,
               LongElevatedButton(
-                color: AppColors.buttonColor,
+                color: AppColors.themeColor,
                 onPressed: () {
                   newPasswordProvider.onResetButtonPressed(newPasswordFormKey,
                       context, forgotPasswordProvider.user!.email!);
                 },
-                child: const Text('RESET'),
+                child: const Text(
+                  'RESET',
+                  style: AppTextStyles.buttonTextBlack,
+                ),
               ),
             ],
           ),

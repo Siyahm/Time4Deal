@@ -53,13 +53,16 @@ class ForgotPassword extends StatelessWidget {
               SizedBoxes.heightBox30,
               Consumer<ForgotPasswordProvider>(
                 builder: (context, value, child) => LongElevatedButton(
-                  color: AppColors.buttonColor,
+                  color: AppColors.themeColor,
                   onPressed: () {
                     value.onSendButtonPressed(formKey, context);
                   },
                   child: value.isLoading == true
                       ? const CircularProgressIndicator()
-                      : const Text('SEND'),
+                      : const Text(
+                          'SEND',
+                          style: AppTextStyles.buttonTextBlack,
+                        ),
                 ),
               ),
             ],

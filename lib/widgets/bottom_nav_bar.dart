@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:time4deal/controller/bottom_nav_bar_controller/bottom_nav_bar_provider.dart';
+import 'package:time4deal/helpers/app_colors.dart';
 
 class BottomNavBar extends StatelessWidget {
   const BottomNavBar({super.key});
@@ -16,6 +17,7 @@ class BottomNavBar extends StatelessWidget {
             value.bottomNavScreens[bottomNavProvider.selectedIndex],
       ),
       bottomNavigationBar: BottomNavigationBar(
+        selectedItemColor: AppColors.themeColor,
         currentIndex: bottomNavProvider.selectedIndex,
         onTap: (index) {
           log(index.toString());
@@ -28,8 +30,8 @@ class BottomNavBar extends StatelessWidget {
             icon: Icon(Icons.home_outlined),
           ),
           BottomNavigationBarItem(
-            label: 'Cart',
-            icon: Icon(Icons.shopping_cart_outlined),
+            label: 'Wish List',
+            icon: Icon(Icons.favorite_outline_outlined),
           ),
           BottomNavigationBarItem(
             label: 'Orders',

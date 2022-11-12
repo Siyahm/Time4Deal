@@ -8,6 +8,7 @@ import 'package:time4deal/view/otp_screen/otp_screen.dart';
 import 'package:time4deal/view/sign_in/sign_in_scren.dart';
 import 'package:time4deal/view/sign_up/sign_up_screen.dart';
 import 'package:time4deal/view/splash_screen/splash_screen.dart';
+import 'package:time4deal/widgets/bottom_nav_bar.dart';
 
 class AppRouts {
   static Route<dynamic> generateRoute(RouteSettings settings) {
@@ -45,6 +46,10 @@ class AppRouts {
       case RouteNames.passwordReset:
         return MaterialPageRoute(
           builder: (context) => NewPasswordScreen(),
+        );
+      case RouteNames.bottomNavBar:
+        return MaterialPageRoute(
+          builder: (context) => const BottomNavBar(),
         );
       default:
         return MaterialPageRoute(

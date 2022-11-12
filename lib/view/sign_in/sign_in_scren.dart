@@ -1,15 +1,15 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:google_sign_in/google_sign_in.dart';
 import 'package:provider/provider.dart';
+import 'package:time4deal/controller/sign_in_controller/sign_in_provider.dart';
 import 'package:time4deal/controller/sign_up_controller/sign_up_provider.dart';
 import 'package:time4deal/helpers/app_colors.dart';
-import 'package:time4deal/utils/common_validations.dart';
-import 'package:time4deal/controller/sign_in_controller/sign_in_provider.dart';
 import 'package:time4deal/helpers/app_padding.dart';
 import 'package:time4deal/helpers/app_text_styles.dart';
 import 'package:time4deal/helpers/sized_boxes.dart';
+import 'package:time4deal/utils/common_validations.dart';
 import 'package:time4deal/widgets/custome_text_form_field.dart';
+import 'package:time4deal/widgets/google_sign_in_widget.dart';
 import 'package:time4deal/widgets/long_elevated_button.dart';
 
 class SignInScreen extends StatelessWidget {
@@ -66,18 +66,23 @@ class SignInScreen extends StatelessWidget {
                       onPressed: () {
                         signInProvider.onForgotButtonPressed(context);
                       },
-                      child: const Text('Forgot Password?'),
+                      child: const Text(
+                        'Forgot Password?',
+                      ),
                     )),
                 SizedBoxes.heightBox30,
                 Consumer<SignInProvider>(
                   builder: (context, value, child) => LongElevatedButton(
-                    color: AppColors.buttonColor,
+                    color: AppColors.themeColor,
                     onPressed: () {
                       value.onSignIn(signInFormKey, context);
                     },
                     child: value.isLoading == true
                         ? const CircularProgressIndicator()
-                        : const Text('SIGN IN'),
+                        : const Text(
+                            'SIGN IN',
+                            style: AppTextStyles.buttonTextBlack,
+                          ),
                   ),
                 ),
                 SizedBoxes.heightBox10,
@@ -111,58 +116,26 @@ class SignInScreen extends StatelessWidget {
                       signInProvider.googleLogin(context);
                       // await GoogleSignIn().signOut();
                     },
-                    child: Consumer<SignInProvider>(
-                      builder: (context, value, child) => Container(
-                        width: 140,
-                        height: 40,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(20),
-                          border: Border.all(
-                            color: AppColors.whiteColor,
-                            width: 1.5,
-                          ),
-                        ),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            const Text('Sign In with'),
-                            SizedBoxes.widthBox10,
-                            value.isLoadingGoogle == true
-                                ? const SizedBox(
-                                    height: 20,
-                                    width: 20,
-                                    child: CircularProgressIndicator(),
-                                  )
-                                : Container(
-                                    width: 25,
-                                    height: 25,
-                                    decoration: const BoxDecoration(
-                                      image: DecorationImage(
-                                          image: AssetImage(
-                                        'lib/assets/google icon.png',
-                                      )),
-                                    ),
-                                  ),
-                          ],
-                        ),
-                      ),
-                    ),
+                    child: const GoogleSignInWidget(),
                   ),
                 ),
                 SizedBoxes.heightBox50,
                 Align(
                   alignment: Alignment.center,
                   child: RichText(
-                    text: TextSpan(text: 'Not registered yet?  ', children: [
-                      TextSpan(
-                        text: 'Sign Up',
-                        style: AppTextStyles.butonTextStyle,
-                        recognizer: TapGestureRecognizer()
-                          ..onTap = () {
-                            signInProvider.onSignUpButtonPressed(context);
-                          },
-                      ),
-                    ]),
+                    text: TextSpan(
+                        text: 'Not registered yet?  ',
+                        style: const TextStyle(color: AppColors.themeColor),
+                        children: [
+                          TextSpan(
+                            text: 'Sign Up',
+                            style: AppTextStyles.butonTextStyle,
+                            recognizer: TapGestureRecognizer()
+                              ..onTap = () {
+                                signInProvider.onSignUpButtonPressed(context);
+                              },
+                          ),
+                        ]),
                   ),
                 ),
               ],
