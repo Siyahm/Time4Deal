@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:time4deal/routes/rout_names.dart';
+import 'package:time4deal/view/cart/my_cart.dart';
 import 'package:time4deal/view/forgot_password/forgot_password_screen.dart';
 import 'package:time4deal/view/home/home.dart';
 import 'package:time4deal/view/new_password/new_password_screen.dart';
@@ -50,6 +51,10 @@ class AppRouts {
       case RouteNames.bottomNavBar:
         return MaterialPageRoute(
           builder: (context) => const BottomNavBar(),
+        );
+      case RouteNames.myCart:
+        return MaterialPageRoute(
+          builder: (context) => const MyCart(),
         );
       default:
         return MaterialPageRoute(

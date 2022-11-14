@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:time4deal/controller/home_controller/home_controller.dart';
+import 'package:time4deal/controller/wish_list_controller/wish_list_controller.dart';
 import 'package:time4deal/helpers/app_colors.dart';
+import 'package:time4deal/models/product_model/product_model.dart';
 
 class TrendingProduct extends StatelessWidget {
   const TrendingProduct({
@@ -7,13 +11,23 @@ class TrendingProduct extends StatelessWidget {
     required this.image,
     required this.company,
     required this.watchName,
+    required this.isFavourite,
+    required this.index,
+    required this.model,
   }) : super(key: key);
-  final String image;
-  final String company;
-  final String watchName;
+  final String? image;
+  final String? company;
+  final String? watchName;
+
+  final bool? isFavourite;
+  final int index;
+  final ProductModel? model;
 
   @override
   Widget build(BuildContext context) {
+    final homeController = Provider.of<HomeController>(context);
+    final wishListController = Provider.of<WishListController>(context);
+
     final size = MediaQuery.of(context).size;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -30,7 +44,7 @@ class TrendingProduct extends StatelessWidget {
                 decoration: BoxDecoration(
                   image: DecorationImage(
                     fit: BoxFit.fitHeight,
-                    image: AssetImage(image),
+                    image: AssetImage(image!),
                   ),
                 ),
                 // child: Image(
@@ -38,24 +52,41 @@ class TrendingProduct extends StatelessWidget {
                 // ),
               ),
             ),
-            IconButton(
-                onPressed: () {},
-                icon: const Icon(
-                  Icons.favorite_outline,
-                  color: AppColors.bgColor,
-                ))
+            Consumer<HomeController>(
+              builder: (context, value, child) => IconButton(
+                onPressed: () {
+                  value.addFavourite(index);
+                  if (homeController.trendingProductItems[index].isFavourite ==
+                      true) {
+                    wishListController.addToWishList(model!);
+                  } else {
+                    wishListController.removeFromWishList(model!);
+                  }
+                },
+                icon: homeController.trendingProductItems[index].isFavourite ==
+                        false
+                    ? const Icon(
+                        Icons.favorite_outline,
+                        color: AppColors.bgColor,
+                      )
+                    : const Icon(
+                        Icons.favorite,
+                        color: AppColors.bgColor,
+                      ),
+              ),
+            ),
           ],
         ),
         Text(
-          company,
+          company!,
           style: TextStyle(
             color: AppColors.dimWhiteColor.withOpacity(0.7),
-            fontSize: 14,
+            fontSize: 12,
           ),
         ),
         Text(
-          watchName,
-          style: const TextStyle(color: AppColors.themeColor, fontSize: 16),
+          watchName!,
+          style: const TextStyle(color: AppColors.themeColor, fontSize: 14),
         ),
       ],
     );

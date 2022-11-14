@@ -8,5 +8,5 @@ class AppColors {
   static const transperantColor = Colors.transparent;
   // static const buttonColor = Color.fromARGB(254, 248, 224, 116);
   static const dimWhiteColor = Color.fromARGB(255, 216, 216, 216);
-  static const themeColor = Color.fromARGB(253, 255, 237, 158);
+  static const themeColor = Color.fromARGB(252, 252, 244, 210);
 }

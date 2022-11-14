@@ -12,7 +12,7 @@ class AppTextStyles {
       TextStyle(color: AppColors.whiteColor.withOpacity(0.4));
   static const textFiledTextStyle = TextStyle(fontSize: 18);
   static const butonTextStyle =
-      TextStyle(color: Color(0xFF0062C3), fontSize: 16);
+      TextStyle(color: Color.fromARGB(255, 0, 132, 255), fontSize: 16);
   static const normalText = TextStyle(fontSize: 16);
   static const normalTextYellow =
       TextStyle(fontSize: 16, color: AppColors.themeColor);

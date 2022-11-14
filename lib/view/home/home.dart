@@ -4,7 +4,8 @@ import 'package:provider/provider.dart';
 import 'package:time4deal/controller/home_controller/home_controller.dart';
 import 'package:time4deal/helpers/app_text_styles.dart';
 import 'package:time4deal/helpers/sized_boxes.dart';
-import 'package:time4deal/view/home/widget/custome_app_bar.dart';
+import 'package:time4deal/widgets/custome_app_bar.dart';
+import 'package:time4deal/view/home/widget/trending_products.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -13,7 +14,21 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final homeController = Provider.of<HomeController>(context, listen: false);
     return Scaffold(
-      appBar: const CustomeAppBar(),
+      appBar: CustomeAppBar(
+        leadingWidget: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: const [
+            SizedBoxes.heightBox10,
+            Text(
+              'Hello',
+            ),
+            Text(
+              'Name',
+              style: AppTextStyles.normalTextYellow,
+            ),
+          ],
+        ),
+      ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: SingleChildScrollView(
@@ -53,10 +68,17 @@ class HomeScreen extends StatelessWidget {
                   crossAxisCount: 2,
                   crossAxisSpacing: 8,
                   mainAxisSpacing: 8,
-                  childAspectRatio: 0.8,
+                  childAspectRatio: 0.75,
                 )),
-                itemBuilder: (context, index) =>
-                    homeController.trendingProductItems[index],
+                itemBuilder: (context, index) => TrendingProduct(
+                    model: homeController.trendingProductItems[index],
+                    index: index,
+                    image: homeController.trendingProductItems[index].image,
+                    company: homeController.trendingProductItems[index].company,
+                    watchName: homeController.trendingProductItems[index].name,
+                    isFavourite:
+                        homeController.trendingProductItems[index].isFavourite),
+                // homeController.trendingProductItems[index],
                 itemCount: homeController.trendingProductItems.length,
               ),
             ],

@@ -1,15 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:time4deal/helpers/app_colors.dart';
-import 'package:time4deal/helpers/app_text_styles.dart';
-import 'package:time4deal/helpers/sized_boxes.dart';
+import 'package:google_sign_in/google_sign_in.dart';
+import 'package:provider/provider.dart';
+import 'package:time4deal/controller/sign_in_controller/sign_in_provider.dart';
+import 'package:time4deal/routes/rout_names.dart';
 
 class CustomeAppBar extends StatelessWidget implements PreferredSize {
   const CustomeAppBar({
     Key? key,
+    required this.leadingWidget,
   }) : super(key: key);
+
+  final Widget leadingWidget;
 
   @override
   Widget build(BuildContext context) {
+    final signInProvider = Provider.of<SignInProvider>(context);
     return PreferredSize(
       preferredSize: const Size.fromHeight(45),
       child: Padding(
@@ -20,29 +25,21 @@ class CustomeAppBar extends StatelessWidget implements PreferredSize {
           children: [
             Row(
               children: [
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: const [
-                    SizedBoxes.heightBox10,
-                    Text(
-                      'Hello',
-                    ),
-                    Text(
-                      'Name',
-                      style: AppTextStyles.normalTextYellow,
-                    ),
-                  ],
-                ),
+                leadingWidget,
                 const Spacer(),
                 const Spacer(),
                 IconButton(
                   splashRadius: 15,
-                  onPressed: () {},
+                  onPressed: () async {
+                    await GoogleSignIn().signOut();
+                  },
                   icon: const Icon(Icons.search),
                 ),
                 IconButton(
                   splashRadius: 15,
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.of(context).pushNamed(RouteNames.myCart);
+                  },
                   icon: const Icon(Icons.shopping_cart_outlined),
                 ),
               ],

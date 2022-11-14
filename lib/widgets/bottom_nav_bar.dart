@@ -18,6 +18,7 @@ class BottomNavBar extends StatelessWidget {
       ),
       bottomNavigationBar: BottomNavigationBar(
         selectedItemColor: AppColors.themeColor,
+        unselectedItemColor: AppColors.whiteColor.withOpacity(0.35),
         currentIndex: bottomNavProvider.selectedIndex,
         onTap: (index) {
           log(index.toString());
@@ -28,18 +29,22 @@ class BottomNavBar extends StatelessWidget {
           BottomNavigationBarItem(
             label: 'Home',
             icon: Icon(Icons.home_outlined),
+            activeIcon: Icon(Icons.home_filled),
           ),
           BottomNavigationBarItem(
             label: 'Wish List',
             icon: Icon(Icons.favorite_outline_outlined),
+            activeIcon: Icon(Icons.favorite_rounded),
           ),
           BottomNavigationBarItem(
             label: 'Orders',
             icon: Icon(Icons.shopping_bag_outlined),
+            activeIcon: Icon(Icons.shopping_bag),
           ),
           BottomNavigationBarItem(
             label: 'Profile',
             icon: Icon(Icons.person_outline),
+            activeIcon: Icon(Icons.person),
           ),
         ],
       ),

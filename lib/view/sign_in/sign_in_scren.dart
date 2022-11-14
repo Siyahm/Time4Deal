@@ -1,5 +1,6 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:provider/provider.dart';
 import 'package:time4deal/controller/sign_in_controller/sign_in_provider.dart';
 import 'package:time4deal/controller/sign_up_controller/sign_up_provider.dart';
@@ -68,6 +69,7 @@ class SignInScreen extends StatelessWidget {
                       },
                       child: const Text(
                         'Forgot Password?',
+                        style: AppTextStyles.butonTextStyle,
                       ),
                     )),
                 SizedBoxes.heightBox30,
@@ -85,7 +87,7 @@ class SignInScreen extends StatelessWidget {
                           ),
                   ),
                 ),
-                SizedBoxes.heightBox10,
+                SizedBoxes.heightBox30,
                 Row(
                   children: const [
                     Expanded(
@@ -112,7 +114,7 @@ class SignInScreen extends StatelessWidget {
                 Align(
                   alignment: Alignment.center,
                   child: GestureDetector(
-                    onTap: () {
+                    onTap: () async {
                       signInProvider.googleLogin(context);
                       // await GoogleSignIn().signOut();
                     },

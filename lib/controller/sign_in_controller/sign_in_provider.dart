@@ -1,9 +1,11 @@
 import 'dart:developer';
 
 import 'package:flutter/cupertino.dart';
+import 'package:time4deal/helpers/app_colors.dart';
 import 'package:time4deal/models/user_model/user_model.dart';
 import 'package:time4deal/routes/rout_names.dart';
 import 'package:time4deal/service/sign_in_service/sign_in_servide.dart';
+import 'package:time4deal/utils/custom_toast.dart';
 
 class SignInProvider with ChangeNotifier {
   final TextEditingController emailController = TextEditingController();
@@ -27,21 +29,18 @@ class SignInProvider with ChangeNotifier {
 
     if (signInFormKey.currentState!.validate()) {
       log('sign in function called');
-      UserModel? user = await SignInService()
-          .signInFunction(
-              email: emailController.text, password: passwordController.text)
-          .then(
-        (value) {
-          if (value != null) {
-            isLoading = false;
-            Navigator.of(context).pushNamed(RouteNames.homeScreen);
-            // log(user.toString());
-          }
+      UserModel? user = await SignInService().signInFunction(
+          email: emailController.text, password: passwordController.text);
 
-          return null;
-        },
-      );
-      log(user.toString());
+      if (user != null) {
+        isLoading = false;
+        Navigator.of(context).pushNamed(RouteNames.bottomNavBar);
+        // log(user.toString());
+      } else {
+        customToast('No user exist', AppColors.redColor);
+      }
+
+      return null;
     }
   }
 

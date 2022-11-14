@@ -9,10 +9,11 @@ import 'package:time4deal/controller/otp_controller/otp_controller.dart';
 import 'package:time4deal/controller/sign_in_controller/sign_in_provider.dart';
 import 'package:time4deal/controller/sign_up_controller/sign_up_provider.dart';
 import 'package:time4deal/controller/spalsh_controller/splash_provider.dart';
+import 'package:time4deal/controller/wish_list_controller/wish_list_controller.dart';
 import 'package:time4deal/helpers/app_colors.dart';
 import 'package:time4deal/routes/routs.dart';
-import 'package:time4deal/view/home/home.dart';
-import 'package:time4deal/view/on_boarding/on_bording_screen.dart';
+import 'package:time4deal/view/product_details/product_details.dart';
+import 'package:time4deal/view/splash_screen/splash_screen.dart';
 import 'package:time4deal/widgets/bottom_nav_bar.dart';
 
 void main() {
@@ -53,6 +54,9 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(
           create: ((_) => HomeController()),
         ),
+        ChangeNotifierProvider(
+          create: ((_) => WishListController()),
+        ),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
@@ -66,7 +70,7 @@ class MyApp extends StatelessWidget {
               backgroundColor: AppColors.transperantColor,
             )),
         // darkTheme: ThemeData.dark(),
-        home: const BottomNavBar(),
+        home: const ProductDetails(),
       ),
     );
   }

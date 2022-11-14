@@ -9,4 +9,5 @@ class RouteNames {
   static const homeScreen = 'homeScreen';
   static const passwordReset = 'passwordReset';
   static const bottomNavBar = 'bottomNavBar';
+  static const myCart = 'myCart';
 }

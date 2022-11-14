@@ -1,15 +1,16 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
+import 'package:flutter/material.dart';
 
 class MyCart extends StatelessWidget {
   const MyCart({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const SafeArea(
-      child: Center(
-        child: Text('My cart screen'),
+    return const Scaffold(
+      body: SafeArea(
+        child: Center(
+          child: Text('My cart screen'),
+        ),
       ),
     );
   }
