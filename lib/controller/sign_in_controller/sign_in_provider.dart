@@ -34,7 +34,7 @@ class SignInProvider with ChangeNotifier {
 
       if (user != null) {
         isLoading = false;
-        Navigator.of(context).pushNamed(RouteNames.bottomNavBar);
+        Navigator.of(context).pushReplacementNamed(RouteNames.bottomNavBar);
         // log(user.toString());
       } else {
         customToast('No user exist', AppColors.redColor);

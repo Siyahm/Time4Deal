@@ -10,43 +10,51 @@ class BottomNavBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final bottomNavProvider = Provider.of<BottomNavBarProvider>(context);
-    return Scaffold(
-      body: Consumer<BottomNavBarProvider>(
-        builder: (context, value, child) =>
-            value.bottomNavScreens[bottomNavProvider.selectedIndex],
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        selectedItemColor: AppColors.themeColor,
-        unselectedItemColor: AppColors.whiteColor.withOpacity(0.35),
-        currentIndex: bottomNavProvider.selectedIndex,
-        onTap: (index) {
-          log(index.toString());
-          bottomNavProvider.onItemTaped(index);
+    // final bottomNavProvider = Provider.of<BottomNavBarProvider>(context);
+    return Consumer<BottomNavBarProvider>(
+      builder: (context, value, child) => WillPopScope(
+        onWillPop: () async {
+          await value.navBarWillPop();
+          return false;
         },
-        type: BottomNavigationBarType.fixed,
-        items: const [
-          BottomNavigationBarItem(
-            label: 'Home',
-            icon: Icon(Icons.home_outlined),
-            activeIcon: Icon(Icons.home_filled),
+        child: Scaffold(
+          body: Consumer<BottomNavBarProvider>(
+            builder: (context, value, child) =>
+                value.bottomNavScreens[value.selectedIndex],
           ),
-          BottomNavigationBarItem(
-            label: 'Wish List',
-            icon: Icon(Icons.favorite_outline_outlined),
-            activeIcon: Icon(Icons.favorite_rounded),
+          bottomNavigationBar: BottomNavigationBar(
+            selectedItemColor: AppColors.themeColor,
+            unselectedItemColor: AppColors.whiteColor.withOpacity(0.35),
+            currentIndex: value.selectedIndex,
+            onTap: (index) {
+              log(index.toString());
+              value.onItemTaped(index);
+            },
+            type: BottomNavigationBarType.fixed,
+            items: const [
+              BottomNavigationBarItem(
+                label: 'Home',
+                icon: Icon(Icons.home_outlined),
+                activeIcon: Icon(Icons.home_filled),
+              ),
+              BottomNavigationBarItem(
+                label: 'Wish List',
+                icon: Icon(Icons.favorite_outline_outlined),
+                activeIcon: Icon(Icons.favorite_rounded),
+              ),
+              BottomNavigationBarItem(
+                label: 'Orders',
+                icon: Icon(Icons.shopping_bag_outlined),
+                activeIcon: Icon(Icons.shopping_bag),
+              ),
+              BottomNavigationBarItem(
+                label: 'Profile',
+                icon: Icon(Icons.person_outline),
+                activeIcon: Icon(Icons.person),
+              ),
+            ],
           ),
-          BottomNavigationBarItem(
-            label: 'Orders',
-            icon: Icon(Icons.shopping_bag_outlined),
-            activeIcon: Icon(Icons.shopping_bag),
-          ),
-          BottomNavigationBarItem(
-            label: 'Profile',
-            icon: Icon(Icons.person_outline),
-            activeIcon: Icon(Icons.person),
-          ),
-        ],
+        ),
       ),
     );
   }

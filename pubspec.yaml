@@ -29,11 +29,11 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
-  carousel_slider: ^4.1.1
   cupertino_icons: ^1.0.2
   dio: ^4.0.6
   flutter:
     sdk: flutter
+  flutter_carousel_slider: ^1.1.0
   flutter_otp_text_field: ^1.1.1
   fluttertoast: ^8.1.1
   google_sign_in: ^5.4.2
@@ -65,13 +65,17 @@ flutter:
     - lib/assets/scrn 1 copy.jpg
     - lib/assets/scrn 2 copy.jpg
     - lib/assets/scrn 3 copy.jpg
-    - lib/assets/9.jpg
-    - lib/assets/1.jpg
-    - lib/assets/6.jpg
+    # - lib/assets/9.jpg
+    # - lib/assets/1.jpg
+    # - lib/assets/6.jpg
     - lib/assets/watch pic 1.png
     - lib/assets/watch pic 2.png
     - lib/assets/watch pic 3.png
     - lib/assets/watch pic 4.png
+    - lib/assets/sample 1.png
+    - lib/assets/sample 2.png
+    - lib/assets/sample 3.png
+    - lib/assets/sample 4.png
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
   # For details regarding adding assets from package dependencies, see

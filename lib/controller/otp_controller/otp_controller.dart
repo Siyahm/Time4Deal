@@ -32,7 +32,8 @@ class OtpProvider with ChangeNotifier {
             SignUpService().signUp(signUpModel!).then((value) {
               isLoading = false;
               notifyListeners();
-              Navigator.of(context).pushReplacementNamed(RouteNames.homeScreen);
+              Navigator.of(context)
+                  .pushReplacementNamed(RouteNames.bottomNavBar);
             });
           } else if (otpEnum == OtpScreenActionEnum.forgotPasswordOtp) {
             isLoading = false;

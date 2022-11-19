@@ -9,7 +9,7 @@ class BottomNavBarProvider with ChangeNotifier {
   int selectedIndex = 0;
 
   final List bottomNavScreens = [
-    HomeScreen(),
+    const HomeScreen(),
     const MyWishList(),
     const MyOrders(),
     const MyProfile(),
@@ -17,5 +17,13 @@ class BottomNavBarProvider with ChangeNotifier {
   void onItemTaped(int index) {
     selectedIndex = index;
     notifyListeners();
+  }
+
+  Future<bool>? navBarWillPop() {
+    if (selectedIndex != 0) {
+      selectedIndex = 0;
+      notifyListeners();
+    }
+    return null;
   }
 }

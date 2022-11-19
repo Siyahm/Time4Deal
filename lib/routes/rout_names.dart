@@ -10,4 +10,5 @@ class RouteNames {
   static const passwordReset = 'passwordReset';
   static const bottomNavBar = 'bottomNavBar';
   static const myCart = 'myCart';
+  static const productDetails = 'productDetails';
 }

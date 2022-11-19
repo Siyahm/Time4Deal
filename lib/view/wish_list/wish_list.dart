@@ -6,6 +6,7 @@ import 'package:time4deal/controller/home_controller/home_controller.dart';
 import 'package:time4deal/controller/wish_list_controller/wish_list_controller.dart';
 import 'package:time4deal/helpers/app_colors.dart';
 import 'package:time4deal/helpers/app_padding.dart';
+import 'package:time4deal/utils/common_functions.dart';
 import 'package:time4deal/widgets/custome_app_bar.dart';
 import 'package:time4deal/view/wish_list/widgets/wish_list_items.dart';
 
@@ -19,7 +20,9 @@ class MyWishList extends StatelessWidget {
     return Scaffold(
       appBar: CustomeAppBar(
         leadingWidget: IconButton(
-          onPressed: () {},
+          onPressed: () {
+            CommonFunctions.popFunction(context);
+          },
           icon: const Icon(Icons.arrow_back_ios),
           splashRadius: 20,
         ),

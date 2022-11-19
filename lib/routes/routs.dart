@@ -6,6 +6,7 @@ import 'package:time4deal/view/home/home.dart';
 import 'package:time4deal/view/new_password/new_password_screen.dart';
 import 'package:time4deal/view/otp_screen/otp_arguments.dart';
 import 'package:time4deal/view/otp_screen/otp_screen.dart';
+import 'package:time4deal/view/product_details/product_details.dart';
 import 'package:time4deal/view/sign_in/sign_in_scren.dart';
 import 'package:time4deal/view/sign_up/sign_up_screen.dart';
 import 'package:time4deal/view/splash_screen/splash_screen.dart';
@@ -55,6 +56,10 @@ class AppRouts {
       case RouteNames.myCart:
         return MaterialPageRoute(
           builder: (context) => const MyCart(),
+        );
+      case RouteNames.productDetails:
+        return MaterialPageRoute(
+          builder: (context) => const ProductDetails(),
         );
       default:
         return MaterialPageRoute(
