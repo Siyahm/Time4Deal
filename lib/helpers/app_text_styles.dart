@@ -22,6 +22,8 @@ class AppTextStyles {
   static const butonTextStyle =
       TextStyle(color: Color.fromARGB(255, 0, 132, 255), fontSize: 16);
   static const normalText = TextStyle(fontSize: 16);
+  static const normalTextBold =
+      TextStyle(fontSize: 16, fontWeight: FontWeight.bold);
   static const normalTextBlack = TextStyle(fontSize: 16, color: Colors.black);
   static const normalTextYellow =
       TextStyle(fontSize: 16, color: AppColors.whiteColor);

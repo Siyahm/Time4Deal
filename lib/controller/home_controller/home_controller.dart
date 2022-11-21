@@ -1,10 +1,11 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:time4deal/view/product_details/product_details_arguments.dart';
 import 'package:time4deal/models/carousal_model/carousal_model.dart';
 import 'package:time4deal/models/product_model/product_model.dart';
+import 'package:time4deal/routes/rout_names.dart';
 import 'package:time4deal/service/carousal_service/carousal_service.dart';
-import 'package:time4deal/view/home/widget/featured_products.dart';
 
 class HomeController with ChangeNotifier {
   HomeController() {
@@ -16,6 +17,12 @@ class HomeController with ChangeNotifier {
     trendingProductItems[index].isFavourite =
         !trendingProductItems[index].isFavourite!;
     notifyListeners();
+  }
+
+  void onTapCard(BuildContext context, int index, ProductModel? model) {
+    ProductDetailsArguments args =
+        ProductDetailsArguments(index: index, model: model);
+    Navigator.of(context).pushNamed(RouteNames.productDetails, arguments: args);
   }
 
   // final List<Widget>? featuredProductItems1 = [

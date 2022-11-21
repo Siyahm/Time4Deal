@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_carousel_slider/carousel_slider.dart';
 import 'package:provider/provider.dart';
+import 'package:time4deal/constants/app_urls.dart';
 import 'package:time4deal/controller/home_controller/home_controller.dart';
 import 'package:time4deal/helpers/app_colors.dart';
 import 'package:time4deal/view/home/widget/featured_products.dart';
@@ -41,7 +42,7 @@ class HomeCarousals extends StatelessWidget {
             slideBuilder: (int index) {
               return FeaturedProduct(
                 image:
-                    "http://192.168.137.1:6001/carousals/${value.carousalItems[index].image!}",
+                    AppUrls.carousalMainUrl + value.carousalItems[index].image!,
                 offer: "${value.carousalItems[index].offer!}%\noff",
               );
             },

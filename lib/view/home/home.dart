@@ -37,13 +37,24 @@ class HomeScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               SizedBoxes.heightBox10,
-              const Text('FEATURED'),
-              const Text(
-                'FPRODUCTS',
-                style: AppTextStyles.head1,
+              Consumer<HomeController>(
+                builder: (context, value, child) {
+                  return value.carousalItems.isNotEmpty
+                      ? Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: const [
+                            Text('FEATURED'),
+                            Text(
+                              'FPRODUCTS',
+                              style: AppTextStyles.head1,
+                            ),
+                            SizedBoxes.heightBox10,
+                            HomeCarousals()
+                          ],
+                        )
+                      : const SizedBox();
+                },
               ),
-              SizedBoxes.heightBox10,
-              const HomeCarousals(),
               SizedBoxes.heightBox10,
               const Text('TRENDING'),
               const Text(

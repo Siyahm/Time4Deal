@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:time4deal/view/product_details/product_details_arguments.dart';
 import 'package:time4deal/routes/rout_names.dart';
 import 'package:time4deal/view/cart/my_cart.dart';
 import 'package:time4deal/view/forgot_password/forgot_password_screen.dart';
@@ -58,8 +59,12 @@ class AppRouts {
           builder: (context) => const MyCart(),
         );
       case RouteNames.productDetails:
+        final args = settings.arguments as ProductDetailsArguments;
         return MaterialPageRoute(
-          builder: (context) => const ProductDetails(),
+          builder: (context) => ProductDetails(
+            index: args.index,
+            model: args.model,
+          ),
         );
       default:
         return MaterialPageRoute(

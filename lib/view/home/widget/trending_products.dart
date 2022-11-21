@@ -32,7 +32,7 @@ class TrendingProduct extends StatelessWidget {
     final size = MediaQuery.of(context).size;
     return GestureDetector(
       onTap: () {
-        Navigator.of(context).pushNamed(RouteNames.productDetails);
+        homeController.onTapCard(context, index, model);
       },
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -69,17 +69,15 @@ class TrendingProduct extends StatelessWidget {
                       wishListController.removeFromWishList(model!);
                     }
                   },
-                  icon:
-                      homeController.trendingProductItems[index].isFavourite ==
-                              false
-                          ? const Icon(
-                              Icons.favorite_outline,
-                              color: AppColors.bgColor,
-                            )
-                          : const Icon(
-                              Icons.favorite,
-                              color: AppColors.whiteColor,
-                            ),
+                  icon: value.trendingProductItems[index].isFavourite == false
+                      ? const Icon(
+                          Icons.favorite_outline,
+                          color: AppColors.dimWhiteColor,
+                        )
+                      : const Icon(
+                          Icons.favorite,
+                          color: AppColors.whiteColor,
+                        ),
                 ),
               ),
             ],
