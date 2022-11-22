@@ -6,4 +6,5 @@ class ApiEndPoints {
   static const String setPassword = "auth/password";
   static const String googleLogin = "auth/google";
   static const String getCarousal = "carousal";
+  static const String getCategory = "category";
 }

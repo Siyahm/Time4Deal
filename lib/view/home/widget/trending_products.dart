@@ -4,7 +4,6 @@ import 'package:time4deal/controller/home_controller/home_controller.dart';
 import 'package:time4deal/controller/wish_list_controller/wish_list_controller.dart';
 import 'package:time4deal/helpers/app_colors.dart';
 import 'package:time4deal/models/product_model/product_model.dart';
-import 'package:time4deal/routes/rout_names.dart';
 
 class TrendingProduct extends StatelessWidget {
   const TrendingProduct({
@@ -16,7 +15,7 @@ class TrendingProduct extends StatelessWidget {
     required this.index,
     required this.model,
   }) : super(key: key);
-  final String? image;
+  final List<String>? image;
   final String? company;
   final String? watchName;
 
@@ -49,7 +48,7 @@ class TrendingProduct extends StatelessWidget {
                   decoration: BoxDecoration(
                     image: DecorationImage(
                       fit: BoxFit.fitHeight,
-                      image: AssetImage(image!),
+                      image: AssetImage(image![0]),
                     ),
                   ),
                   // child: Image(

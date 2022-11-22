@@ -47,7 +47,8 @@ class MyWishList extends StatelessWidget {
                   name: wishListController.wishListItemList[index].name!,
                   company: wishListController.wishListItemList[index].company!,
                   rate: wishListController.wishListItemList[index].price!,
-                  color: wishListController.wishListItemList[index].color!,
+                  // color: wishListController.wishListItemList[index].color!,
+                  index: index,
                 ),
                 separatorBuilder: (BuildContext context, int index) {
                   return const Divider(

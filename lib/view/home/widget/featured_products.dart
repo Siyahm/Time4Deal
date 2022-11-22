@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/cupertino.dart';
 import 'package:time4deal/helpers/app_colors.dart';
 import 'package:time4deal/helpers/app_padding.dart';

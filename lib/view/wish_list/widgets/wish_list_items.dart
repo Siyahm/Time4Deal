@@ -9,15 +9,17 @@ class WishListItemTile extends StatelessWidget {
     required this.name,
     required this.company,
     required this.rate,
-    required this.color,
+    // required this.color,
     required this.closeFunction,
+    required this.index,
   });
-  final String? image;
+  final List<String>? image;
   final String? name;
   final String? company;
   final String? rate;
-  final Color? color;
+  // final Color? color;
   final VoidCallback closeFunction;
+  final int index;
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +32,7 @@ class WishListItemTile extends StatelessWidget {
             decoration: BoxDecoration(
               color: AppColors.dimWhiteColor,
               image: DecorationImage(
-                  image: AssetImage(image!), fit: BoxFit.fitHeight),
+                  image: AssetImage(image![index]), fit: BoxFit.fitHeight),
             ),
           ),
           SizedBoxes.widthBox10,
@@ -43,19 +45,19 @@ class WishListItemTile extends StatelessWidget {
                     const TextStyle(fontSize: 18, color: AppColors.themeColor),
               ),
               Text('₹ ${rate!}'),
-              Row(
-                children: [
-                  const Text('Color: '),
-                  Container(
-                    width: 15,
-                    height: 15,
-                    decoration: BoxDecoration(
-                      color: color,
-                      border: Border.all(width: 2, color: AppColors.whiteColor),
-                    ),
-                  )
-                ],
-              ),
+              // Row(
+              //   children: [
+              //     const Text('Color: '),
+              //     Container(
+              //       width: 15,
+              //       height: 15,
+              //       decoration: BoxDecoration(
+              //         // color: color,
+              //         border: Border.all(width: 2, color: AppColors.whiteColor),
+              //       ),
+              //     )
+              //   ],
+              // ),
               Row(
                 children: [
                   TextButton(

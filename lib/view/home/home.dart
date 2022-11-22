@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:time4deal/constants/app_urls.dart';
 import 'package:time4deal/controller/home_controller/home_controller.dart';
+import 'package:time4deal/helpers/app_colors.dart';
+import 'package:time4deal/helpers/app_padding.dart';
 import 'package:time4deal/helpers/app_text_styles.dart';
 import 'package:time4deal/helpers/sized_boxes.dart';
 import 'package:time4deal/view/home/widget/home_carousal.dart';
@@ -39,24 +42,75 @@ class HomeScreen extends StatelessWidget {
               SizedBoxes.heightBox10,
               Consumer<HomeController>(
                 builder: (context, value, child) {
-                  return value.carousalItems.isNotEmpty
-                      ? Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: const [
-                            Text('FEATURED'),
-                            Text(
-                              'FPRODUCTS',
-                              style: AppTextStyles.head1,
-                            ),
-                            SizedBoxes.heightBox10,
-                            HomeCarousals()
-                          ],
-                        )
-                      : const SizedBox();
+                  return value.isLoading
+                      ? const SizedBox()
+                      : value.carousalItems.isNotEmpty
+                          ? Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: const [
+                                Text('FEATURED',
+                                    style:
+                                        TextStyle(color: AppColors.redColor)),
+                                Text(
+                                  'FPRODUCTS',
+                                  style: AppTextStyles.head1,
+                                ),
+                                SizedBoxes.heightBox10,
+                                HomeCarousals()
+                              ],
+                            )
+                          : const SizedBox();
                 },
               ),
               SizedBoxes.heightBox10,
-              const Text('TRENDING'),
+              SizedBox(
+                height: 105,
+                child: Consumer<HomeController>(
+                  builder: (context, value, child) => ListView.builder(
+                    scrollDirection: Axis.horizontal,
+                    itemBuilder: (context, index) {
+                      if (value.isCategoryLoding) {
+                        return const Center(
+                          child: CircularProgressIndicator(),
+                        );
+                      } else {
+                        value.categoriesList[index].name.split(' ');
+                        return Padding(
+                          padding: AppPadding.horizPadding5,
+                          child: Column(
+                            children: [
+                              CircleAvatar(
+                                backgroundColor: AppColors.whiteColor,
+                                radius: 30,
+                                child: CircleAvatar(
+                                  backgroundColor: AppColors.whiteColor,
+                                  backgroundImage: NetworkImage(
+                                      AppUrls.categoryMainUrl +
+                                          value.categoriesList[index].image),
+                                  radius: 27,
+                                ),
+                              ),
+                              SizedBoxes.heightBox5,
+                              Text(
+                                value.categoriesList[index].name
+                                    .replaceAll(' ', '\n'),
+                                textAlign: TextAlign.center,
+                                style: TextStyle(),
+                              )
+                            ],
+                          ),
+                        );
+                      }
+                    },
+                    itemCount: value.categoriesList.length,
+                  ),
+                ),
+              ),
+              SizedBoxes.heightBox10,
+              const Text(
+                'TRENDING',
+                style: TextStyle(color: AppColors.redColor),
+              ),
               const Text(
                 'FPRODUCTS',
                 style: AppTextStyles.head1,

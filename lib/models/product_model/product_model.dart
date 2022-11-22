@@ -1,31 +1,48 @@
 import 'package:flutter/animation.dart';
 
 class ProductModel {
-  String? image;
   String? company;
   String? name;
   String? price;
-  Color? color;
-  Color? color2;
-  Color? color3;
+  String? discountPrice;
+  String? offer;
+  // Color? color;
+  // Color? color2;
+  // Color? color3;
   String? category;
   String? strap;
+  List<String>? size;
+  List<String>? image;
   String? warrenty;
   String? description;
   bool? isFavourite;
 
   ProductModel({
-    required this.image,
-    required this.company,
+    this.company,
     required this.name,
     required this.price,
-    required this.color,
-    this.color2,
-    this.color3,
-    required this.category,
-    required this.isFavourite,
-    required this.strap,
-    required this.warrenty,
+    this.discountPrice,
+    this.offer,
+    // this.color,
+    // this.color2,
+    // this.color3,
+    this.category,
+    this.isFavourite,
+    this.strap,
+    this.size,
+    required this.image,
+    this.warrenty,
     this.description,
   });
+
+  factory ProductModel.frojJson(Map<String, dynamic> json) {
+    return ProductModel(
+      name: json['name'],
+      price: json['price'],
+      image: json['image'],
+      discountPrice: json['discountPrice'],
+      offer: json['offer'],
+      size: json['size'],
+    );
+  }
 }
