@@ -3,11 +3,11 @@ import 'package:provider/provider.dart';
 import 'package:time4deal/constants/app_urls.dart';
 import 'package:time4deal/controller/home_controller/home_controller.dart';
 import 'package:time4deal/helpers/app_colors.dart';
-import 'package:time4deal/helpers/app_padding.dart';
 import 'package:time4deal/helpers/app_text_styles.dart';
 import 'package:time4deal/helpers/sized_boxes.dart';
+import 'package:time4deal/view/home/widget/category_row.dart';
 import 'package:time4deal/view/home/widget/home_carousal.dart';
-import 'package:time4deal/view/home/widget/trending_products.dart';
+import 'package:time4deal/widgets/products_view.dart';
 import 'package:time4deal/widgets/custome_app_bar.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -63,49 +63,7 @@ class HomeScreen extends StatelessWidget {
                 },
               ),
               SizedBoxes.heightBox10,
-              SizedBox(
-                height: 105,
-                child: Consumer<HomeController>(
-                  builder: (context, value, child) => ListView.builder(
-                    scrollDirection: Axis.horizontal,
-                    itemBuilder: (context, index) {
-                      if (value.isCategoryLoding) {
-                        return const Center(
-                          child: CircularProgressIndicator(),
-                        );
-                      } else {
-                        value.categoriesList[index].name.split(' ');
-                        return Padding(
-                          padding: AppPadding.horizPadding5,
-                          child: Column(
-                            children: [
-                              CircleAvatar(
-                                backgroundColor: AppColors.whiteColor,
-                                radius: 30,
-                                child: CircleAvatar(
-                                  backgroundColor: AppColors.whiteColor,
-                                  backgroundImage: NetworkImage(
-                                      AppUrls.categoryMainUrl +
-                                          value.categoriesList[index].image),
-                                  radius: 27,
-                                ),
-                              ),
-                              SizedBoxes.heightBox5,
-                              Text(
-                                value.categoriesList[index].name
-                                    .replaceAll(' ', '\n'),
-                                textAlign: TextAlign.center,
-                                style: TextStyle(),
-                              )
-                            ],
-                          ),
-                        );
-                      }
-                    },
-                    itemCount: value.categoriesList.length,
-                  ),
-                ),
-              ),
+              const CategoryRow(),
               SizedBoxes.heightBox10,
               const Text(
                 'TRENDING',
@@ -116,25 +74,33 @@ class HomeScreen extends StatelessWidget {
                 style: AppTextStyles.head1,
               ),
               SizedBoxes.heightBox10,
-              GridView.builder(
-                shrinkWrap: true,
-                physics: const NeverScrollableScrollPhysics(),
-                gridDelegate: (const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                  crossAxisSpacing: 8,
-                  mainAxisSpacing: 8,
-                  childAspectRatio: 0.75,
-                )),
-                itemBuilder: (context, index) => TrendingProduct(
-                    model: homeController.trendingProductItems[index],
-                    index: index,
-                    image: homeController.trendingProductItems[index].image,
-                    company: homeController.trendingProductItems[index].company,
-                    watchName: homeController.trendingProductItems[index].name,
-                    isFavourite:
-                        homeController.trendingProductItems[index].isFavourite),
-                // homeController.trendingProductItems[index],
-                itemCount: homeController.trendingProductItems.length,
+              Consumer<HomeController>(
+                builder: (context, value, child) => value.isProductstsLoading
+                    ? const CircularProgressIndicator()
+                    : GridView.builder(
+                        shrinkWrap: true,
+                        physics: const NeverScrollableScrollPhysics(),
+                        gridDelegate:
+                            (const SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 2,
+                          crossAxisSpacing: 8,
+                          mainAxisSpacing: 8,
+                          childAspectRatio: 0.63,
+                        )),
+                        itemBuilder: (context, index) => ProductsView(
+                            model: homeController.trendingProductItems[index],
+                            index: index,
+                            image: AppUrls.productsMainUrl +
+                                homeController
+                                    .trendingProductItems[index].image[0],
+                            company: "Brand Name",
+                            watchName:
+                                homeController.trendingProductItems[index].name,
+                            isFavourite: false),
+
+                        // homeController.trendingProductItems[index],
+                        itemCount: homeController.trendingProductItems.length,
+                      ),
               ),
             ],
           ),

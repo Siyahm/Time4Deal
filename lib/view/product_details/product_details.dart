@@ -23,11 +23,7 @@ class ProductDetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // final wishListController = Provider.of<WishListController>(context);
-    // final homeController = Provider.of<HomeController>(context, listen: false);
-    // final productDetailsController =
-    //     Provider.of<ProductDetailsContoller>(context, listen: false);
-    final size = MediaQuery.of(context).size;
+    // final size = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: AppColors.transperantColor,
       appBar: CustomeAppBar(

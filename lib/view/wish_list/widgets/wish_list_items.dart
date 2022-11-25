@@ -36,63 +36,67 @@ class WishListItemTile extends StatelessWidget {
             ),
           ),
           SizedBoxes.widthBox10,
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                name!,
-                style:
-                    const TextStyle(fontSize: 18, color: AppColors.themeColor),
-              ),
-              Text('₹ ${rate!}'),
-              // Row(
-              //   children: [
-              //     const Text('Color: '),
-              //     Container(
-              //       width: 15,
-              //       height: 15,
-              //       decoration: BoxDecoration(
-              //         // color: color,
-              //         border: Border.all(width: 2, color: AppColors.whiteColor),
-              //       ),
-              //     )
-              //   ],
-              // ),
-              Row(
-                children: [
-                  TextButton(
-                    onPressed: () {},
-                    child: Container(
-                      decoration: BoxDecoration(
-                          border:
-                              Border.all(width: 2, color: AppColors.greyColor),
-                          // color: AppColors.themeColor,
-                          borderRadius: BorderRadius.circular(5)),
-                      padding: const EdgeInsets.all(6),
-                      child: const Text(
-                        'Add to Cart',
-                        style: TextStyle(color: AppColors.whiteColor),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  name!,
+                  overflow: TextOverflow.ellipsis,
+                  maxLines: 2,
+                  style: const TextStyle(
+                      fontSize: 18, color: AppColors.whiteColor),
+                ),
+                Text('₹ ${rate!}'),
+                // Row(
+                //   children: [
+                //     const Text('Color: '),
+                //     Container(
+                //       width: 15,
+                //       height: 15,
+                //       decoration: BoxDecoration(
+                //         // color: color,
+                //         border: Border.all(width: 2, color: AppColors.whiteColor),
+                //       ),
+                //     )
+                //   ],
+                // ),
+                Row(
+                  children: [
+                    TextButton(
+                      onPressed: () {},
+                      child: Container(
+                        decoration: BoxDecoration(
+                            border: Border.all(
+                                width: 2, color: AppColors.greyColor),
+                            // color: AppColors.themeColor,
+                            borderRadius: BorderRadius.circular(5)),
+                        padding: const EdgeInsets.all(6),
+                        child: const Text(
+                          'Add to Cart',
+                          style: TextStyle(color: AppColors.whiteColor),
+                        ),
                       ),
                     ),
-                  ),
-                  TextButton(
-                    onPressed: () {},
-                    child: Container(
-                      decoration: BoxDecoration(
-                          border:
-                              Border.all(width: 2, color: AppColors.greyColor),
-                          // color: AppColors.themeColor,
-                          borderRadius: BorderRadius.circular(5)),
-                      padding: const EdgeInsets.all(6),
-                      child: const Text(
-                        'Buy now',
-                        style: TextStyle(color: AppColors.whiteColor),
+                    TextButton(
+                      onPressed: () {},
+                      child: Container(
+                        decoration: BoxDecoration(
+                            border: Border.all(
+                                width: 2, color: AppColors.greyColor),
+                            // color: AppColors.themeColor,
+                            borderRadius: BorderRadius.circular(5)),
+                        padding: const EdgeInsets.all(6),
+                        child: const Text(
+                          'Buy now',
+                          style: TextStyle(color: AppColors.whiteColor),
+                        ),
                       ),
                     ),
-                  ),
-                ],
-              )
-            ],
+                  ],
+                )
+              ],
+            ),
           ),
         ],
       ),

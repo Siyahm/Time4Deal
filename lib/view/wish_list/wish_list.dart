@@ -40,13 +40,11 @@ class MyWishList extends StatelessWidget {
                     wishListController.removeFromWishList(
                         wishListController.wishListItemList[index]);
                     log(index.toString());
-                    homeController.trendingProductItems[index].isFavourite =
-                        false;
                   },
-                  image: wishListController.wishListItemList[index].image!,
-                  name: wishListController.wishListItemList[index].name!,
-                  company: wishListController.wishListItemList[index].company!,
-                  rate: wishListController.wishListItemList[index].price!,
+                  image: wishListController.wishListItemList[index].image,
+                  name: wishListController.wishListItemList[index].name,
+                  company: 'No brand',
+                  rate: wishListController.wishListItemList[index].price,
                   // color: wishListController.wishListItemList[index].color!,
                   index: index,
                 ),

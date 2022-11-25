@@ -1,5 +1,3 @@
-import 'package:time4deal/view/home/home.dart';
-
 class RouteNames {
   static const splashScreen = 'splashscreen';
   static const signUpScreen = 'signUpScreen';
@@ -11,4 +9,5 @@ class RouteNames {
   static const bottomNavBar = 'bottomNavBar';
   static const myCart = 'myCart';
   static const productDetails = 'productDetails';
+  static const productsViewScreen = 'productsViewScreen';
 }

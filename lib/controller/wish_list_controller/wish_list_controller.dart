@@ -13,7 +13,6 @@ class WishListController with ChangeNotifier {
 
   void removeFromWishList(ProductModel model) {
     wishListItemList.remove(model);
-    model.isFavourite == false;
     notifyListeners();
   }
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:time4deal/view/products_view_screen/product_view_screen.dart';
 import 'package:time4deal/view/product_details/product_details_arguments.dart';
 import 'package:time4deal/routes/rout_names.dart';
 import 'package:time4deal/view/cart/my_cart.dart';
@@ -8,6 +9,7 @@ import 'package:time4deal/view/new_password/new_password_screen.dart';
 import 'package:time4deal/view/otp_screen/otp_arguments.dart';
 import 'package:time4deal/view/otp_screen/otp_screen.dart';
 import 'package:time4deal/view/product_details/product_details.dart';
+import 'package:time4deal/view/products_view_screen/product_view_screen_args.dart';
 import 'package:time4deal/view/sign_in/sign_in_scren.dart';
 import 'package:time4deal/view/sign_up/sign_up_screen.dart';
 import 'package:time4deal/view/splash_screen/splash_screen.dart';
@@ -64,6 +66,13 @@ class AppRouts {
           builder: (context) => ProductDetails(
             index: args.index,
             model: args.model,
+          ),
+        );
+      case RouteNames.productsViewScreen:
+        final args = settings.arguments as ProductViewScreenArgs;
+        return MaterialPageRoute(
+          builder: (context) => ProducsViewtScreen(
+            index: args.index,
           ),
         );
       default:

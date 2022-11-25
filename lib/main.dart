@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:time4deal/controller/bottom_nav_bar_controller/bottom_nav_bar_provider.dart';
+import 'package:time4deal/controller/products_view_screen_controller/product_view_screen_controller.dart';
 import 'package:time4deal/controller/forgot_password_controller/forgot_password_provider.dart';
 import 'package:time4deal/controller/home_controller/home_controller.dart';
 import 'package:time4deal/controller/new_password_conttoller/new_password_provider.dart';
@@ -13,7 +14,6 @@ import 'package:time4deal/controller/spalsh_controller/splash_provider.dart';
 import 'package:time4deal/controller/wish_list_controller/wish_list_controller.dart';
 import 'package:time4deal/helpers/app_colors.dart';
 import 'package:time4deal/routes/routs.dart';
-import 'package:time4deal/view/on_boarding/on_bording_screen.dart';
 import 'package:time4deal/widgets/bottom_nav_bar.dart';
 
 void main() {
@@ -59,6 +59,9 @@ class MyApp extends StatelessWidget {
         ),
         ChangeNotifierProvider(
           create: ((_) => ProductDetailsContoller()),
+        ),
+        ChangeNotifierProvider(
+          create: ((_) => ProductViewScreenController()),
         ),
       ],
       child: MaterialApp(

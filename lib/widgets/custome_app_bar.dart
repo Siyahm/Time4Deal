@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:provider/provider.dart';
-import 'package:time4deal/controller/sign_in_controller/sign_in_provider.dart';
 import 'package:time4deal/routes/rout_names.dart';
 
 class CustomeAppBar extends StatelessWidget implements PreferredSize {
@@ -14,9 +12,9 @@ class CustomeAppBar extends StatelessWidget implements PreferredSize {
 
   @override
   Widget build(BuildContext context) {
-    final signInProvider = Provider.of<SignInProvider>(context);
+    // final signInProvider = Provider.of<SignInProvider>(context);
     return PreferredSize(
-      preferredSize: const Size.fromHeight(45),
+      preferredSize: const Size.fromHeight(50),
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Column(
@@ -56,5 +54,5 @@ class CustomeAppBar extends StatelessWidget implements PreferredSize {
   Widget get child => throw UnimplementedError();
 
   @override
-  Size get preferredSize => const Size(double.infinity, 50);
+  Size get preferredSize => const Size(double.infinity, 80);
 }

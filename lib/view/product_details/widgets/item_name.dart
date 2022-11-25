@@ -33,17 +33,9 @@ class ItemName extends StatelessWidget {
           builder: (context, value, child) => IconButton(
             onPressed: () {
               value.addFavourite(index);
-              if (homeController.trendingProductItems[index].isFavourite ==
-                  true) {
-                wishListController.addToWishList(model!);
-              } else {
-                wishListController.removeFromWishList(model!);
-              }
             },
             icon: Icon(
-              homeController.trendingProductItems[index].isFavourite == false
-                  ? Icons.favorite_outline
-                  : Icons.favorite_outlined,
+              Icons.favorite_outlined,
             ),
           ),
         )

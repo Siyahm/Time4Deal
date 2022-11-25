@@ -1,48 +1,35 @@
-import 'package:flutter/animation.dart';
-
 class ProductModel {
-  String? company;
-  String? name;
-  String? price;
-  String? discountPrice;
-  String? offer;
-  // Color? color;
-  // Color? color2;
-  // Color? color3;
-  String? category;
-  String? strap;
-  List<String>? size;
-  List<String>? image;
-  String? warrenty;
-  String? description;
-  bool? isFavourite;
-
   ProductModel({
-    this.company,
+    required this.id,
     required this.name,
     required this.price,
-    this.discountPrice,
-    this.offer,
-    // this.color,
-    // this.color2,
-    // this.color3,
-    this.category,
-    this.isFavourite,
-    this.strap,
-    this.size,
+    required this.discountPrice,
+    required this.offer,
+    required this.rating,
+    required this.size,
     required this.image,
-    this.warrenty,
-    this.description,
+    required this.category,
   });
 
-  factory ProductModel.frojJson(Map<String, dynamic> json) {
-    return ProductModel(
-      name: json['name'],
-      price: json['price'],
-      image: json['image'],
-      discountPrice: json['discountPrice'],
-      offer: json['offer'],
-      size: json['size'],
-    );
-  }
+  String id;
+  String name;
+  String price;
+  String discountPrice;
+  String offer;
+  String rating;
+  List<String> size;
+  List<String> image;
+  String category;
+
+  factory ProductModel.fromJson(Map<String, dynamic> json) => ProductModel(
+        id: json["_id"],
+        name: json["name"],
+        price: json["price"],
+        discountPrice: json["discountPrice"],
+        offer: json["offer"],
+        rating: json["rating"],
+        size: List<String>.from(json["size"].map((x) => x)),
+        image: List<String>.from(json["image"].map((x) => x)),
+        category: json["category"],
+      );
 }
