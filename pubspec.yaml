@@ -29,16 +29,21 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
+  another_stepper: ^1.1.6
   cupertino_icons: ^1.0.2
   dio: ^4.0.6
   flutter:
     sdk: flutter
   flutter_carousel_slider: ^1.1.0
   flutter_otp_text_field: ^1.1.1
+  flutter_rating_bar: ^4.0.1
   fluttertoast: ^8.1.1
+  geocode: ^1.0.2
+  geolocator: ^9.0.2
   google_sign_in: ^5.4.2
   provider: ^6.0.4
   shared_preferences: ^2.0.15
+  shimmer: ^2.0.0
 
 dev_dependencies:
   flutter_lints: ^2.0.0
@@ -76,6 +81,7 @@ flutter:
     - lib/assets/sample 2.png
     - lib/assets/sample 3.png
     - lib/assets/sample 4.png
+    - lib/assets/delivery icon.png
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
   # For details regarding adding assets from package dependencies, see

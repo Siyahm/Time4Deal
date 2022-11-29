@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:provider/provider.dart';
 import 'package:time4deal/controller/home_controller/home_controller.dart';
+import 'package:time4deal/controller/product_details_controller/product_details_controller.dart';
 import 'package:time4deal/helpers/app_colors.dart';
+import 'package:time4deal/helpers/sized_boxes.dart';
 import 'package:time4deal/models/product_model/product_model.dart';
 
 class ProductsView extends StatelessWidget {
@@ -12,7 +15,8 @@ class ProductsView extends StatelessWidget {
     required this.watchName,
     required this.isFavourite,
     required this.index,
-    required this.model,
+    this.productId,
+    this.model,
     this.rating,
   }) : super(key: key);
   final String? image;
@@ -21,18 +25,24 @@ class ProductsView extends StatelessWidget {
 
   final bool? isFavourite;
   final int index;
-  final ProductModel? model;
+
   final String? rating;
+  final ProductModel? model;
+  final String? productId;
 
   @override
   Widget build(BuildContext context) {
-    final homeController = Provider.of<HomeController>(context);
+    // final homeController = Provider.of<HomeController>(context);
+    final productDetailsController =
+        Provider.of<ProductDetailsContoller>(context);
     // final wishListController = Provider.of<WishListController>(context);
 
     final size = MediaQuery.of(context).size;
     return GestureDetector(
-      onTap: () {
-        homeController.onTapCard(context, index, model);
+      onTap: () async {
+        // homeController.onTapCard(context, index,
+        //     homeController.trendingProductItems[index].id, model);
+        await productDetailsController.getAProduct(productId!, context);
       },
       child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
         Stack(
@@ -87,26 +97,25 @@ class ProductsView extends StatelessWidget {
           maxLines: 2,
           style: const TextStyle(color: AppColors.whiteColor, fontSize: 14),
         ),
+        SizedBoxes.heightBox10,
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             const Text('₹ 499'),
             rating != null
-                ? Container(
-                    color: AppColors.greenColor,
-                    child: Row(
-                      children: [
-                        Text(
-                          rating!,
-                          style: const TextStyle(color: AppColors.whiteColor),
-                        ),
-                        Icon(
-                          Icons.star,
-                          color: AppColors.whiteColor,
-                          size: size.height * 0.025,
-                        )
-                      ],
-                    ),
+                ? SizedBox(
+                    child: RatingBar.builder(
+                        allowHalfRating: true,
+                        itemSize: 20,
+                        initialRating: double.parse(rating!),
+                        direction: Axis.horizontal,
+                        glowRadius: 1,
+                        itemCount: 5,
+                        itemBuilder: (context, _) => const Icon(
+                              Icons.star,
+                              color: Colors.green,
+                            ),
+                        onRatingUpdate: (rating) {}),
                   )
                 : const SizedBox(),
           ],

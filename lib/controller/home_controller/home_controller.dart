@@ -17,8 +17,8 @@ class HomeController with ChangeNotifier {
     getCategories();
   }
   bool isLoading = false;
-  bool isCategoryLoding = false;
-  bool isProductstsLoading = false;
+  // bool isCategoryLoding = false;
+  // bool isProductstsLoading = false;
   List<CarousalModel> carousalItems = [];
   List<CategoryModel> categoriesList = [];
   List<ProductModel> allProducts = [];
@@ -27,11 +27,12 @@ class HomeController with ChangeNotifier {
     notifyListeners();
   }
 
-  void onTapCard(BuildContext context, int index, ProductModel? model) {
-    ProductDetailsArguments args =
-        ProductDetailsArguments(index: index, model: model);
-    Navigator.of(context).pushNamed(RouteNames.productDetails, arguments: args);
-  }
+  // void onTapCard(
+  //     BuildContext context, int index, String? productId, ProductModel? model) {
+  //   ProductDetailsArguments args = ProductDetailsArguments(
+  //       index: index, productId: productId, model: model);
+  //   Navigator.of(context).pushNamed(RouteNames.productDetails, arguments: args);
+  // }
 
   void getCarousals() async {
     isLoading = true;
@@ -49,8 +50,8 @@ class HomeController with ChangeNotifier {
   List<ProductModel> trendingProductItems = [];
 
   void getCategories() async {
-    isCategoryLoding = true;
-    CategoryService().getCategories().then((value) {
+    isLoading = true;
+    await CategoryService().getCategories().then((value) {
       if (value != null) {
         categoriesList = value;
         notifyListeners();
@@ -59,21 +60,19 @@ class HomeController with ChangeNotifier {
         log('value is null');
       }
     });
-    isCategoryLoding = false;
+    isLoading = false;
     notifyListeners();
   }
 
   void getAllPorducts() async {
-    isProductstsLoading = true;
+    isLoading = true;
     notifyListeners();
-    ProductViewScreenService().getProduct().then((value) {
+    await ProductViewScreenService().getProduct().then((value) {
       if (value != null) {
         trendingProductItems = value;
-        isProductstsLoading = false;
-        notifyListeners();
       }
     });
-    isProductstsLoading = false;
+    isLoading = false;
     notifyListeners();
   }
 }

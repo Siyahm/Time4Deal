@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:time4deal/controller/add_address_screen_controller/add_address_controller.dart';
 import 'package:time4deal/controller/bottom_nav_bar_controller/bottom_nav_bar_provider.dart';
 import 'package:time4deal/controller/products_view_screen_controller/product_view_screen_controller.dart';
 import 'package:time4deal/controller/forgot_password_controller/forgot_password_provider.dart';
@@ -11,6 +12,7 @@ import 'package:time4deal/controller/product_details_controller/product_details_
 import 'package:time4deal/controller/sign_in_controller/sign_in_provider.dart';
 import 'package:time4deal/controller/sign_up_controller/sign_up_provider.dart';
 import 'package:time4deal/controller/spalsh_controller/splash_provider.dart';
+import 'package:time4deal/controller/stepper_controller/stepper_controller.dart';
 import 'package:time4deal/controller/wish_list_controller/wish_list_controller.dart';
 import 'package:time4deal/helpers/app_colors.dart';
 import 'package:time4deal/routes/routs.dart';
@@ -62,6 +64,12 @@ class MyApp extends StatelessWidget {
         ),
         ChangeNotifierProvider(
           create: ((_) => ProductViewScreenController()),
+        ),
+        ChangeNotifierProvider(
+          create: ((_) => StepperController()),
+        ),
+        ChangeNotifierProvider(
+          create: ((_) => AddAddressController()),
         ),
       ],
       child: MaterialApp(

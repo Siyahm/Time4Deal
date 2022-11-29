@@ -1,6 +1,5 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:google_sign_in/google_sign_in.dart';
 import 'package:provider/provider.dart';
 import 'package:time4deal/controller/sign_in_controller/sign_in_provider.dart';
 import 'package:time4deal/controller/sign_up_controller/sign_up_provider.dart';

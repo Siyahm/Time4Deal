@@ -1,18 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:time4deal/view/products_view_screen/product_view_screen.dart';
-import 'package:time4deal/view/product_details/product_details_arguments.dart';
 import 'package:time4deal/routes/rout_names.dart';
+import 'package:time4deal/view/add_address_screen/add_address_screen.dart';
 import 'package:time4deal/view/cart/my_cart.dart';
+import 'package:time4deal/view/category_products_view_screen/category_product_view_screen.dart';
+import 'package:time4deal/view/category_products_view_screen/category_product_view_screen_args.dart';
 import 'package:time4deal/view/forgot_password/forgot_password_screen.dart';
 import 'package:time4deal/view/home/home.dart';
 import 'package:time4deal/view/new_password/new_password_screen.dart';
 import 'package:time4deal/view/otp_screen/otp_arguments.dart';
 import 'package:time4deal/view/otp_screen/otp_screen.dart';
 import 'package:time4deal/view/product_details/product_details.dart';
-import 'package:time4deal/view/products_view_screen/product_view_screen_args.dart';
 import 'package:time4deal/view/sign_in/sign_in_scren.dart';
 import 'package:time4deal/view/sign_up/sign_up_screen.dart';
 import 'package:time4deal/view/splash_screen/splash_screen.dart';
+import 'package:time4deal/view/stepper/stepper_screen.dart';
 import 'package:time4deal/widgets/bottom_nav_bar.dart';
 
 class AppRouts {
@@ -61,19 +62,23 @@ class AppRouts {
           builder: (context) => const MyCart(),
         );
       case RouteNames.productDetails:
-        final args = settings.arguments as ProductDetailsArguments;
         return MaterialPageRoute(
-          builder: (context) => ProductDetails(
-            index: args.index,
-            model: args.model,
-          ),
+          builder: (context) => const ProductDetails(),
         );
       case RouteNames.productsViewScreen:
         final args = settings.arguments as ProductViewScreenArgs;
         return MaterialPageRoute(
-          builder: (context) => ProducsViewtScreen(
+          builder: (context) => CategoryProducsViewtScreen(
             index: args.index,
           ),
+        );
+      case RouteNames.stepperScreens:
+        return MaterialPageRoute(
+          builder: (context) => const StepperScreen(),
+        );
+      case RouteNames.addAddressScreen:
+        return MaterialPageRoute(
+          builder: (context) => const AddAddressScreen(),
         );
       default:
         return MaterialPageRoute(

@@ -1,18 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:time4deal/constants/api_endpoints.dart';
 import 'package:time4deal/constants/app_urls.dart';
 import 'package:time4deal/controller/home_controller/home_controller.dart';
 import 'package:time4deal/controller/products_view_screen_controller/product_view_screen_controller.dart';
 import 'package:time4deal/helpers/app_colors.dart';
 import 'package:time4deal/helpers/app_padding.dart';
-import 'package:time4deal/helpers/app_text_styles.dart';
 import 'package:time4deal/helpers/sized_boxes.dart';
 import 'package:time4deal/utils/common_functions.dart';
+import 'package:time4deal/widgets/custom_app_bar_trailing.dart';
 import 'package:time4deal/widgets/custome_app_bar.dart';
 import 'package:time4deal/widgets/products_view.dart';
 
-class ProducsViewtScreen extends StatelessWidget {
-  const ProducsViewtScreen({
+class CategoryProducsViewtScreen extends StatelessWidget {
+  const CategoryProducsViewtScreen({
     super.key,
     required this.index,
   });
@@ -32,16 +33,18 @@ class ProducsViewtScreen extends StatelessWidget {
             CommonFunctions.popFunction(context);
           },
         ),
+        trailing: const CustomAppbarTrailing(),
+        title: homeController.categoriesList[index].name,
       ),
       body: Padding(
         padding: AppPadding.horizPadding8,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              homeController.categoriesList[index].name,
-              style: AppTextStyles.subTitle,
-            ),
+            // Text(
+            //   homeController.categoriesList[index].name,
+            //   style: AppTextStyles.subTitle,
+            // ),
             SizedBoxes.heightBox10,
             Consumer<ProductViewScreenController>(
               builder: (context, value, child) => value.isLoading
@@ -63,13 +66,13 @@ class ProducsViewtScreen extends StatelessWidget {
                             crossAxisCount: 2,
                             crossAxisSpacing: 8,
                             mainAxisSpacing: 8,
-                            childAspectRatio: 0.67,
+                            childAspectRatio: 0.63,
                           )),
                           itemBuilder: (context, index) => ProductsView(
-                              model: value.categoryProducts[index],
+                              productId: value.categoryProducts[index].id,
                               index: index,
-                              image: AppUrls.productsMainUrl +
-                                  value.categoryProducts[index].image[0],
+                              image:
+                                  '${AppUrls.networkImageMainUrl}${ApiEndPoints.getProducts}/${value.categoryProducts[index].image[0]}',
                               company: 'No brand',
                               watchName: value.categoryProducts[index].name,
                               rating: value.categoryProducts[index].rating,

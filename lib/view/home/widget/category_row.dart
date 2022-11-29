@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:shimmer/shimmer.dart';
+import 'package:time4deal/constants/api_endpoints.dart';
 import 'package:time4deal/constants/app_urls.dart';
 import 'package:time4deal/controller/products_view_screen_controller/product_view_screen_controller.dart';
 import 'package:time4deal/controller/home_controller/home_controller.dart';
@@ -7,7 +9,7 @@ import 'package:time4deal/helpers/app_colors.dart';
 import 'package:time4deal/helpers/app_padding.dart';
 import 'package:time4deal/helpers/sized_boxes.dart';
 import 'package:time4deal/routes/rout_names.dart';
-import 'package:time4deal/view/products_view_screen/product_view_screen_args.dart';
+import 'package:time4deal/view/category_products_view_screen/category_product_view_screen_args.dart';
 
 class CategoryRow extends StatelessWidget {
   const CategoryRow({
@@ -24,10 +26,27 @@ class CategoryRow extends StatelessWidget {
         builder: (context, value, child) => ListView.builder(
           scrollDirection: Axis.horizontal,
           itemBuilder: (context, index) {
-            if (value.isCategoryLoding) {
-              return const Center(
-                child: CircularProgressIndicator(),
-              );
+            if (value.isLoading == true) {
+              return Shimmer.fromColors(
+                  baseColor: Colors.grey[300]!,
+                  highlightColor: Colors.grey[100]!,
+                  child: Padding(
+                    padding: AppPadding.horizPadding5,
+                    child: Column(
+                      children: [
+                        const CircleAvatar(
+                          backgroundColor: AppColors.whiteColor,
+                          radius: 30,
+                        ),
+                        SizedBoxes.heightBox5,
+                        Container(
+                          color: AppColors.whiteColor,
+                          width: 50,
+                          height: 20,
+                        ),
+                      ],
+                    ),
+                  ));
             } else {
               return Padding(
                 padding: AppPadding.horizPadding5,
@@ -49,8 +68,7 @@ class CategoryRow extends StatelessWidget {
                         child: CircleAvatar(
                           backgroundColor: AppColors.whiteColor,
                           backgroundImage: NetworkImage(
-                              AppUrls.categoryMainUrl +
-                                  value.categoriesList[index].image),
+                              '${AppUrls.networkImageMainUrl}${ApiEndPoints.getCategory}/${value.categoriesList[index].image}'),
                           radius: 27,
                         ),
                       ),

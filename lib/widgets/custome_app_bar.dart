@@ -1,14 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:google_sign_in/google_sign_in.dart';
+import 'package:provider/provider.dart';
+import 'package:time4deal/controller/products_view_screen_controller/product_view_screen_controller.dart';
+import 'package:time4deal/helpers/app_text_styles.dart';
 import 'package:time4deal/routes/rout_names.dart';
 
 class CustomeAppBar extends StatelessWidget implements PreferredSize {
   const CustomeAppBar({
     Key? key,
     required this.leadingWidget,
+    this.title,
+    required this.trailing,
   }) : super(key: key);
 
   final Widget leadingWidget;
+  final String? title;
+  final Widget trailing;
 
   @override
   Widget build(BuildContext context) {
@@ -21,26 +27,20 @@ class CustomeAppBar extends StatelessWidget implements PreferredSize {
           mainAxisAlignment: MainAxisAlignment.end,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Row(
-              children: [
-                leadingWidget,
-                const Spacer(),
-                const Spacer(),
-                IconButton(
-                  splashRadius: 15,
-                  onPressed: () async {
-                    await GoogleSignIn().signOut();
-                  },
-                  icon: const Icon(Icons.search),
-                ),
-                IconButton(
-                  splashRadius: 15,
-                  onPressed: () {
-                    Navigator.of(context).pushNamed(RouteNames.myCart);
-                  },
-                  icon: const Icon(Icons.shopping_cart_outlined),
-                ),
-              ],
+            Consumer<ProductViewScreenController>(
+              builder: (context, value, child) => Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  leadingWidget,
+                  title != null
+                      ? Text(
+                          title!,
+                          style: AppTextStyles.subTitle,
+                        )
+                      : const SizedBox(),
+                  trailing,
+                ],
+              ),
             ),
           ],
         ),

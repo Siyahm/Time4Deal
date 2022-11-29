@@ -10,4 +10,6 @@ class RouteNames {
   static const myCart = 'myCart';
   static const productDetails = 'productDetails';
   static const productsViewScreen = 'productsViewScreen';
+  static const stepperScreens = 'stepperScreens';
+  static const addAddressScreen = 'addAddressScreen';
 }

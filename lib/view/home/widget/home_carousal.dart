@@ -1,9 +1,7 @@
-import 'dart:developer';
-
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_carousel_slider/carousel_slider.dart';
 import 'package:provider/provider.dart';
+import 'package:time4deal/constants/api_endpoints.dart';
 import 'package:time4deal/constants/app_urls.dart';
 import 'package:time4deal/controller/home_controller/home_controller.dart';
 import 'package:time4deal/helpers/app_colors.dart';
@@ -33,14 +31,15 @@ class HomeCarousals extends StatelessWidget {
                   itemCount: value.carousalItems.length,
                   slideBuilder: (int index) {
                     return FeaturedProduct(
-                      image: AppUrls.carousalMainUrl +
-                          value.carousalItems[index].image!,
+                      image:
+                          '${AppUrls.networkImageMainUrl}${ApiEndPoints.getCarousal}s/${value.carousalItems[index].image!}',
                       offer: "${value.carousalItems[index].offer!}%\noff",
                     );
                   },
                   slideIndicator: CircularSlideIndicator(
                     currentIndicatorColor: AppColors.redColor,
-                    indicatorBackgroundColor: AppColors.whiteColor,
+                    indicatorBackgroundColor:
+                        AppColors.whiteColor.withOpacity(0.5),
                     padding: const EdgeInsets.only(bottom: 32),
                   ),
                 );

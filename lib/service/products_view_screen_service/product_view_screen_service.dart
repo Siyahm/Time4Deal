@@ -27,7 +27,8 @@ class ProductViewScreenService {
 
   Future<List<ProductModel>?> getCategoryProduct(String categoryId) async {
     try {
-      final url = AppUrls.mainUrl + ApiEndPoints.categoryProducts + categoryId;
+      final String url =
+          AppUrls.mainUrl + ApiEndPoints.categoryProducts + categoryId;
       final Response response = await Dio().get(url);
       log(response.statusCode.toString());
       if (response.statusCode! >= 200 && response.statusCode! <= 299) {

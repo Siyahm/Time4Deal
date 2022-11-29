@@ -11,4 +11,5 @@ class AppColors {
   static const dimWhiteColor = Color.fromARGB(255, 216, 216, 216);
   static const themeColor = Color.fromARGB(248, 93, 93, 93);
   static const greenColor = Colors.green;
+  static const blueColor = Color.fromARGB(255, 0, 140, 255);
 }

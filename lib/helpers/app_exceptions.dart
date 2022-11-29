@@ -12,6 +12,8 @@ class AppExceptions {
       }
       if (e.type == DioErrorType.cancel) {
         customToast('Request Cancelled', AppColors.redColor);
+      } else if (e.error is SocketException) {
+        customToast('No Internet Connection', AppColors.redColor);
       } else if (e.type == DioErrorType.connectTimeout) {
         customToast('Connection Time out', AppColors.redColor);
       } else if (e.type == DioErrorType.receiveTimeout) {
@@ -20,9 +22,6 @@ class AppExceptions {
         customToast('Send Time out', AppColors.redColor);
       } else if (e.type == DioErrorType.other) {
         customToast('Oops..!! Something went wrong', AppColors.redColor);
-      } else if (e.error is SocketException) {
-        customToast(
-            'Please check your internet connection', AppColors.redColor);
       }
     }
   }
