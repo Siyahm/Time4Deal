@@ -5,7 +5,7 @@ import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
 import 'package:provider/provider.dart';
 import 'package:time4deal/controller/forgot_password_controller/forgot_password_provider.dart';
 import 'package:time4deal/controller/otp_controller/otp_controller.dart';
-import 'package:time4deal/controller/sign_up_controller/sign_up_provider.dart';
+import 'package:time4deal/controller/sign_up_controller/sign_up_controller.dart';
 import 'package:time4deal/helpers/app_colors.dart';
 import 'package:time4deal/helpers/app_padding.dart';
 import 'package:time4deal/helpers/app_text_styles.dart';

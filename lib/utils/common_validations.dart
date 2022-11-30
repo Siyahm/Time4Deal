@@ -40,4 +40,18 @@ class CommonValidations {
     }
     return null;
   }
+
+  static String? addressValidation(String? value) {
+    if (value.toString().split('').length < 10) {
+      return 'Address must be atleast 10 letters';
+    }
+    return null;
+  }
+
+  static String? cityValidation(String? value) {
+    if (value == null || value.isEmpty) {
+      return 'Please enter city name';
+    }
+    return null;
+  }
 }

@@ -70,7 +70,7 @@ class CategoryProducsViewtScreen extends StatelessWidget {
                           )),
                           itemBuilder: (context, index) => ProductsView(
                               productId: value.categoryProducts[index].id,
-                              index: index,
+                              // index: index,
                               image:
                                   '${AppUrls.networkImageMainUrl}${ApiEndPoints.getProducts}/${value.categoryProducts[index].image[0]}',
                               company: 'No brand',

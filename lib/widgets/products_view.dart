@@ -14,7 +14,7 @@ class ProductsView extends StatelessWidget {
     required this.company,
     required this.watchName,
     required this.isFavourite,
-    required this.index,
+    // required this.index,
     this.productId,
     this.model,
     this.rating,
@@ -24,7 +24,7 @@ class ProductsView extends StatelessWidget {
   final String? watchName;
 
   final bool? isFavourite;
-  final int index;
+  // final int index;
 
   final String? rating;
   final ProductModel? model;

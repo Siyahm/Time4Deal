@@ -97,7 +97,7 @@ class HomeScreen extends StatelessWidget {
                       : ProductsView(
                           productId: value.trendingProductItems[index].id,
                           model: value.trendingProductItems[index],
-                          index: index,
+                          // index: index,
                           image:
                               '${AppUrls.networkImageMainUrl}${ApiEndPoints.getProducts}/${value.trendingProductItems[index].image[0]}',
                           company: "Brand Name",

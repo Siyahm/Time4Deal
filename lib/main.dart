@@ -10,7 +10,7 @@ import 'package:time4deal/controller/onbording_controller/onbording_provider.dar
 import 'package:time4deal/controller/otp_controller/otp_controller.dart';
 import 'package:time4deal/controller/product_details_controller/product_details_controller.dart';
 import 'package:time4deal/controller/sign_in_controller/sign_in_provider.dart';
-import 'package:time4deal/controller/sign_up_controller/sign_up_provider.dart';
+import 'package:time4deal/controller/sign_up_controller/sign_up_controller.dart';
 import 'package:time4deal/controller/spalsh_controller/splash_provider.dart';
 import 'package:time4deal/controller/stepper_controller/stepper_controller.dart';
 import 'package:time4deal/controller/wish_list_controller/wish_list_controller.dart';

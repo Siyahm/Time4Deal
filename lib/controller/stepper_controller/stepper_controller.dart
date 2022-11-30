@@ -6,42 +6,42 @@ class StepperController with ChangeNotifier {
   int currentIndex = 0;
 
   List<AddressModel> addressList = [
-    AddressModel(
-        name: "Siyah Musliyarakath",
-        address: 'Parasseri',
-        landMark: 'Arimanal',
-        pinCode: '676525',
-        mobNum: '9656091791'),
-    AddressModel(
-        name: "Siyah",
-        address: 'Parasseri',
-        landMark: 'Arimanal',
-        pinCode: '676525',
-        mobNum: '9656091791'),
-    AddressModel(
-        name: "Siyah",
-        address: 'Parasseri',
-        landMark: 'Arimanal',
-        pinCode: '676525',
-        mobNum: '9656091791'),
-    AddressModel(
-        name: "Siyah Musliyarakath",
-        address: 'Parasseri',
-        landMark: 'Arimanal',
-        pinCode: '676525',
-        mobNum: '9656091791'),
-    AddressModel(
-        name: "Siyah",
-        address: 'Parasseri',
-        landMark: 'Arimanal',
-        pinCode: '676525',
-        mobNum: '9656091791'),
-    AddressModel(
-        name: "Siyah",
-        address: 'Parasseri',
-        landMark: 'Arimanal',
-        pinCode: '676525',
-        mobNum: '9656091791'),
+    // AddressModel(
+    //     name: "Siyah Musliyarakath",
+    //     address: 'Parasseri',
+    //     landMark: 'Arimanal',
+    //     pinCode: '676525',
+    //     mobNum: '9656091791'),
+    // AddressModel(
+    //     name: "Siyah",
+    //     address: 'Parasseri',
+    //     landMark: 'Arimanal',
+    //     pinCode: '676525',
+    //     mobNum: '9656091791'),
+    // AddressModel(
+    //     name: "Siyah",
+    //     address: 'Parasseri',
+    //     landMark: 'Arimanal',
+    //     pinCode: '676525',
+    //     mobNum: '9656091791'),
+    // AddressModel(
+    //     name: "Siyah Musliyarakath",
+    //     address: 'Parasseri',
+    //     landMark: 'Arimanal',
+    //     pinCode: '676525',
+    //     mobNum: '9656091791'),
+    // AddressModel(
+    //     name: "Siyah",
+    //     address: 'Parasseri',
+    //     landMark: 'Arimanal',
+    //     pinCode: '676525',
+    //     mobNum: '9656091791'),
+    // AddressModel(
+    //     name: "Siyah",
+    //     address: 'Parasseri',
+    //     landMark: 'Arimanal',
+    //     pinCode: '676525',
+    //     mobNum: '9656091791'),
   ];
 
   void onStepContinue() {
