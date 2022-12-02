@@ -12,4 +12,5 @@ class RouteNames {
   static const productsViewScreen = 'productsViewScreen';
   static const stepperScreens = 'stepperScreens';
   static const addAddressScreen = 'addAddressScreen';
+  static const myOrders = 'myOrders';
 }

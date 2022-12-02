@@ -16,6 +16,7 @@ import 'package:time4deal/controller/stepper_controller/stepper_controller.dart'
 import 'package:time4deal/controller/wish_list_controller/wish_list_controller.dart';
 import 'package:time4deal/helpers/app_colors.dart';
 import 'package:time4deal/routes/routs.dart';
+import 'package:time4deal/view/splash_screen/splash_screen.dart';
 import 'package:time4deal/widgets/bottom_nav_bar.dart';
 
 void main() {
@@ -84,7 +85,7 @@ class MyApp extends StatelessWidget {
           ),
         ),
         // darkTheme: ThemeData.dark(),
-        home: const BottomNavBar(),
+        home: const SplashScreen(),
       ),
     );
   }

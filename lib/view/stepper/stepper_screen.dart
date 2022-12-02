@@ -35,7 +35,7 @@ class StepperScreen extends StatelessWidget {
                   // physics: NeverScrollableScrollPhysics(),
                   currentStep: value.currentIndex,
                   onStepTapped: (index) => value.onStepTap(index),
-                  onStepContinue: () => value.onStepContinue(),
+                  onStepContinue: () => value.onStepContinue(context),
                   onStepCancel: () => value.onStepCancel(),
                   controlsBuilder: (context, details) => const SizedBox(),
                   type: StepperType.horizontal,
@@ -69,19 +69,20 @@ class StepperScreen extends StatelessWidget {
               ),
             ),
             Consumer<StepperController>(
-                builder: (context, value, child) => value.currentIndex == 0
-                    ? SizedBox(
-                        width: size.width * 1,
-                        height: size.height * 0.06,
-                        child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                                backgroundColor: AppColors.redColor),
-                            onPressed: () {
-                              value.onStepContinue();
-                            },
-                            child: const Text('Deliver Here')),
-                      )
-                    : const BackAndNextButtons()),
+                builder: (context, value, child) => SizedBox(
+                      width: size.width * 1,
+                      height: size.height * 0.06,
+                      child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                            backgroundColor: AppColors.redColor),
+                        onPressed: () {
+                          value.onStepContinue(context);
+                        },
+                        child: Text(
+                          value.stepperContinueButtonLabel[value.currentIndex],
+                        ),
+                      ),
+                    )),
             SizedBox(
               height: size.height * 0.05,
             ),

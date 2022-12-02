@@ -9,4 +9,5 @@ class ApiEndPoints {
   static const String getCategory = "category";
   static const String getProducts = "products";
   static const String categoryProducts = "products?category=";
+  static const String refreshToken = 'auth/refresh';
 }

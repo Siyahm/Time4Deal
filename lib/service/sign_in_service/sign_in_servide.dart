@@ -6,10 +6,11 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:time4deal/constants/api_endpoints.dart';
 import 'package:time4deal/constants/app_urls.dart';
 import 'package:time4deal/helpers/app_exceptions.dart';
-import 'package:time4deal/models/user_model/user_model.dart';
+import 'package:time4deal/models/sign_up_model/sign_up_model_for_token.dart';
 
 class SignInService {
-  Future<UserModel?> signInFunction({String? email, String? password}) async {
+  Future<SignUpModelForToken?> signInFunction(
+      {String? email, String? password}) async {
     try {
       const url = AppUrls.mainUrl + ApiEndPoints.signIn;
       final Response<dynamic> response = await Dio().post(
@@ -19,7 +20,8 @@ class SignInService {
         ),
       );
       if (response.statusCode! >= 200 && response.statusCode! <= 299) {
-        return UserModel.fromJson(response.data);
+        log(response.data.toString());
+        return SignUpModelForToken.fromJson(response.data);
       }
       log(response.data.toString());
     } catch (e) {
@@ -29,7 +31,7 @@ class SignInService {
     return null;
   }
 
-  Future<UserModel?> googleSignIn() async {
+  Future<SignUpModelForToken?> googleSignIn() async {
     GoogleSignIn googleSignIn = GoogleSignIn();
     try {
       const url = AppUrls.mainUrl + ApiEndPoints.googleLogin;
@@ -47,7 +49,7 @@ class SignInService {
       );
       log('message');
       if (response.statusCode! >= 200 && response.statusCode! <= 299) {
-        return UserModel.fromJson(response.data);
+        return SignUpModelForToken.fromJson(response.data);
       }
       log('hey');
       log(result.toString());

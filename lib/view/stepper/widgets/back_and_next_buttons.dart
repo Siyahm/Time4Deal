@@ -39,7 +39,7 @@ class BackAndNextButtons extends StatelessWidget {
                 minimumSize: const Size(5, 3),
                 padding: EdgeInsets.zero),
             onPressed: () {
-              value.onStepContinue();
+              value.onStepContinue(context);
             },
             child: const Text('Next'),
           ),

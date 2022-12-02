@@ -1,7 +1,9 @@
 import 'dart:developer';
 
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:time4deal/helpers/app_colors.dart';
+import 'package:time4deal/models/sign_up_model/sign_up_model_for_token.dart';
 import 'package:time4deal/models/user_model/user_model.dart';
 import 'package:time4deal/routes/rout_names.dart';
 import 'package:time4deal/service/sign_in_service/sign_in_servide.dart';
@@ -12,6 +14,8 @@ class SignInProvider with ChangeNotifier {
   final TextEditingController passwordController = TextEditingController();
   bool isLoading = false;
   bool isLoadingGoogle = false;
+
+  FlutterSecureStorage storage = const FlutterSecureStorage();
 
   void onSignUpButtonPressed(BuildContext context) {
     Navigator.of(context).pushNamed('signUpScreen');
@@ -29,18 +33,22 @@ class SignInProvider with ChangeNotifier {
 
     if (signInFormKey.currentState!.validate()) {
       log('sign in function called');
-      UserModel? user = await SignInService().signInFunction(
-          email: emailController.text, password: passwordController.text);
+      await SignInService()
+          .signInFunction(
+              email: emailController.text, password: passwordController.text)
+          .then((value) async {
+        if (value != null) {
+          isLoading = false;
+          await storage.write(key: 'accessToken', value: value.accessToken);
+          await storage.write(key: 'refreshToken', value: value.refreshToken);
+          Navigator.of(context).pushReplacementNamed(RouteNames.bottomNavBar);
+          // log(user.toString());
+        } else {
+          customToast('No user exist', AppColors.redColor);
+        }
 
-      if (user != null) {
-        isLoading = false;
-        Navigator.of(context).pushReplacementNamed(RouteNames.bottomNavBar);
-        // log(user.toString());
-      } else {
-        customToast('No user exist', AppColors.redColor);
-      }
-
-      return null;
+        return null;
+      });
     }
   }
 

@@ -1,14 +1,12 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:time4deal/models/carousal_model/carousal_model.dart';
 import 'package:time4deal/models/category_model/category_model.dart';
+import 'package:time4deal/models/product_model/product_model.dart';
+import 'package:time4deal/service/carousal_service/carousal_service.dart';
 import 'package:time4deal/service/category_service/category_service.dart';
 import 'package:time4deal/service/products_view_screen_service/product_view_screen_service.dart';
-import 'package:time4deal/view/product_details/product_details_arguments.dart';
-import 'package:time4deal/models/carousal_model/carousal_model.dart';
-import 'package:time4deal/models/product_model/product_model.dart';
-import 'package:time4deal/routes/rout_names.dart';
-import 'package:time4deal/service/carousal_service/carousal_service.dart';
 
 class HomeController with ChangeNotifier {
   HomeController() {
