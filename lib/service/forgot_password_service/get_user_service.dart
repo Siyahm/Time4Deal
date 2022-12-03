@@ -10,7 +10,7 @@ class GetUserService {
   Future<UserModel?> getUser(String email) async {
     log('get user called');
     try {
-      const url = AppUrls.mainUrl + ApiEndPoints.checkUser;
+      const url = AppUrls.baseUrl + ApiEndPoints.checkUser;
       log(email.toString());
       final Response<dynamic> response = await Dio().get(
         url,

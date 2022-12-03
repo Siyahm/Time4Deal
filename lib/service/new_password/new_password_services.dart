@@ -8,7 +8,7 @@ import 'package:time4deal/helpers/app_exceptions.dart';
 class NewPasswordService {
   Future<String?> resetPassword(String email, String newPassword) async {
     try {
-      const url = AppUrls.mainUrl + ApiEndPoints.setPassword;
+      const url = AppUrls.baseUrl + ApiEndPoints.setPassword;
       final Response response = await Dio().post(url, data: {
         'email': email,
         'password': newPassword,

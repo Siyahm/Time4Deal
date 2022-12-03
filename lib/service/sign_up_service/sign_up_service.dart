@@ -12,7 +12,7 @@ class SignUpService {
   Future<SignUpModelForToken?> signUp(SignUpModel signUpModel) async {
     log('signup function called');
     try {
-      const url = AppUrls.mainUrl + ApiEndPoints.signUp;
+      const url = AppUrls.baseUrl + ApiEndPoints.signUp;
       final Response<dynamic> response = await Dio().post(
         url,
         data: jsonEncode(

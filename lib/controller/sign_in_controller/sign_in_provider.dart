@@ -31,24 +31,33 @@ class SignInProvider with ChangeNotifier {
     // final signInModel = SignInModel(
     //     email: emailController.text, password: passwordController.text);
 
-    if (signInFormKey.currentState!.validate()) {
-      log('sign in function called');
-      await SignInService()
-          .signInFunction(
-              email: emailController.text, password: passwordController.text)
-          .then((value) async {
-        if (value != null) {
-          isLoading = false;
-          await storage.write(key: 'accessToken', value: value.accessToken);
-          await storage.write(key: 'refreshToken', value: value.refreshToken);
-          Navigator.of(context).pushReplacementNamed(RouteNames.bottomNavBar);
-          // log(user.toString());
-        } else {
-          customToast('No user exist', AppColors.redColor);
-        }
+    try {
+      if (signInFormKey.currentState!.validate()) {
+        log('sign in function called');
+        await SignInService()
+            .signInFunction(
+                email: emailController.text, password: passwordController.text)
+            .then((value) async {
+          if (value != null) {
+            isLoading = false;
+            await storage.write(key: 'token', value: value.accessToken);
+            await storage.write(key: 'refreshToken', value: value.refreshToken);
 
-        return null;
-      });
+            log('this is access ${value.accessToken.toString()}');
+            String? t = await storage.read(key: 'token');
+
+            log('this is access from storage $t}');
+            Navigator.of(context).pushReplacementNamed(RouteNames.bottomNavBar);
+            // log(user.toString());
+          } else {
+            customToast('No user exist', AppColors.redColor);
+          }
+
+          return null;
+        });
+      }
+    } catch (e) {
+      isLoading = false;
     }
   }
 

@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:dio/dio.dart';
 import 'package:time4deal/constants/api_endpoints.dart';
 import 'package:time4deal/constants/app_urls.dart';
@@ -7,12 +9,15 @@ import 'package:time4deal/utils/dio.interceptors.dart';
 
 class GetCarousalService {
   Future<List<CarousalModel>?> getCarousal() async {
-    final dios = await InterceptorApi().getUserApi();
+    Dio dios = await InterceptorApi().getUserApi();
     try {
-      const url = AppUrls.mainUrl + ApiEndPoints.getCarousal;
-      Response response = await dios.get(url);
+      log('carousel cald');
+      const url = AppUrls.baseUrl + ApiEndPoints.getCarousal;
+      final Response response = await dios.get(url);
+      log('carousel called${response.data.toString()}');
 
       if (response.statusCode! <= 299 && response.statusCode! >= 200) {
+        log('hey called');
         List<CarousalModel> list = (response.data as List)
             .map((e) => CarousalModel.fromJson(e))
             .toList();

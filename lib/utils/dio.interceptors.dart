@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:dio/dio.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:time4deal/constants/api_endpoints.dart';
@@ -8,12 +10,16 @@ class InterceptorApi {
   FlutterSecureStorage storage = const FlutterSecureStorage();
   Dio dio = Dio();
   Future<Dio> getUserApi() async {
+    log('interceptor 1');
     dio.interceptors.add(
       InterceptorsWrapper(
         onRequest: (options, handler) async {
-          final token = storage.read(key: 'token');
+          log('interceptor 2');
+          final token = await storage.read(key: "token");
+
+          // log(token.toString());
           dio.interceptors.clear();
-          options.headers.addAll({'Authorization': "Bearer $token"});
+          options.headers.addAll({"Authorization": "Bearer $token"});
           return handler.next(options);
         },
         onResponse: (response, handler) {
@@ -25,23 +31,23 @@ class InterceptorApi {
                 e.response?.data['message'] == 'Forbidden') {
               RequestOptions requestOptions = e.requestOptions;
               try {
-                final refreshToken = storage.read(key: 'refreshToken');
+                final refreshToken = storage.read(key: "refreshToken");
                 final opts = Options(method: requestOptions.method);
-                dio.options.headers['refresh'] = 'Bearer $refreshToken';
+                dio.options.headers["refresh"] = "Bearer $refreshToken";
 
                 final Response response = await dio.get(
-                    AppUrls.mainUrl + ApiEndPoints.refreshToken,
+                    AppUrls.baseUrl + ApiEndPoints.refreshToken,
                     options: opts);
                 if (response.statusCode == 200) {
-                  final token = response.data['accessToken'];
-                  storage.write(key: 'token', value: token);
+                  final token = response.data["accessToken"];
+                  storage.write(key: "token", value: token);
                 }
               } catch (e) {
                 AppExceptions.handleError(e);
               }
-              final token = await storage.read(key: 'token');
+              final token = await storage.read(key: "token");
               final opts = Options(method: requestOptions.method);
-              dio.options.headers['Authorization'] = 'Bearer$token';
+              dio.options.headers["Authorization"] = "Bearer$token";
               final response = await dio.request(
                 requestOptions.path,
                 options: opts,

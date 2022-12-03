@@ -3,8 +3,8 @@ class SignUpModelForToken {
   String? refreshToken;
 
   SignUpModelForToken({
-    required this.accessToken,
-    required this.refreshToken,
+    this.accessToken,
+    this.refreshToken,
   });
 
   factory SignUpModelForToken.fromJson(Map<String, dynamic> json) {

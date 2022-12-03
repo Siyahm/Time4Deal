@@ -12,7 +12,7 @@ class SignInService {
   Future<SignUpModelForToken?> signInFunction(
       {String? email, String? password}) async {
     try {
-      const url = AppUrls.mainUrl + ApiEndPoints.signIn;
+      const url = AppUrls.baseUrl + ApiEndPoints.signIn;
       final Response<dynamic> response = await Dio().post(
         url,
         data: jsonEncode(
@@ -34,7 +34,7 @@ class SignInService {
   Future<SignUpModelForToken?> googleSignIn() async {
     GoogleSignIn googleSignIn = GoogleSignIn();
     try {
-      const url = AppUrls.mainUrl + ApiEndPoints.googleLogin;
+      const url = AppUrls.baseUrl + ApiEndPoints.googleLogin;
       GoogleSignInAccount? result = await googleSignIn.signIn();
       log('hy');
       log(result!.displayName!);

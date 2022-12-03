@@ -5,14 +5,16 @@ import 'package:dio/dio.dart';
 import 'package:time4deal/constants/api_endpoints.dart';
 import 'package:time4deal/constants/app_urls.dart';
 import 'package:time4deal/models/otp_verification/otp_verification.dart';
+import 'package:time4deal/utils/dio.interceptors.dart';
 
 class OtpServices {
-  final dio = Dio();
+  // final dio = Dio();
 
   Future<String?> sendOtp(email) async {
+    Dio dios = await InterceptorApi().getUserApi();
     try {
-      Response response = await dio.get(
-        AppUrls.mainUrl + ApiEndPoints.verifyOrSendOtp,
+      Response response = await dios.get(
+        AppUrls.baseUrl + ApiEndPoints.verifyOrSendOtp,
         queryParameters: {'email': email},
       );
       log(email.toString());
@@ -32,10 +34,11 @@ class OtpServices {
   }
 
   Future<bool> verifyOtp(OtpVerificationModel otpVerificationModel) async {
+    Dio dios = await InterceptorApi().getUserApi();
     try {
       log('try entered');
-      const url = AppUrls.mainUrl + ApiEndPoints.verifyOrSendOtp;
-      Response response = await Dio().post(
+      const url = AppUrls.baseUrl + ApiEndPoints.verifyOrSendOtp;
+      Response response = await dios.post(
         url,
         data: jsonEncode(
           otpVerificationModel.toJson(),
