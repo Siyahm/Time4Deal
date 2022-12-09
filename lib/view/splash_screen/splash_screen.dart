@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:time4deal/controller/spalsh_controller/splash_provider.dart';
+import 'package:time4deal/helpers/app_colors.dart';
 
 class SplashScreen extends StatelessWidget {
   const SplashScreen({super.key});
@@ -12,7 +13,7 @@ class SplashScreen extends StatelessWidget {
           .goHome(context);
     });
     return const Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: AppColors.bgColor,
       body: Center(
         child: SizedBox(
           height: 150,

@@ -18,7 +18,7 @@ class SignUpProvider with ChangeNotifier {
       TextEditingController();
   final TextEditingController mobController = TextEditingController();
 
-  bool isObscure = false;
+  bool isObscure = true;
   bool isLoading = false;
 
   void onSignUpButtonPressed(

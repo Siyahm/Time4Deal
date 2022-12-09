@@ -3,10 +3,12 @@ import 'dart:developer';
 import 'package:flutter/cupertino.dart';
 import 'package:time4deal/models/address_model/address_model.dart';
 import 'package:time4deal/routes/rout_names.dart';
+import 'package:time4deal/service/payment_service/payment_service.dart';
 import 'package:time4deal/utils/payment_enum.dart';
 import 'package:razorpay_flutter/razorpay_flutter.dart';
 
 class StepperController with ChangeNotifier {
+  final Razorpay razorPay = Razorpay();
   int currentIndex = 0;
   int currentRadio = 0;
   PaymentEnum currentEnum = PaymentEnum.cashOnDelivery;
@@ -17,16 +19,6 @@ class StepperController with ChangeNotifier {
     'Proceed to Pay'
   ];
 
-  final Razorpay razorPay = Razorpay();
-
-  Map<String, dynamic> options = {
-    'key': 'rzp_test_WCftV63OCm1NF3',
-    'amount': 50000,
-    'name': 'Time4Deal',
-    'description': 'Sports Watch',
-    'prefill': {'contact': '9656091791', 'email': 'dev.siyaudheen@gmail.com'}
-  };
-
   void onStepContinue(BuildContext context) {
     if (currentIndex < 2) {
       currentIndex += 1;
@@ -34,8 +26,16 @@ class StepperController with ChangeNotifier {
     } else {
       if (currentEnum == PaymentEnum.cashOnDelivery) {
         Navigator.of(context).pushNamed(RouteNames.myOrders);
+      } else if (currentEnum == PaymentEnum.onlinePayment) {
+        // log('online payment');
+        PaymentService().openRazorPay(razorPay);
+        // razorPayEvents();
       }
     }
+  }
+
+  void razorPayInit() {
+    PaymentService().razorPayEvents(razorPay);
   }
 
   void onStepCancel() {
@@ -66,33 +66,6 @@ class StepperController with ChangeNotifier {
 
   void selectPayment(PaymentEnum newValue) {
     currentEnum = newValue;
-    notifyListeners();
-  }
-
-  void razorPayEvents() {
-    razorPay.on(Razorpay.EVENT_PAYMENT_SUCCESS, handlePaymentSuccess);
-    razorPay.on(Razorpay.EVENT_PAYMENT_ERROR, handlePaymentError);
-    razorPay.on(Razorpay.EVENT_EXTERNAL_WALLET, handleExternalWallet);
-  }
-
-  void handlePaymentSuccess(PaymentSuccessResponse response) {
-    log('Payment Success');
-  }
-
-  void handlePaymentError(PaymentFailureResponse response) {
-    log('Payment faild');
-  }
-
-  void handleExternalWallet(ExternalWalletResponse response) {
-    // Do something when an external wallet was selected
-  }
-
-  void openRazorPay() {
-    razorPay.open(options);
-  }
-
-  void clearRazorPayListener() {
-    razorPay.clear();
     notifyListeners();
   }
 }

@@ -13,6 +13,7 @@ import 'package:time4deal/view/product_details/widgets/elevatted_buttons.dart';
 import 'package:time4deal/view/product_details/widgets/item_name.dart';
 import 'package:time4deal/view/product_details/widgets/product_features.dart';
 import 'package:time4deal/view/product_details/widgets/quantity_and_prize.dart';
+import 'package:time4deal/widgets/custom_app_bar_leading.dart';
 import 'package:time4deal/widgets/custom_app_bar_trailing.dart';
 import 'package:time4deal/widgets/custome_app_bar.dart';
 
@@ -31,14 +32,9 @@ class ProductDetails extends StatelessWidget {
     final size = MediaQuery.of(context).size;
     return Scaffold(
       backgroundColor: AppColors.transperantColor,
-      appBar: CustomeAppBar(
-        leadingWidget: IconButton(
-          icon: const Icon(Icons.arrow_back_ios),
-          onPressed: () {
-            CommonFunctions.popFunction(context);
-          },
-        ),
-        trailing: const CustomAppbarTrailing(),
+      appBar: const CustomeAppBar(
+        leadingWidget: CustomAppBarLeadingWidget(),
+        trailing: CustomAppbarTrailing(),
       ),
       body: Padding(
         padding: AppPadding.horizPadding8,
@@ -73,7 +69,7 @@ class ProductDetails extends StatelessWidget {
                   SizedBoxes.heightBox20,
                 ],
               ),
-              ProductFeatures(),
+              const ProductFeatures(),
               SizedBoxes.heightBox10,
               Row(
                 mainAxisAlignment: MainAxisAlignment.start,
@@ -92,6 +88,7 @@ class ProductDetails extends StatelessWidget {
                         ? const SizedBox()
                         : SizedBox(
                             child: RatingBar.builder(
+                                ignoreGestures: true,
                                 allowHalfRating: true,
                                 itemSize: 20,
                                 initialRating:

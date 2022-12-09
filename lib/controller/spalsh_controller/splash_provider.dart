@@ -4,13 +4,13 @@ import 'package:time4deal/routes/rout_names.dart';
 
 class SpalashScreenProvider with ChangeNotifier {
   Future<void> goHome(context) async {
-    FlutterSecureStorage storage = FlutterSecureStorage();
+    FlutterSecureStorage storage = const FlutterSecureStorage();
     final token = await storage.read(key: 'token');
     await Future.delayed(
       const Duration(seconds: 5),
     );
     token != null
-        ? Navigator.of(context).pushNamed(RouteNames.homeScreen)
+        ? Navigator.of(context).pushNamed(RouteNames.bottomNavBar)
         : Navigator.of(context).pushNamed(RouteNames.signInScreen);
   }
 }

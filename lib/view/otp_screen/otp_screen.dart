@@ -35,7 +35,7 @@ class OtpScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: true,
-        leading: const CustomAppBarWidget(),
+        leading: const CustomAppBarLeadingWidget(),
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -46,7 +46,7 @@ class OtpScreen extends StatelessWidget {
               SizedBoxes.heightBox50,
               const Text(
                 'OTP Verification',
-                style: AppTextStyles.mainTitle,
+                style: AppTextStyles.mainTitleDimWhite,
               ),
               SizedBoxes.heightBox50,
               const Text(
@@ -70,7 +70,7 @@ class OtpScreen extends StatelessWidget {
               Consumer<OtpProvider>(
                 builder: (context, value, child) {
                   return LongElevatedButton(
-                    color: AppColors.themeColor,
+                    color: AppColors.dimWhiteColor,
                     onPressed: () {
                       if (otpScreenActionEnum ==
                           OtpScreenActionEnum.signUpOtp) {

@@ -16,9 +16,10 @@ class GoogleSignInWidget extends StatelessWidget {
         width: 140,
         height: 40,
         decoration: BoxDecoration(
+          color: AppColors.dimWhiteColor,
           borderRadius: BorderRadius.circular(20),
           border: Border.all(
-            color: AppColors.themeColor,
+            color: AppColors.dimWhiteColor,
             width: 1.5,
           ),
         ),

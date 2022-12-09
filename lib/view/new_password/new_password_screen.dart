@@ -23,7 +23,7 @@ class NewPasswordScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: true,
-        leading: const CustomAppBarWidget(),
+        leading: const CustomAppBarLeadingWidget(),
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -33,12 +33,12 @@ class NewPasswordScreen extends StatelessWidget {
             children: [
               SizedBoxes.heightBox50,
               const Text(
-                'Forgot Password',
-                style: AppTextStyles.mainTitle,
+                'Reset Password',
+                style: AppTextStyles.mainTitleDimWhite,
               ),
               SizedBoxes.heightBox50,
               const Text(
-                'Please enter your registered email address',
+                'Please enter new password',
                 style: AppTextStyles.normalText,
                 textAlign: TextAlign.justify,
               ),
@@ -69,7 +69,7 @@ class NewPasswordScreen extends StatelessWidget {
               ),
               SizedBoxes.heightBox30,
               LongElevatedButton(
-                color: AppColors.themeColor,
+                color: AppColors.dimWhiteColor,
                 onPressed: () {
                   newPasswordProvider.onResetButtonPressed(newPasswordFormKey,
                       context, forgotPasswordProvider.user!.email!);

@@ -20,7 +20,7 @@ class ForgotPassword extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: true,
-        leading: const CustomAppBarWidget(),
+        leading: const CustomAppBarLeadingWidget(),
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -31,7 +31,7 @@ class ForgotPassword extends StatelessWidget {
               SizedBoxes.heightBox50,
               const Text(
                 'Forgot Password',
-                style: AppTextStyles.mainTitle,
+                style: AppTextStyles.mainTitleDimWhite,
               ),
               SizedBoxes.heightBox50,
               const Text(
@@ -53,7 +53,7 @@ class ForgotPassword extends StatelessWidget {
               SizedBoxes.heightBox30,
               Consumer<ForgotPasswordProvider>(
                 builder: (context, value, child) => LongElevatedButton(
-                  color: AppColors.themeColor,
+                  color: AppColors.dimWhiteColor,
                   onPressed: () {
                     value.onSendButtonPressed(formKey, context);
                   },

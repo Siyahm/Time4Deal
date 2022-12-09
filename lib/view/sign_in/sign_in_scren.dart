@@ -33,7 +33,7 @@ class SignInScreen extends StatelessWidget {
                 SizedBoxes.heightBox150,
                 const Text(
                   'Sign In',
-                  style: AppTextStyles.mainTitle,
+                  style: AppTextStyles.mainTitleDimWhite,
                 ),
                 SizedBoxes.heightBox50,
                 CustomTextFormField(
@@ -74,7 +74,7 @@ class SignInScreen extends StatelessWidget {
                 SizedBoxes.heightBox30,
                 Consumer<SignInProvider>(
                   builder: (context, value, child) => LongElevatedButton(
-                    color: AppColors.themeColor,
+                    color: AppColors.dimWhiteColor,
                     onPressed: () {
                       value.onSignIn(signInFormKey, context);
                     },
@@ -126,7 +126,7 @@ class SignInScreen extends StatelessWidget {
                   child: RichText(
                     text: TextSpan(
                         text: 'Not registered yet?  ',
-                        style: const TextStyle(color: AppColors.themeColor),
+                        style: const TextStyle(color: AppColors.dimWhiteColor),
                         children: [
                           TextSpan(
                             text: 'Sign Up',

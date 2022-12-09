@@ -8,6 +8,7 @@ import 'package:time4deal/helpers/app_colors.dart';
 import 'package:time4deal/helpers/app_padding.dart';
 import 'package:time4deal/helpers/sized_boxes.dart';
 import 'package:time4deal/utils/common_functions.dart';
+import 'package:time4deal/widgets/custom_app_bar_leading.dart';
 import 'package:time4deal/widgets/custom_app_bar_trailing.dart';
 import 'package:time4deal/widgets/custome_app_bar.dart';
 import 'package:time4deal/widgets/products_view.dart';
@@ -27,12 +28,7 @@ class CategoryProducsViewtScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: AppColors.transperantColor,
       appBar: CustomeAppBar(
-        leadingWidget: IconButton(
-          icon: const Icon(Icons.arrow_back_ios),
-          onPressed: () {
-            CommonFunctions.popFunction(context);
-          },
-        ),
+        leadingWidget: const CustomAppBarLeadingWidget(),
         trailing: const CustomAppbarTrailing(),
         title: homeController.categoriesList[index].name,
       ),

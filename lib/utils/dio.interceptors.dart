@@ -29,9 +29,10 @@ class InterceptorApi {
           if (e.response != null) {
             if (e.response?.statusCode == 403 &&
                 e.response?.data['message'] == 'Forbidden') {
+              log(e.response!.statusCode.toString());
               RequestOptions requestOptions = e.requestOptions;
               try {
-                final refreshToken = storage.read(key: "refreshToken");
+                final refreshToken = await storage.read(key: "refreshToken");
                 final opts = Options(method: requestOptions.method);
                 dio.options.headers["refresh"] = "Bearer $refreshToken";
 

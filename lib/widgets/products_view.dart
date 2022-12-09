@@ -106,6 +106,7 @@ class ProductsView extends StatelessWidget {
                 ? SizedBox(
                     child: RatingBar.builder(
                         allowHalfRating: true,
+                        ignoreGestures: true,
                         itemSize: 20,
                         initialRating: double.parse(rating!),
                         direction: Axis.horizontal,

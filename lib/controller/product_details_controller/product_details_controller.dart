@@ -59,8 +59,8 @@ class ProductDetailsContoller with ChangeNotifier {
   }
 
   void findTotalPrice() {
-    itemOriginalPrize = int.parse(product!.price);
-    offerPercentage = int.parse(product!.offer);
+    itemOriginalPrize = product!.price;
+    offerPercentage = product!.offer;
     totalPrice = itemOriginalPrize * quantity;
     offerPrice = totalPrice - (totalPrice * offerPercentage / 100) - 1;
     notifyListeners();

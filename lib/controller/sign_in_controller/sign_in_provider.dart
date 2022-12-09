@@ -43,14 +43,16 @@ class SignInProvider with ChangeNotifier {
             await storage.write(key: 'token', value: value.accessToken);
             await storage.write(key: 'refreshToken', value: value.refreshToken);
 
-            log('this is access ${value.accessToken.toString()}');
-            String? t = await storage.read(key: 'token');
+            // log('this is access ${value.accessToken.toString()}');
+            // String? t = await storage.read(key: 'token');
 
-            log('this is access from storage $t}');
+            // log('this is access from storage $t}');
             Navigator.of(context).pushReplacementNamed(RouteNames.bottomNavBar);
             // log(user.toString());
           } else {
-            customToast('No user exist', AppColors.redColor);
+            // customToast('No user exist', AppColors.redColor);
+            isLoading = false;
+            notifyListeners();
           }
 
           return null;

@@ -10,6 +10,7 @@ import 'package:time4deal/helpers/app_text_styles.dart';
 import 'package:time4deal/helpers/sized_boxes.dart';
 import 'package:time4deal/utils/common_functions.dart';
 import 'package:time4deal/utils/common_validations.dart';
+import 'package:time4deal/widgets/custom_app_bar_leading.dart';
 import 'package:time4deal/widgets/custome_app_bar.dart';
 import 'package:time4deal/widgets/custome_text_form_field.dart';
 import 'package:time4deal/widgets/long_elevated_button.dart';
@@ -26,14 +27,9 @@ class AddAddressScreen extends StatelessWidget {
     final stepperController =
         Provider.of<StepperController>(context, listen: false);
     return Scaffold(
-      appBar: CustomeAppBar(
-        leadingWidget: IconButton(
-          onPressed: () {
-            CommonFunctions.popFunction(context);
-          },
-          icon: const Icon(Icons.arrow_back_ios),
-        ),
-        trailing: const SizedBox(),
+      appBar: const CustomeAppBar(
+        leadingWidget: CustomAppBarLeadingWidget(),
+        trailing: SizedBox(),
       ),
       body: SingleChildScrollView(
         child: Padding(

@@ -46,7 +46,7 @@ class OnBordingScreen extends StatelessWidget {
                       SizedBox(
                         width: size.width * 0.7,
                         child: LongElevatedButton(
-                            color: AppColors.themeColor,
+                            color: AppColors.dimWhiteColor,
                             onPressed: () {
                               if (index < 2) {
                                 onbordingProvidr.onbordingController
@@ -67,7 +67,7 @@ class OnBordingScreen extends StatelessWidget {
                         child: LongElevatedButton(
                           decoration: BoxDecoration(
                             border: Border.all(
-                                color: AppColors.themeColor, width: 1.5),
+                                color: AppColors.dimWhiteColor, width: 1.5),
                             borderRadius: const BorderRadius.all(
                               Radius.circular(35),
                             ),
@@ -84,7 +84,7 @@ class OnBordingScreen extends StatelessWidget {
                           },
                           child: Text(
                             onBordingContentList[index].buttonText2!,
-                            style: AppTextStyles.buttonTextYellow,
+                            style: AppTextStyles.buttonTextDimWhite,
                           ),
                         ),
                       ),

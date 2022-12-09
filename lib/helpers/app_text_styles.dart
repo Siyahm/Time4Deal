@@ -1,10 +1,13 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:time4deal/helpers/app_colors.dart';
 
 class AppTextStyles {
   static const mainTitle = TextStyle(
       fontSize: 34, fontWeight: FontWeight.bold, color: AppColors.themeColor);
+  static const mainTitleDimWhite = TextStyle(
+      fontSize: 34,
+      fontWeight: FontWeight.bold,
+      color: AppColors.dimWhiteColor);
   static const mainTitleWhite = TextStyle(
       fontSize: 34, fontWeight: FontWeight.bold, color: AppColors.whiteColor);
   static const mainTitleRed = TextStyle(
@@ -28,6 +31,7 @@ class AppTextStyles {
   static const normalTextYellow =
       TextStyle(fontSize: 16, color: AppColors.whiteColor);
   static const buttonTextBlack = TextStyle(color: Colors.black);
+  static const buttonTextDimWhite = TextStyle(color: AppColors.dimWhiteColor);
   static const buttonTextYellow = TextStyle(color: AppColors.themeColor);
   static const textButtonStyle = TextStyle(color: AppColors.themeColor);
 }

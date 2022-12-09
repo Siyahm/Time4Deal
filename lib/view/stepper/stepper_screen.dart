@@ -2,29 +2,40 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:time4deal/controller/stepper_controller/stepper_controller.dart';
 import 'package:time4deal/helpers/app_colors.dart';
-import 'package:time4deal/utils/common_functions.dart';
 import 'package:time4deal/view/stepper/widgets/address_stepper.dart';
-import 'package:time4deal/view/stepper/widgets/back_and_next_buttons.dart';
 import 'package:time4deal/view/stepper/widgets/order_details_stepper.dart';
 import 'package:time4deal/view/stepper/widgets/payment_stepper.dart';
+import 'package:time4deal/widgets/custom_app_bar_leading.dart';
 import 'package:time4deal/widgets/custome_app_bar.dart';
 
-class StepperScreen extends StatelessWidget {
+class StepperScreen extends StatefulWidget {
   const StepperScreen({super.key});
+
+  @override
+  State<StepperScreen> createState() => _StepperScreenState();
+}
+
+class _StepperScreenState extends State<StepperScreen> {
+  @override
+  void initState() {
+    Provider.of<StepperController>(context, listen: false).razorPayInit();
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    Provider.of<StepperController>(context, listen: false).razorPay.clear();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     // final stepperController = Provider.of<StepperController>(context);
     final size = MediaQuery.of(context).size;
     return Scaffold(
-      appBar: CustomeAppBar(
-        leadingWidget: IconButton(
-          icon: const Icon(Icons.arrow_back_ios),
-          onPressed: () {
-            CommonFunctions.popFunction(context);
-          },
-        ),
-        trailing: const SizedBox(),
+      appBar: const CustomeAppBar(
+        leadingWidget: CustomAppBarLeadingWidget(),
+        trailing: SizedBox(),
       ),
       body: SafeArea(
         child: Column(

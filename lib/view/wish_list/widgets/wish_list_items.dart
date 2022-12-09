@@ -16,7 +16,7 @@ class WishListItemTile extends StatelessWidget {
   final List<String>? image;
   final String? name;
   final String? company;
-  final String? rate;
+  final int? rate;
   // final Color? color;
   final VoidCallback closeFunction;
   final int index;

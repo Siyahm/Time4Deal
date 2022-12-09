@@ -11,11 +11,12 @@ class OtpServices {
   // final dio = Dio();
 
   Future<String?> sendOtp(email) async {
-    Dio dios = await InterceptorApi().getUserApi();
+    // Dio dios = await InterceptorApi().getUserApi();
     try {
-      Response response = await dios.get(
+      log('otp sent');
+      Response response = await Dio().get(
         AppUrls.baseUrl + ApiEndPoints.verifyOrSendOtp,
-        queryParameters: {'email': email},
+        queryParameters: {"email": email},
       );
       log(email.toString());
       log(
@@ -34,11 +35,11 @@ class OtpServices {
   }
 
   Future<bool> verifyOtp(OtpVerificationModel otpVerificationModel) async {
-    Dio dios = await InterceptorApi().getUserApi();
+    // Dio dios = await InterceptorApi().getUserApi();
     try {
       log('try entered');
       const url = AppUrls.baseUrl + ApiEndPoints.verifyOrSendOtp;
-      Response response = await dios.post(
+      Response response = await Dio().post(
         url,
         data: jsonEncode(
           otpVerificationModel.toJson(),

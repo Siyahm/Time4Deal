@@ -23,7 +23,7 @@ class SignUpScreen extends StatelessWidget {
     final signUProvider = Provider.of<SignUpProvider>(context);
     return Scaffold(
       appBar: AppBar(
-        leading: const CustomAppBarWidget(),
+        leading: const CustomAppBarLeadingWidget(),
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -36,7 +36,7 @@ class SignUpScreen extends StatelessWidget {
                 // SizedBoxes.heightBox10,
                 const Text(
                   'Sign up',
-                  style: AppTextStyles.mainTitle,
+                  style: AppTextStyles.mainTitleDimWhite,
                 ),
                 SizedBoxes.heightBox40,
                 CustomTextFormField(
@@ -92,7 +92,7 @@ class SignUpScreen extends StatelessWidget {
                 Consumer<SignUpProvider>(
                   builder: (context, value, child) {
                     return LongElevatedButton(
-                      color: AppColors.themeColor,
+                      color: AppColors.dimWhiteColor,
                       onPressed: () {
                         value.onSignUpButtonPressed(signUpFormKey, context);
                       },
@@ -173,7 +173,7 @@ class SignUpScreen extends StatelessWidget {
                   child: RichText(
                     text: TextSpan(
                         text: 'Already have an account?  ',
-                        style: const TextStyle(color: AppColors.themeColor),
+                        style: const TextStyle(color: AppColors.dimWhiteColor),
                         children: [
                           TextSpan(
                               text: 'Sign In',
