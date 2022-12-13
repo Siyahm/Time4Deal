@@ -1,7 +1,6 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:time4deal/models/carousal_model/carousal_model.dart';
 import 'package:time4deal/models/category_model/category_model.dart';
 import 'package:time4deal/models/product_model/product_model.dart';
@@ -64,6 +63,7 @@ class HomeController with ChangeNotifier {
   }
 
   void getAllPorducts() async {
+    log('home called');
     isLoading = true;
     notifyListeners();
     await ProductViewScreenService().getProduct().then((value) {

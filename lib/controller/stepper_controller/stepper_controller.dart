@@ -8,7 +8,7 @@ import 'package:time4deal/utils/payment_enum.dart';
 import 'package:razorpay_flutter/razorpay_flutter.dart';
 
 class StepperController with ChangeNotifier {
-  final Razorpay razorPay = Razorpay();
+  late Razorpay razorPay;
   int currentIndex = 0;
   int currentRadio = 0;
   PaymentEnum currentEnum = PaymentEnum.cashOnDelivery;

@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:time4deal/utils/common_functions.dart';
-import 'package:time4deal/widgets/custom_app_bar_leading.dart';
 import 'package:time4deal/widgets/custome_app_bar.dart';
 
 class MyOrders extends StatelessWidget {
@@ -10,7 +8,7 @@ class MyOrders extends StatelessWidget {
   Widget build(BuildContext context) {
     return const Scaffold(
       appBar: CustomeAppBar(
-        leadingWidget: CustomAppBarLeadingWidget(),
+        leadingWidget: SizedBox(),
         trailing: SizedBox(),
       ),
       body: SafeArea(

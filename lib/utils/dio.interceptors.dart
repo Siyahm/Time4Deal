@@ -35,29 +35,39 @@ class InterceptorApi {
                 final refreshToken = await storage.read(key: "refreshToken");
                 final opts = Options(method: requestOptions.method);
                 dio.options.headers["refresh"] = "Bearer $refreshToken";
-
+                log('hiiii');
                 final Response response = await dio.get(
                     AppUrls.baseUrl + ApiEndPoints.refreshToken,
                     options: opts);
                 if (response.statusCode == 200) {
+                  storage.delete(key: 'token');
+                  storage.delete(key: 'refreshToken');
+                  log('token got');
+                  log(response.data.toString());
                   final token = response.data["accessToken"];
+                  final refreshToken = response.data["refreshToken"];
                   storage.write(key: "token", value: token);
+                  storage.write(key: 'refreshToken', value: refreshToken);
                 }
               } catch (e) {
                 AppExceptions.handleError(e);
               }
-              final token = await storage.read(key: "token");
-              final opts = Options(method: requestOptions.method);
-              dio.options.headers["Authorization"] = "Bearer$token";
-              final response = await dio.request(
-                requestOptions.path,
-                options: opts,
-                cancelToken: requestOptions.cancelToken,
-                onReceiveProgress: requestOptions.onReceiveProgress,
-                data: requestOptions.data,
-                queryParameters: requestOptions.queryParameters,
-              );
-              return handler.resolve(response);
+              try {
+                final token = await storage.read(key: "token");
+                final opts = Options(method: requestOptions.method);
+                dio.options.headers["Authorization"] = "Bearer $token";
+                final response = await dio.request(
+                  requestOptions.path,
+                  options: opts,
+                  cancelToken: requestOptions.cancelToken,
+                  onReceiveProgress: requestOptions.onReceiveProgress,
+                  data: requestOptions.data,
+                  queryParameters: requestOptions.queryParameters,
+                );
+                return handler.resolve(response);
+              } catch (e) {
+                AppExceptions.handleError(e);
+              }
             }
           } else {
             handler.next(e);

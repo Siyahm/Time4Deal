@@ -1,18 +1,53 @@
+import 'dart:developer';
+
 import 'package:flutter/cupertino.dart';
-import 'package:time4deal/models/product_model/product_model.dart';
+import 'package:time4deal/models/wish_list_model/wish_list_model.dart';
+import 'package:time4deal/service/wish_list_services/wish_list_services.dart';
 
-class WishListController with ChangeNotifier {
-  List<ProductModel> wishListItemList = [];
-
-  void addToWishList(ProductModel model) {
-    // if (model.isFavourite == true) {
-    wishListItemList.add(model);
-    notifyListeners();
-    // }
+class WishListController extends ChangeNotifier {
+  WishListController() {
+    getWishList();
   }
 
-  void removeFromWishList(ProductModel model) {
-    wishListItemList.remove(model);
+  bool isLoading = true;
+  List<ProductDetailsModel> wishListItemList = [];
+
+  Future<String?> addOrRemoveWishListItem(String productId) async {
+    isLoading == true;
     notifyListeners();
+
+    await WishListServices().addToWishList(productId).then((value) {
+      if (value != null) {
+        isLoading == false;
+        notifyListeners();
+        return value;
+      } else {
+        isLoading == false;
+        notifyListeners();
+        return value;
+      }
+    });
+    // log(successMessage.toString());
+    return null;
+  }
+
+  void getWishList() async {
+    log('getwishlist called');
+    isLoading = true;
+    notifyListeners();
+
+    await WishListServices().getWishList().then((value) {
+      if (value != null) {
+        log('wishlist not null');
+        wishListItemList.clear();
+        wishListItemList = value.products.map((e) {
+          return e.product;
+        }).toList();
+        log(wishListItemList.toString());
+      }
+    });
+    isLoading = false;
+    notifyListeners();
+    return null;
   }
 }

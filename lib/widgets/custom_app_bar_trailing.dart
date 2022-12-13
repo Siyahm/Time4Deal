@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:time4deal/helpers/app_colors.dart';
 import 'package:time4deal/routes/rout_names.dart';
 
 class CustomAppbarTrailing extends StatelessWidget {
@@ -19,10 +20,20 @@ class CustomAppbarTrailing extends StatelessWidget {
         ),
         IconButton(
           splashRadius: 15,
-          onPressed: () {
-            Navigator.of(context).pushNamed(RouteNames.myCart);
+          onPressed: () async {
+            await Navigator.of(context).pushNamed(RouteNames.myCart);
           },
-          icon: const Icon(Icons.shopping_cart_outlined),
+          icon: Stack(
+            alignment: Alignment.topRight,
+            fit: StackFit.loose,
+            children: const [
+              Icon(Icons.shopping_cart_outlined),
+              CircleAvatar(
+                radius: 9,
+                backgroundColor: AppColors.redColor,
+              )
+            ],
+          ),
         ),
       ],
     );

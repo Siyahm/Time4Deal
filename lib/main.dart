@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:time4deal/controller/add_address_screen_controller/add_address_controller.dart';
 import 'package:time4deal/controller/bottom_nav_bar_controller/bottom_nav_bar_provider.dart';
+import 'package:time4deal/controller/cart_controller/cart_controller.dart';
 import 'package:time4deal/controller/products_view_screen_controller/product_view_screen_controller.dart';
 import 'package:time4deal/controller/forgot_password_controller/forgot_password_provider.dart';
 import 'package:time4deal/controller/home_controller/home_controller.dart';
@@ -17,6 +18,7 @@ import 'package:time4deal/controller/stepper_controller/stepper_controller.dart'
 import 'package:time4deal/controller/wish_list_controller/wish_list_controller.dart';
 import 'package:time4deal/helpers/app_colors.dart';
 import 'package:time4deal/routes/routs.dart';
+import 'package:time4deal/utils/navigation_context.dart';
 import 'package:time4deal/view/new_password/new_password_screen.dart';
 import 'package:time4deal/view/on_boarding/on_bording_screen.dart';
 import 'package:time4deal/view/sign_in/sign_in_scren.dart';
@@ -80,8 +82,12 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(
           create: ((_) => ProfileController()),
         ),
+        ChangeNotifierProvider(
+          create: ((_) => CartController()),
+        ),
       ],
       child: MaterialApp(
+        navigatorKey: NavigationContextService.navigatorContextKey,
         debugShowCheckedModeBanner: false,
         onGenerateRoute: ((settings) => AppRouts.generateRoute(settings)),
         title: 'Time4Deal',

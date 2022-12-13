@@ -10,7 +10,9 @@ class SpalashScreenProvider with ChangeNotifier {
       const Duration(seconds: 5),
     );
     token != null
-        ? Navigator.of(context).pushNamed(RouteNames.bottomNavBar)
-        : Navigator.of(context).pushNamed(RouteNames.signInScreen);
+        ? Navigator.of(context)
+            .pushNamedAndRemoveUntil(RouteNames.bottomNavBar, (route) => false)
+        : Navigator.of(context)
+            .pushNamedAndRemoveUntil(RouteNames.signInScreen, (route) => false);
   }
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:razorpay_flutter/razorpay_flutter.dart';
 import 'package:time4deal/controller/stepper_controller/stepper_controller.dart';
 import 'package:time4deal/helpers/app_colors.dart';
 import 'package:time4deal/view/stepper/widgets/address_stepper.dart';
@@ -16,15 +17,18 @@ class StepperScreen extends StatefulWidget {
 }
 
 class _StepperScreenState extends State<StepperScreen> {
+  late StepperController stepperController;
   @override
   void initState() {
-    Provider.of<StepperController>(context, listen: false).razorPayInit();
+    stepperController = Provider.of<StepperController>(context, listen: false);
+    stepperController.razorPay = Razorpay();
+    stepperController.razorPayInit();
     super.initState();
   }
 
   @override
   void dispose() {
-    Provider.of<StepperController>(context, listen: false).razorPay.clear();
+    stepperController.razorPay.clear();
     super.dispose();
   }
 

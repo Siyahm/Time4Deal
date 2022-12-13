@@ -13,7 +13,7 @@ class WishListItemTile extends StatelessWidget {
     required this.closeFunction,
     required this.index,
   });
-  final List<String>? image;
+  final String? image;
   final String? name;
   final String? company;
   final int? rate;
@@ -30,9 +30,9 @@ class WishListItemTile extends StatelessWidget {
             width: 70,
             height: 100,
             decoration: BoxDecoration(
-              color: AppColors.dimWhiteColor,
+              color: AppColors.greyColor,
               image: DecorationImage(
-                  image: AssetImage(image![index]), fit: BoxFit.fitHeight),
+                  image: NetworkImage(image!), fit: BoxFit.fitHeight),
             ),
           ),
           SizedBoxes.widthBox10,

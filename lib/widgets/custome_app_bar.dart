@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:time4deal/controller/products_view_screen_controller/product_view_screen_controller.dart';
 import 'package:time4deal/helpers/app_text_styles.dart';
-import 'package:time4deal/routes/rout_names.dart';
 
 class CustomeAppBar extends StatelessWidget implements PreferredSize {
   const CustomeAppBar({

@@ -1,8 +1,10 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:provider/provider.dart';
-import 'package:time4deal/controller/home_controller/home_controller.dart';
 import 'package:time4deal/controller/product_details_controller/product_details_controller.dart';
+import 'package:time4deal/controller/wish_list_controller/wish_list_controller.dart';
 import 'package:time4deal/helpers/app_colors.dart';
 import 'package:time4deal/helpers/sized_boxes.dart';
 import 'package:time4deal/models/product_model/product_model.dart';
@@ -65,9 +67,13 @@ class ProductsView extends StatelessWidget {
                 // ),
               ),
             ),
-            Consumer<HomeController>(
+            Consumer<WishListController>(
               builder: (context, value, child) => IconButton(
                 onPressed: () {
+                  log(model!.id.toString());
+                  value.addOrRemoveWishListItem(model!.id);
+                  value.getWishList();
+                  // log(value.wishListItemList.toString());
                   // value.addFavourite(index);
                   // if (homeController.trendingProductItems[index].isFavourite ==
                   //     true) {
@@ -90,6 +96,9 @@ class ProductsView extends StatelessWidget {
             color: AppColors.dimWhiteColor.withOpacity(0.7),
             fontSize: 12,
           ),
+        ),
+        const SizedBox(
+          height: 4,
         ),
         Text(
           watchName!,

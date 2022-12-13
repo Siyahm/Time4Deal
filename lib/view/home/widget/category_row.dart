@@ -19,70 +19,48 @@ class CategoryRow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final productViewScreenController =
-        Provider.of<ProductViewScreenController>(context, listen: false);
+        Provider.of<ProductViewScreenController>(
+      context,
+    );
     return SizedBox(
       height: 105,
       child: Consumer<HomeController>(
         builder: (context, value, child) => ListView.builder(
           scrollDirection: Axis.horizontal,
           itemBuilder: (context, index) {
-            if (value.isLoading == true) {
-              return Shimmer.fromColors(
-                  baseColor: Colors.grey[300]!,
-                  highlightColor: Colors.grey[100]!,
-                  child: Padding(
-                    padding: AppPadding.horizPadding5,
-                    child: Column(
-                      children: [
-                        const CircleAvatar(
-                          backgroundColor: AppColors.whiteColor,
-                          radius: 30,
-                        ),
-                        SizedBoxes.heightBox5,
-                        Container(
-                          color: AppColors.whiteColor,
-                          width: 50,
-                          height: 20,
-                        ),
-                      ],
-                    ),
-                  ));
-            } else {
-              return Padding(
-                padding: AppPadding.horizPadding5,
-                child: GestureDetector(
-                  onTap: () {
-                    ProductViewScreenArgs args =
-                        ProductViewScreenArgs(index: index);
-                    Navigator.of(context).pushNamed(
-                        RouteNames.productsViewScreen,
-                        arguments: args);
-                    productViewScreenController
-                        .getCategoryProducts(value.categoriesList[index].id);
-                  },
-                  child: Column(
-                    children: [
-                      CircleAvatar(
+            return Padding(
+              padding: AppPadding.horizPadding5,
+              child: GestureDetector(
+                onTap: () {
+                  ProductViewScreenArgs args =
+                      ProductViewScreenArgs(index: index);
+                  Navigator.of(context).pushNamed(RouteNames.productsViewScreen,
+                      arguments: args);
+                  productViewScreenController
+                      .getCategoryProducts(value.categoriesList[index].id);
+                },
+                child: Column(
+                  children: [
+                    CircleAvatar(
+                      backgroundColor: AppColors.whiteColor,
+                      radius: 30,
+                      child: CircleAvatar(
                         backgroundColor: AppColors.whiteColor,
-                        radius: 30,
-                        child: CircleAvatar(
-                          backgroundColor: AppColors.whiteColor,
-                          backgroundImage: NetworkImage(
-                              '${AppUrls.networkImageMainUrl}${ApiEndPoints.getCategory}/${value.categoriesList[index].image}'),
-                          radius: 27,
-                        ),
+                        backgroundImage: NetworkImage(
+                            '${AppUrls.networkImageMainUrl}${ApiEndPoints.getCategory}/${value.categoriesList[index].image}'),
+                        radius: 27,
                       ),
-                      SizedBoxes.heightBox5,
-                      Text(
-                        value.categoriesList[index].name.replaceAll(' ', '\n'),
-                        textAlign: TextAlign.center,
-                        style: const TextStyle(),
-                      )
-                    ],
-                  ),
+                    ),
+                    SizedBoxes.heightBox5,
+                    Text(
+                      value.categoriesList[index].name.replaceAll(' ', '\n'),
+                      textAlign: TextAlign.center,
+                      style: const TextStyle(),
+                    )
+                  ],
                 ),
-              );
-            }
+              ),
+            );
           },
           itemCount: value.categoriesList.length,
         ),

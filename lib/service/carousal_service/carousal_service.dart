@@ -1,7 +1,6 @@
 import 'dart:developer';
 
 import 'package:dio/dio.dart';
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:time4deal/constants/api_endpoints.dart';
 import 'package:time4deal/constants/app_urls.dart';
 import 'package:time4deal/helpers/app_exceptions.dart';
