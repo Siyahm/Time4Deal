@@ -69,9 +69,9 @@ class ProductsView extends StatelessWidget {
             ),
             Consumer<WishListController>(
               builder: (context, value, child) => IconButton(
-                onPressed: () {
+                onPressed: () async {
                   log(model!.id.toString());
-                  value.addOrRemoveWishListItem(model!.id);
+                  await value.addOrRemoveWishListItem(model!.id);
                   value.getWishList();
                   // log(value.wishListItemList.toString());
                   // value.addFavourite(index);

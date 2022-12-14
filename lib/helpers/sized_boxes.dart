@@ -11,6 +11,7 @@ class SizedBoxes {
   static const heightBox150 = SizedBox(height: 150);
 
   static const widthBox5 = SizedBox(width: 5);
+  static const widthBox8 = SizedBox(width: 8);
   static const widthBox10 = SizedBox(width: 10);
   static const widthBox15 = SizedBox(width: 15);
   static const widthBox20 = SizedBox(width: 20);

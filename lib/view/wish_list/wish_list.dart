@@ -40,8 +40,8 @@ class MyWishList extends StatelessWidget {
                   : ListView.separated(
                       itemCount: value.wishListItemList.length,
                       itemBuilder: (context, index) => WishListItemTile(
-                        closeFunction: () {
-                          value.addOrRemoveWishListItem(
+                        closeFunction: () async {
+                          await value.addOrRemoveWishListItem(
                               value.wishListItemList[index].id);
                           value.getWishList();
                           log(index.toString());

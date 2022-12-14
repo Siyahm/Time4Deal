@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:time4deal/controller/product_details_controller/product_details_controller.dart';
 import 'package:time4deal/helpers/app_colors.dart';
+import 'package:time4deal/helpers/app_padding.dart';
 import 'package:time4deal/helpers/sized_boxes.dart';
 
 class WishListItemTile extends StatelessWidget {
@@ -23,16 +26,19 @@ class WishListItemTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final productDetailsContoller =
+        Provider.of<ProductDetailsContoller>(context, listen: false);
     return ListTile(
       title: Row(
         children: [
           Container(
+            // padding: EdgeInsets.all(8),
             width: 70,
             height: 100,
-            decoration: BoxDecoration(
-              color: AppColors.greyColor,
-              image: DecorationImage(
-                  image: NetworkImage(image!), fit: BoxFit.fitHeight),
+            color: AppColors.greyColor,
+            child: Padding(
+              padding: AppPadding.allPadding2,
+              child: Image(image: NetworkImage(image!)),
             ),
           ),
           SizedBoxes.widthBox10,
@@ -48,52 +54,45 @@ class WishListItemTile extends StatelessWidget {
                       fontSize: 18, color: AppColors.whiteColor),
                 ),
                 Text('₹ ${rate!}'),
-                // Row(
-                //   children: [
-                //     const Text('Color: '),
-                //     Container(
-                //       width: 15,
-                //       height: 15,
-                //       decoration: BoxDecoration(
-                //         // color: color,
-                //         border: Border.all(width: 2, color: AppColors.whiteColor),
-                //       ),
-                //     )
-                //   ],
-                // ),
-                Row(
-                  children: [
-                    TextButton(
-                      onPressed: () {},
-                      child: Container(
-                        decoration: BoxDecoration(
-                            border: Border.all(
-                                width: 2, color: AppColors.greyColor),
-                            // color: AppColors.themeColor,
-                            borderRadius: BorderRadius.circular(5)),
-                        padding: const EdgeInsets.all(6),
-                        child: const Text(
-                          'Add to Cart',
-                          style: TextStyle(color: AppColors.whiteColor),
+                Padding(
+                  padding: AppPadding.verticalPadding8,
+                  child: Row(
+                    children: [
+                      GestureDetector(
+                        onTap: () {},
+                        child: Container(
+                          decoration: BoxDecoration(
+                              color: AppColors.whiteColor,
+                              border: Border.all(width: 2),
+                              // color: AppColors.themeColor,
+                              borderRadius: BorderRadius.circular(5)),
+                          padding: const EdgeInsets.all(6),
+                          child: const Text(
+                            'Add to Cart',
+                            style: TextStyle(color: AppColors.blackColor),
+                          ),
                         ),
                       ),
-                    ),
-                    TextButton(
-                      onPressed: () {},
-                      child: Container(
-                        decoration: BoxDecoration(
-                            border: Border.all(
-                                width: 2, color: AppColors.greyColor),
-                            // color: AppColors.themeColor,
-                            borderRadius: BorderRadius.circular(5)),
-                        padding: const EdgeInsets.all(6),
-                        child: const Text(
-                          'Buy now',
-                          style: TextStyle(color: AppColors.whiteColor),
+                      SizedBoxes.widthBox8,
+                      GestureDetector(
+                        onTap: () {
+                          productDetailsContoller.goToStepperScreen(context);
+                        },
+                        child: Container(
+                          decoration: BoxDecoration(
+                              color: AppColors.redColor,
+                              border: Border.all(width: 2),
+                              // color: AppColors.themeColor,
+                              borderRadius: BorderRadius.circular(5)),
+                          padding: const EdgeInsets.all(6),
+                          child: const Text(
+                            'Buy now',
+                            style: TextStyle(color: AppColors.whiteColor),
+                          ),
                         ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 )
               ],
             ),

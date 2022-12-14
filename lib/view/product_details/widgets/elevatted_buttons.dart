@@ -23,7 +23,7 @@ class ElevattedButtons extends StatelessWidget {
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(20))),
           onPressed: () {
-            productDetailsController.onTapBuyButton(context);
+            productDetailsController.goToStepperScreen(context);
           },
           child: const Text(
             'Buy Now',

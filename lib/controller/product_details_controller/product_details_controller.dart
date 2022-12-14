@@ -84,7 +84,7 @@ class ProductDetailsContoller with ChangeNotifier {
     notifyListeners();
   }
 
-  void onTapBuyButton(BuildContext context) {
+  void goToStepperScreen(BuildContext context) {
     Navigator.of(context).pushNamed(RouteNames.stepperScreens);
   }
 }
