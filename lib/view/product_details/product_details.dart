@@ -6,8 +6,6 @@ import 'package:time4deal/helpers/app_colors.dart';
 import 'package:time4deal/helpers/app_padding.dart';
 import 'package:time4deal/helpers/app_text_styles.dart';
 import 'package:time4deal/helpers/sized_boxes.dart';
-import 'package:time4deal/models/product_model/product_model.dart';
-import 'package:time4deal/utils/common_functions.dart';
 import 'package:time4deal/view/product_details/widgets/carousels.dart';
 import 'package:time4deal/view/product_details/widgets/elevatted_buttons.dart';
 import 'package:time4deal/view/product_details/widgets/item_name.dart';
@@ -50,14 +48,15 @@ class ProductDetails extends StatelessWidget {
                       padding: AppPadding.horizPadding15,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
-                        children: const [
-                          Carousals(),
-                          ItemName(
-                              // index: index,
-                              ),
+                        children: [
+                          const Carousals(),
+                          Consumer<ProductDetailsContoller>(
+                            builder: (context, value, child) =>
+                                ItemName(productId: value.product!.id),
+                          ),
                           // model: productDetailsController.product),
                           SizedBoxes.heightBox10,
-                          Text(
+                          const Text(
                             'Brand',
                             style: AppTextStyles.normalText,
                           ),

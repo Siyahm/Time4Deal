@@ -82,9 +82,13 @@ class ProductsView extends StatelessWidget {
                   //   wishListController.removeFromWishList(model!);
                   // }
                 },
-                icon: const Icon(
-                  Icons.favorite,
-                  color: AppColors.whiteColor,
+                icon: Icon(
+                  value.wishListProductIds.contains(productId)
+                      ? Icons.favorite_outlined
+                      : Icons.favorite_outline,
+                  color: value.wishListProductIds.contains(productId)
+                      ? AppColors.redColor
+                      : AppColors.whiteColor,
                 ),
               ),
             ),

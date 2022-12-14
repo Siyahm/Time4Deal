@@ -11,6 +11,7 @@ class WishListController extends ChangeNotifier {
 
   bool isLoading = true;
   List<ProductDetailsModel> wishListItemList = [];
+  List<String?> wishListProductIds = [];
 
   Future<String?> addOrRemoveWishListItem(String productId) async {
     isLoading == true;
@@ -42,6 +43,9 @@ class WishListController extends ChangeNotifier {
         wishListItemList.clear();
         wishListItemList = value.products.map((e) {
           return e.product;
+        }).toList();
+        wishListProductIds = wishListItemList.map((e) {
+          return e.id;
         }).toList();
         log(wishListItemList.toString());
       }
