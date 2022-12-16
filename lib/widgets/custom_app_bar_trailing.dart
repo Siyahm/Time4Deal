@@ -11,6 +11,7 @@ class CustomAppbarTrailing extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final cartController = Provider.of<CartController>(context, listen: false);
     return Row(
       children: [
         IconButton(
@@ -23,6 +24,7 @@ class CustomAppbarTrailing extends StatelessWidget {
         IconButton(
           splashRadius: 15,
           onPressed: () async {
+            await cartController.getCartItems();
             await Navigator.of(context).pushNamed(RouteNames.myCart);
           },
           icon: Stack(

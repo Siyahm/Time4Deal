@@ -4,8 +4,8 @@
 
 // String cartModelToJson(CartModel data) => json.encode(data.toJson());
 
-class CartModel {
-  CartModel({
+class CartGetModel {
+  CartGetModel({
     required this.id,
     required this.userid,
     required this.products,
@@ -16,16 +16,16 @@ class CartModel {
 
   String id;
   String userid;
-  List<ProductElement> products;
+  List<ProductElementCart> products;
   int totalPrice;
   int totalDiscount;
   int v;
 
-  factory CartModel.fromJson(Map<String, dynamic> json) => CartModel(
+  factory CartGetModel.fromJson(Map<String, dynamic> json) => CartGetModel(
         id: json["_id"],
         userid: json["userid"],
-        products: List<ProductElement>.from(
-            json["products"].map((x) => ProductElement.fromJson(x))),
+        products: List<ProductElementCart>.from(
+            json["products"].map((x) => ProductElementCart.fromJson(x))),
         totalPrice: json["totalPrice"],
         totalDiscount: json["totalDiscount"],
         v: json["__v"],
@@ -40,9 +40,9 @@ class CartModel {
       };
 }
 
-class ProductElement {
-  ProductElement({
-    required this.product,
+class ProductElementCart {
+  ProductElementCart({
+    required this.cartProduct,
     required this.size,
     required this.qty,
     required this.price,
@@ -50,15 +50,16 @@ class ProductElement {
     required this.id,
   });
 
-  ProductModel product;
+  CartProductModel cartProduct;
   String size;
   int qty;
   int price;
   int discountPrice;
   String id;
 
-  factory ProductElement.fromJson(Map<String, dynamic> json) => ProductElement(
-        product: ProductModel.fromJson(json["product"]),
+  factory ProductElementCart.fromJson(Map<String, dynamic> json) =>
+      ProductElementCart(
+        cartProduct: CartProductModel.fromJson(json["product"]),
         size: json["size"],
         qty: json["qty"],
         price: json["price"],
@@ -67,14 +68,17 @@ class ProductElement {
       );
 
   Map<String, dynamic> toJson() => {
-        "product": id,
+        "product": cartProduct.toJson(),
         "size": size,
         "qty": qty,
+        "price": price,
+        "discountPrice": discountPrice,
+        "_id": id,
       };
 }
 
-class ProductModel {
-  ProductModel({
+class CartProductModel {
+  CartProductModel({
     required this.id,
     required this.name,
     required this.price,
@@ -98,7 +102,8 @@ class ProductModel {
   String category;
   int v;
 
-  factory ProductModel.fromJson(Map<String, dynamic> json) => ProductModel(
+  factory CartProductModel.fromJson(Map<String, dynamic> json) =>
+      CartProductModel(
         id: json["_id"],
         name: json["name"],
         price: json["price"],

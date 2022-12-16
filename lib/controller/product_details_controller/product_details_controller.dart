@@ -46,25 +46,25 @@ class ProductDetailsContoller with ChangeNotifier {
         AppColors.redColor,
       );
     }
-    findTotalPrice();
+    // findTotalPrice();
     notifyListeners();
   }
 
   void onPressedMinusButton() {
     if (quantity > 1) {
       quantity--;
-      findTotalPrice();
+      // findTotalPrice();
       notifyListeners();
     }
   }
 
-  void findTotalPrice() {
-    itemOriginalPrize = product!.price;
-    offerPercentage = product!.offer;
-    totalPrice = itemOriginalPrize * quantity;
-    offerPrice = totalPrice - (totalPrice * offerPercentage / 100) - 1;
-    notifyListeners();
-  }
+  // void findTotalPrice() {
+  //   itemOriginalPrize = product!.price;
+  //   offerPercentage = product!.offer;
+  //   totalPrice = itemOriginalPrize * quantity;
+  //   offerPrice = totalPrice - (totalPrice * offerPercentage / 100) - 1;
+  //   notifyListeners();
+  // }
 
   Future<void> getAProduct(String productId, BuildContext context) async {
     log(productId.toString());

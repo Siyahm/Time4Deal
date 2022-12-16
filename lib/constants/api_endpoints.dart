@@ -11,4 +11,5 @@ class ApiEndPoints {
   static const String categoryProducts = "products?category=";
   static const String refreshToken = 'auth/refresh';
   static const String addOrGetWishList = 'wishlist';
+  static const String cart = 'cart';
 }
