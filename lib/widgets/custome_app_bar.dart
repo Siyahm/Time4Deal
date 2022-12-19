@@ -1,5 +1,8 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:time4deal/controller/cart_controller/cart_controller.dart';
 import 'package:time4deal/controller/products_view_screen_controller/product_view_screen_controller.dart';
 import 'package:time4deal/helpers/app_text_styles.dart';
 
@@ -17,6 +20,9 @@ class CustomeAppBar extends StatelessWidget implements PreferredSize {
 
   @override
   Widget build(BuildContext context) {
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      Provider.of<CartController>(context, listen: false).getCartItems();
+    });
     // final signInProvider = Provider.of<SignInProvider>(context);
     return PreferredSize(
       preferredSize: const Size.fromHeight(50),

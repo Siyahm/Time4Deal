@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:time4deal/constants/app_urls.dart';
 import 'package:time4deal/controller/cart_controller/cart_controller.dart';
 import 'package:time4deal/helpers/app_colors.dart';
 import 'package:time4deal/helpers/app_text_styles.dart';
@@ -47,6 +48,8 @@ class MyCart extends StatelessWidget {
                           child: ListView.separated(
                               itemBuilder: (context, index) =>
                                   CustomCartListTile(
+                                    image:
+                                        '${AppUrls.networkImageMainUrl}products/${value.cartList[index].image[0]}',
                                     name: value.cartList[index].name,
                                     brand: 'Brand',
                                     index: index,

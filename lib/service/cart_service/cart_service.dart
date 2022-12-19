@@ -45,4 +45,25 @@ class CartService {
     }
     return null;
   }
+
+  Future<String?> removeCartItem(String itemId) async {
+    Dio dios = await InterceptorApi().getUserApi();
+    try {
+      const url = AppUrls.baseUrl + ApiEndPoints.cart;
+      final Response response = await dios.patch(
+        url,
+        data: {
+          'product': itemId,
+        },
+      );
+      log(response.statusCode.toString());
+      if (response.statusCode == 201) {
+        return response.data["message"].toString();
+      }
+      return null;
+    } catch (e) {
+      AppExceptions.handleError(e);
+    }
+    return null;
+  }
 }

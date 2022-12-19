@@ -28,6 +28,7 @@ class AddBuyRow extends StatelessWidget {
           label: 'Add to Cart',
           ontap: () async {
             await cartController.addToCart(cartPostModel);
+            await cartController.getCartItems();
           },
           labelStyle: AppTextStyles.normalTextBlack,
         ),
