@@ -32,7 +32,7 @@ class AddAddressScreen extends StatelessWidget {
       ),
       body: Consumer<AddAddressController>(
         builder: (context, value, child) => value.isLoading
-            ? Opacity(opacity: 0.3, child: const LoadingScreen())
+            ? const LoadingScreen()
             : SingleChildScrollView(
                 child: Padding(
                   padding: AppPadding.horizPadding10,
