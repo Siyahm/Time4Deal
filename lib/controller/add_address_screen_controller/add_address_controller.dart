@@ -11,13 +11,22 @@ class AddAddressController with ChangeNotifier {
   final TextEditingController addressController = TextEditingController();
   final TextEditingController landmarkController = TextEditingController();
   final TextEditingController pincodeController = TextEditingController();
-  final TextEditingController cityController = TextEditingController();
+
   final TextEditingController mobController = TextEditingController();
+  final TextEditingController placeController = TextEditingController();
+  final TextEditingController stateController = TextEditingController();
+
+  AddressTitle addressTitle = AddressTitle.home;
 
   bool isLoading = false;
   double latitude = 0.0;
   double longitude = 0.0;
   Address? currentAddress;
+
+  void changeRadioValue(AddressTitle newValue) {
+    addressTitle = newValue;
+    notifyListeners();
+  }
 
   void onClickSaveButton(List<AddressModel> addressList, BuildContext context,
       GlobalKey<FormState> formKey) {
@@ -27,7 +36,8 @@ class AddAddressController with ChangeNotifier {
           address: addressController.text,
           landMark: landmarkController.text,
           pinCode: pincodeController.text,
-          city: cityController.text,
+          place: placeController.text,
+          state: stateController.text,
           mobNum: mobController.text);
       addressList.add(address);
       notifyListeners();
@@ -41,7 +51,8 @@ class AddAddressController with ChangeNotifier {
     addressController.clear();
     landmarkController.clear();
     pincodeController.clear();
-    cityController.clear();
+    placeController.clear();
+    stateController.clear();
     mobController.clear();
   }
 
@@ -71,7 +82,7 @@ class AddAddressController with ChangeNotifier {
         .then((value) {
       if (value != null) {
         currentAddress = value;
-        filCurrentAddress();
+        fillCurrentAddress();
         // log(currentAddress!.streetAddress.toString());
         notifyListeners();
       } else {
@@ -82,10 +93,14 @@ class AddAddressController with ChangeNotifier {
     notifyListeners();
   }
 
-  void filCurrentAddress() {
+  void fillCurrentAddress() {
     addressController.text = currentAddress!.streetAddress!;
-    cityController.text = currentAddress!.city!;
+    pincodeController.text = currentAddress!.postal!;
+    stateController.text = currentAddress!.region!;
+    placeController.text = currentAddress!.city!;
 
     notifyListeners();
   }
 }
+
+enum AddressTitle { home, office }

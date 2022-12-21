@@ -10,11 +10,9 @@ class InterceptorApi {
   FlutterSecureStorage storage = const FlutterSecureStorage();
   Dio dio = Dio();
   Future<Dio> getUserApi() async {
-    log('interceptor 1');
     dio.interceptors.add(
       InterceptorsWrapper(
         onRequest: (options, handler) async {
-          log('interceptor 2');
           final token = await storage.read(key: "token");
 
           // log(token.toString());
@@ -29,21 +27,21 @@ class InterceptorApi {
           if (e.response != null) {
             if (e.response?.statusCode == 403 &&
                 e.response?.data['message'] == 'Forbidden') {
-              log(e.response!.statusCode.toString());
+              // log(e.response!.statusCode.toString());
               RequestOptions requestOptions = e.requestOptions;
               try {
                 final refreshToken = await storage.read(key: "refreshToken");
                 final opts = Options(method: requestOptions.method);
                 dio.options.headers["refresh"] = "Bearer $refreshToken";
-                log('hiiii');
+
                 final Response response = await dio.get(
                     AppUrls.baseUrl + ApiEndPoints.refreshToken,
                     options: opts);
                 if (response.statusCode == 200) {
                   storage.delete(key: 'token');
                   storage.delete(key: 'refreshToken');
-                  log('token got');
-                  log(response.data.toString());
+                  // log('token got');
+                  // log(response.data.toString());
                   final token = response.data["accessToken"];
                   final refreshToken = response.data["refreshToken"];
                   storage.write(key: "token", value: token);

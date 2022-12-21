@@ -23,14 +23,20 @@ class AddBuyRow extends StatelessWidget {
     final size = MediaQuery.of(context).size;
     return Row(
       children: [
-        AddAndBuyElevatedButton(
-          color: AppColors.whiteColor,
-          label: 'Add to Cart',
-          ontap: () async {
-            await cartController.addToCart(cartPostModel);
-            await cartController.getCartItems();
-          },
-          labelStyle: AppTextStyles.normalTextBlack,
+        Consumer<CartController>(
+          builder: (context, value, child) => AddAndBuyElevatedButton(
+            color: AppColors.whiteColor,
+            label: value.cartItemsIds.contains(cartPostModel.productId)
+                ? 'Go to Cart'
+                : 'Add to cart',
+            ontap: () async {
+              value.cartItemsIds.contains(cartPostModel.productId)
+                  ? value.goToCart(context)
+                  : await cartController.addToCart(cartPostModel);
+              await cartController.getCartItems();
+            },
+            labelStyle: AppTextStyles.normalTextBlack,
+          ),
         ),
         AddAndBuyElevatedButton(
           color: AppColors.redColor,

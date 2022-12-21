@@ -3,7 +3,9 @@ class AddressModel {
   String? address;
   String? landMark;
   String? pinCode;
-  String? city;
+  String? place;
+  String? state;
+
   String? mobNum;
 
   AddressModel({
@@ -11,7 +13,8 @@ class AddressModel {
     required this.address,
     required this.landMark,
     required this.pinCode,
-    required this.city,
+    required this.place,
+    required this.state,
     required this.mobNum,
   });
 }

@@ -5,7 +5,6 @@ import 'package:dio/dio.dart';
 import 'package:time4deal/constants/api_endpoints.dart';
 import 'package:time4deal/constants/app_urls.dart';
 import 'package:time4deal/models/otp_verification/otp_verification.dart';
-import 'package:time4deal/utils/dio.interceptors.dart';
 
 class OtpServices {
   // final dio = Dio();

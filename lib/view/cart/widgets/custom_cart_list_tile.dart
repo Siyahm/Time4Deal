@@ -10,6 +10,7 @@ import 'package:time4deal/helpers/app_padding.dart';
 import 'package:time4deal/helpers/app_text_styles.dart';
 import 'package:time4deal/helpers/sized_boxes.dart';
 import 'package:time4deal/view/cart/widgets/item_qty_widget.dart';
+import 'package:time4deal/view/cart/widgets/remove_and_add_buttons.dart';
 import 'package:time4deal/widgets/add_buy_elevated_buttons.dart';
 import 'package:time4deal/widgets/offer_and_prize.dart';
 
@@ -134,44 +135,7 @@ class CustomCartListTile extends StatelessWidget {
             ),
           ),
         ),
-        const RemoveAndButButtons(itemId: 'cartController.cartList[index].id'),
-      ],
-    );
-  }
-}
-
-class RemoveAndButButtons extends StatelessWidget {
-  const RemoveAndButButtons({
-    Key? key,
-    required this.itemId,
-  }) : super(key: key);
-  final String itemId;
-
-  @override
-  Widget build(BuildContext context) {
-    final cartController = Provider.of<CartController>(context, listen: false);
-    final productDetailsController =
-        Provider.of<ProductDetailsContoller>(context, listen: false);
-    return Row(
-      children: [
-        AddAndBuyElevatedButton(
-          color: AppColors.greyColor,
-          label: 'Remove',
-          ontap: () async {
-            await cartController.remomeCartItem(itemId);
-
-            await cartController.getCartItems();
-          },
-          labelStyle: AppTextStyles.normalTextBlack,
-        ),
-        AddAndBuyElevatedButton(
-          color: AppColors.dimWhiteColor,
-          label: 'Buy Now',
-          ontap: () {
-            productDetailsController.goToStepperScreen(context);
-          },
-          labelStyle: AppTextStyles.normalTextBlack,
-        ),
+        RemoveAndButButtons(itemId: cartController.cartList[index!].id),
       ],
     );
   }

@@ -15,6 +15,7 @@ class HomeController with ChangeNotifier {
     getCategories();
   }
   bool isLoading = false;
+  bool listNotEmpty = false;
   // bool isCategoryLoding = false;
   // bool isProductstsLoading = false;
   List<CarousalModel> carousalItems = [];

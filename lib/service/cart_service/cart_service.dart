@@ -47,8 +47,10 @@ class CartService {
   }
 
   Future<String?> removeCartItem(String itemId) async {
+    log('it s remove service');
     Dio dios = await InterceptorApi().getUserApi();
     try {
+      log('remove try');
       const url = AppUrls.baseUrl + ApiEndPoints.cart;
       final Response response = await dios.patch(
         url,
@@ -56,6 +58,7 @@ class CartService {
           'product': itemId,
         },
       );
+      log('got here');
       log(response.statusCode.toString());
       if (response.statusCode == 201) {
         return response.data["message"].toString();

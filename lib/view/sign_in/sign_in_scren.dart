@@ -1,6 +1,7 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:time4deal/controller/bottom_nav_bar_controller/bottom_nav_bar_provider.dart';
 import 'package:time4deal/controller/sign_in_controller/sign_in_provider.dart';
 import 'package:time4deal/controller/sign_up_controller/sign_up_controller.dart';
 import 'package:time4deal/helpers/app_colors.dart';
@@ -21,6 +22,7 @@ class SignInScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final signInProvider = Provider.of<SignInProvider>(context);
     final signUpProvider = Provider.of<SignUpProvider>(context);
+    final bottomaNavBarProvider = Provider.of<BottomNavBarProvider>(context);
     return Scaffold(
       body: SingleChildScrollView(
         child: Padding(
@@ -77,6 +79,7 @@ class SignInScreen extends StatelessWidget {
                     color: AppColors.dimWhiteColor,
                     onPressed: () {
                       value.onSignIn(signInFormKey, context);
+                      bottomaNavBarProvider.selectedIndex = 0;
                     },
                     child: value.isLoading == true
                         ? const CircularProgressIndicator()

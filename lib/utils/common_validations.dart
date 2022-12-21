@@ -48,9 +48,9 @@ class CommonValidations {
     return null;
   }
 
-  static String? cityValidation(String? value) {
+  static String? cityValidation(String? value, String message) {
     if (value == null || value.isEmpty) {
-      return 'Please enter city name';
+      return message;
     }
     return null;
   }

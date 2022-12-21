@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:time4deal/controller/add_address_screen_controller/add_address_controller.dart';
 import 'package:time4deal/controller/stepper_controller/stepper_controller.dart';
 import 'package:time4deal/helpers/app_colors.dart';
 
@@ -10,6 +11,8 @@ class AddressStepper extends StatelessWidget {
   Widget build(BuildContext context) {
     final stepperController =
         Provider.of<StepperController>(context, listen: false);
+    final addAddressController =
+        Provider.of<AddAddressController>(context, listen: false);
     return Column(
       children: [
         Row(
@@ -21,6 +24,7 @@ class AddressStepper extends StatelessWidget {
             ),
             TextButton(
               onPressed: () {
+                addAddressController.clearControllers();
                 stepperController.onClickAddAddress(context);
               },
               child: const Text('Add Address'),
