@@ -2,9 +2,11 @@ import 'dart:developer';
 
 import 'package:flutter/cupertino.dart';
 import 'package:geocode/geocode.dart';
+import 'package:time4deal/helpers/app_colors.dart';
 import 'package:time4deal/models/address_model/address_model.dart';
 import 'package:time4deal/routes/rout_names.dart';
 import 'package:time4deal/service/add_address_screen_service/add_address_screen_service.dart';
+import 'package:time4deal/utils/custom_toast.dart';
 
 class AddAddressController with ChangeNotifier {
   final TextEditingController nameController = TextEditingController();
@@ -17,6 +19,7 @@ class AddAddressController with ChangeNotifier {
   final TextEditingController stateController = TextEditingController();
 
   AddressTitle addressTitle = AddressTitle.home;
+  AddressModel? addressModel;
 
   bool isLoading = false;
   double latitude = 0.0;
@@ -28,10 +31,10 @@ class AddAddressController with ChangeNotifier {
     notifyListeners();
   }
 
-  void onClickSaveButton(List<AddressModel> addressList, BuildContext context,
-      GlobalKey<FormState> formKey) {
+  void onClickSaveButton(BuildContext context, GlobalKey<FormState> formKey) {
     if (formKey.currentState!.validate()) {
-      final address = AddressModel(
+      addressModel = AddressModel(
+          title: addressTitle == AddressTitle.home ? 'Home' : 'Office',
           name: nameController.text,
           address: addressController.text,
           landMark: landmarkController.text,
@@ -39,10 +42,12 @@ class AddAddressController with ChangeNotifier {
           place: placeController.text,
           state: stateController.text,
           mobNum: mobController.text);
-      addressList.add(address);
+
       notifyListeners();
-      clearControllers();
-      Navigator.of(context).pushNamed(RouteNames.stepperScreens);
+      addAddress().then((value) {
+        clearControllers();
+        Navigator.of(context).pushNamed(RouteNames.stepperScreens);
+      });
     }
   }
 
@@ -98,7 +103,24 @@ class AddAddressController with ChangeNotifier {
     pincodeController.text = currentAddress!.postal!;
     stateController.text = currentAddress!.region!;
     placeController.text = currentAddress!.city!;
+    landmarkController.text = currentAddress!.city!;
 
+    notifyListeners();
+  }
+
+  Future<void> addAddress() async {
+    isLoading = true;
+    notifyListeners();
+    await AddAddressScreenservice().addAddress(addressModel!).then((value) {
+      if (value != null) {
+        customToast(value, AppColors.greenColor);
+      } else {
+        log('value is null');
+        isLoading == false;
+        notifyListeners();
+      }
+    });
+    isLoading == false;
     notifyListeners();
   }
 }

@@ -137,9 +137,7 @@ class AddAddressScreen extends StatelessWidget {
                           child: LongElevatedButton(
                             onPressed: () {
                               addAddressController.onClickSaveButton(
-                                  stepperController.addressList,
-                                  context,
-                                  addressFormKey);
+                                  context, addressFormKey);
                             },
                             color: AppColors.dimWhiteColor,
                             child: const Text(

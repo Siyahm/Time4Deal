@@ -12,6 +12,7 @@ class PaymentService {
 
   void handlePaymentSuccess(PaymentSuccessResponse response) {
     log('Payment Success');
+    log(response.orderId.toString());
   }
 
   void handlePaymentError(PaymentFailureResponse response) {

@@ -1,9 +1,13 @@
 import 'dart:developer';
 
+import 'package:dio/dio.dart';
 import 'package:geocode/geocode.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:time4deal/constants/api_endpoints.dart';
+import 'package:time4deal/constants/app_urls.dart';
 import 'package:time4deal/helpers/app_colors.dart';
 import 'package:time4deal/helpers/app_exceptions.dart';
+import 'package:time4deal/models/address_model/address_model.dart';
 import 'package:time4deal/utils/custom_toast.dart';
 
 class AddAddressScreenservice {
@@ -49,6 +53,27 @@ class AddAddressScreenservice {
       Address address = await GeoCode()
           .reverseGeocoding(latitude: latitude, longitude: longitude);
       return address;
+    } catch (e) {
+      AppExceptions.handleError(e);
+    }
+    return null;
+  }
+
+  Future<String?> addAddress(AddressModel addressModel) async {
+    Dio dios = Dio();
+    try {
+      log('trywwww');
+      const url = AppUrls.baseUrl + ApiEndPoints.address;
+      final Response response = await dios.post(
+        url,
+        data: addressModel.toJson(),
+      );
+      log('heyyy');
+      log(response.statusCode.toString());
+      if (response.statusCode! >= 200 && response.statusCode! <= 299) {
+        return response.data["message"];
+      }
+      return null;
     } catch (e) {
       AppExceptions.handleError(e);
     }
