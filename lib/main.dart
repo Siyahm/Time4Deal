@@ -3,13 +3,13 @@ import 'package:provider/provider.dart';
 import 'package:time4deal/controller/add_address_screen_controller/add_address_controller.dart';
 import 'package:time4deal/controller/bottom_nav_bar_controller/bottom_nav_bar_provider.dart';
 import 'package:time4deal/controller/cart_controller/cart_controller.dart';
-import 'package:time4deal/controller/products_view_screen_controller/product_view_screen_controller.dart';
 import 'package:time4deal/controller/forgot_password_controller/forgot_password_provider.dart';
 import 'package:time4deal/controller/home_controller/home_controller.dart';
 import 'package:time4deal/controller/new_password_conttoller/new_password_provider.dart';
 import 'package:time4deal/controller/onbording_controller/onbording_provider.dart';
 import 'package:time4deal/controller/otp_controller/otp_controller.dart';
 import 'package:time4deal/controller/product_details_controller/product_details_controller.dart';
+import 'package:time4deal/controller/products_view_screen_controller/product_view_screen_controller.dart';
 import 'package:time4deal/controller/profile_controller/profile_contoller.dart';
 import 'package:time4deal/controller/sign_in_controller/sign_in_provider.dart';
 import 'package:time4deal/controller/sign_up_controller/sign_up_controller.dart';
@@ -19,12 +19,7 @@ import 'package:time4deal/controller/wish_list_controller/wish_list_controller.d
 import 'package:time4deal/helpers/app_colors.dart';
 import 'package:time4deal/routes/routs.dart';
 import 'package:time4deal/utils/navigation_context.dart';
-import 'package:time4deal/view/new_password/new_password_screen.dart';
-import 'package:time4deal/view/on_boarding/on_bording_screen.dart';
-import 'package:time4deal/view/sign_in/sign_in_scren.dart';
-import 'package:time4deal/view/sign_up/sign_up_screen.dart';
 import 'package:time4deal/view/splash_screen/splash_screen.dart';
-import 'package:time4deal/widgets/bottom_nav_bar.dart';
 
 void main() {
   runApp(const MyApp());
