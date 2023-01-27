@@ -83,6 +83,7 @@ class AddAddressScreen extends StatelessWidget {
                         ),
                         SizedBoxes.heightBox10,
                         CustomTextFormField(
+                          keyboard: TextInputType.number,
                           text: 'Pin code (Required)*',
                           controller: addAddressController.pincodeController,
                           validation: (String? value) {
@@ -120,6 +121,7 @@ class AddAddressScreen extends StatelessWidget {
 
                         SizedBoxes.heightBox10,
                         CustomTextFormField(
+                          keyboard: TextInputType.number,
                           text: 'Mobile Number (Required)*',
                           controller: addAddressController.mobController,
                           validation: (String? value) {

@@ -13,4 +13,5 @@ class RouteNames {
   static const stepperScreens = 'stepperScreens';
   static const addAddressScreen = 'addAddressScreen';
   static const myOrders = 'myOrders';
+  static const onboarding = 'onboardingScreen';
 }

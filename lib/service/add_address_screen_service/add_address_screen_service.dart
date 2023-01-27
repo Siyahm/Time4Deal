@@ -65,7 +65,7 @@ class AddAddressScreenservice {
       log('trywwww');
       const url = AppUrls.baseUrl + ApiEndPoints.address;
       final Response response = await dios.post(
-        url,
+        "http://192.168.141.1:6002/api/v1/address",
         data: addressModel.toJson(),
       );
       log('heyyy');
@@ -75,6 +75,7 @@ class AddAddressScreenservice {
       }
       return null;
     } catch (e) {
+      log(e.toString());
       AppExceptions.handleError(e);
     }
     return null;

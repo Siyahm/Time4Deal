@@ -2,14 +2,14 @@ import 'dart:developer';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-import 'package:time4deal/helpers/app_colors.dart';
-import 'package:time4deal/models/sign_up_model/sign_up_model_for_token.dart';
-import 'package:time4deal/models/user_model/user_model.dart';
 import 'package:time4deal/routes/rout_names.dart';
 import 'package:time4deal/service/sign_in_service/sign_in_servide.dart';
-import 'package:time4deal/utils/custom_toast.dart';
 
 class SignInProvider with ChangeNotifier {
+  SignInProvider() {
+    clearControllers();
+  }
+
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   bool isLoading = false;
@@ -77,5 +77,10 @@ class SignInProvider with ChangeNotifier {
         notifyListeners();
       }
     });
+  }
+
+  void clearControllers() {
+    emailController.clear();
+    passwordController.clear();
   }
 }

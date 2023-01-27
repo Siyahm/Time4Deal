@@ -46,7 +46,7 @@ class AddAddressController with ChangeNotifier {
       notifyListeners();
       addAddress().then((value) {
         clearControllers();
-        Navigator.of(context).pushNamed(RouteNames.stepperScreens);
+        Navigator.of(context).pushReplacementNamed(RouteNames.stepperScreens);
       });
     }
   }
@@ -116,11 +116,11 @@ class AddAddressController with ChangeNotifier {
         customToast(value, AppColors.greenColor);
       } else {
         log('value is null');
-        isLoading == false;
+        isLoading = false;
         notifyListeners();
       }
     });
-    isLoading == false;
+    isLoading = false;
     notifyListeners();
   }
 }

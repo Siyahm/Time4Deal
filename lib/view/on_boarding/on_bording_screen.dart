@@ -52,6 +52,7 @@ class OnBordingScreen extends StatelessWidget {
                                 onbordingProvidr.onbordingController
                                     .jumpToPage(index + 1);
                               } else {
+                                onbordingProvidr.completedOnboardingScreens();
                                 Navigator.of(context).pushReplacementNamed(
                                     RouteNames.signInScreen);
                               }
@@ -78,6 +79,7 @@ class OnBordingScreen extends StatelessWidget {
                               onbordingProvidr.onbordingController
                                   .jumpToPage(3);
                             } else {
+                              onbordingProvidr.completedOnboardingScreens();
                               Navigator.of(context).pushReplacementNamed(
                                   RouteNames.signUpScreen);
                             }

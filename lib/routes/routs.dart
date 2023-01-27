@@ -7,6 +7,7 @@ import 'package:time4deal/view/category_products_view_screen/category_product_vi
 import 'package:time4deal/view/forgot_password/forgot_password_screen.dart';
 import 'package:time4deal/view/home/home.dart';
 import 'package:time4deal/view/new_password/new_password_screen.dart';
+import 'package:time4deal/view/on_boarding/on_bording_screen.dart';
 import 'package:time4deal/view/orders/my_orders.dart';
 import 'package:time4deal/view/otp_screen/otp_arguments.dart';
 import 'package:time4deal/view/otp_screen/otp_screen.dart';
@@ -84,6 +85,10 @@ class AppRouts {
       case RouteNames.myOrders:
         return MaterialPageRoute(
           builder: (context) => const MyOrders(),
+        );
+      case RouteNames.onboarding:
+        return MaterialPageRoute(
+          builder: (context) => const OnBordingScreen(),
         );
       default:
         return MaterialPageRoute(

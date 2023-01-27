@@ -22,6 +22,7 @@ class MyWishList extends StatelessWidget {
     // final homeController = Provider.of<HomeController>(context);
     return Scaffold(
       appBar: const CustomeAppBar(
+        title: 'My Wishlist',
         leadingWidget: SizedBox(),
         trailing: CustomAppbarTrailing(),
       ),

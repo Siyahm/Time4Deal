@@ -13,6 +13,8 @@ class CartController with ChangeNotifier {
   List<CartProductModel> cartList = [];
   List<String?> cartItemsIds = [];
   final int quantity = 1;
+  int? totalPrice;
+  int? totalDiscount;
 
   Future<void> addToCart(CartPostModel cartPostModel) async {
     isLoading = true;
@@ -44,6 +46,8 @@ class CartController with ChangeNotifier {
       if (value != null) {
         cartList = value.products.map((e) => e.cartProduct).toList();
         cartItemsIds = value.products.map((e) => e.cartProduct.id).toList();
+        totalPrice = value.totalPrice;
+        totalDiscount = value.totalDiscount;
       }
     });
     isLoading = false;

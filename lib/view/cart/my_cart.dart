@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:time4deal/constants/app_urls.dart';
 import 'package:time4deal/controller/cart_controller/cart_controller.dart';
+import 'package:time4deal/controller/product_details_controller/product_details_controller.dart';
 import 'package:time4deal/helpers/app_colors.dart';
 import 'package:time4deal/helpers/app_text_styles.dart';
+import 'package:time4deal/helpers/sized_boxes.dart';
 import 'package:time4deal/utils/app_utils.dart';
 import 'package:time4deal/view/cart/widgets/custom_cart_list_tile.dart';
 import 'package:time4deal/widgets/add_buy_elevated_buttons.dart';
@@ -14,6 +16,8 @@ class MyCart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final productDetailsController =
+        Provider.of<ProductDetailsContoller>(context, listen: false);
     final size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: CustomeAppBar(
@@ -67,16 +71,41 @@ class MyCart extends StatelessWidget {
                                 height: size.height * 0.06,
                                 color: AppColors.whiteColor,
                                 alignment: Alignment.center,
-                                child: const Text(
-                                  'Total amout',
-                                  style: AppTextStyles.normalTextBlack,
+                                child: Row(
+                                  children: [
+                                    SizedBoxes.widthBox8,
+                                    Text(
+                                      "₹${value.totalPrice.toString()}",
+                                      // '₹${value.totalPrice.toString()}',
+                                      style: const TextStyle(
+                                          decorationColor: AppColors.redColor,
+                                          decorationThickness: 2,
+                                          decoration:
+                                              TextDecoration.lineThrough,
+                                          fontSize: 22,
+                                          color: AppColors.greyColor,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                    SizedBoxes.widthBox8,
+                                    Text(
+                                      '₹${value.totalDiscount.toString()}',
+                                      // '₹${value.offerPrice.toInt().toString()}',
+                                      style: const TextStyle(
+                                          fontSize: 24,
+                                          color: AppColors.blackColor,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                  ],
                                 ),
                               ),
                             ),
                             AddAndBuyElevatedButton(
                               color: AppColors.redColor,
                               label: 'Check out',
-                              ontap: () {},
+                              ontap: () {
+                                productDetailsController
+                                    .goToStepperScreen(context);
+                              },
                               labelStyle: AppTextStyles.normalText,
                             ),
                           ],

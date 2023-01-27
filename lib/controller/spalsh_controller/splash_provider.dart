@@ -6,13 +6,25 @@ class SpalashScreenProvider with ChangeNotifier {
   Future<void> goHome(context) async {
     FlutterSecureStorage storage = const FlutterSecureStorage();
     final token = await storage.read(key: 'token');
+    final onboardingScreen = await storage.read(key: 'onboardScreen');
     await Future.delayed(
       const Duration(seconds: 5),
     );
-    token != null
-        ? Navigator.of(context)
-            .pushNamedAndRemoveUntil(RouteNames.bottomNavBar, (route) => false)
-        : Navigator.of(context)
-            .pushNamedAndRemoveUntil(RouteNames.signInScreen, (route) => false);
+
+    if (token != null) {
+      Navigator.of(context)
+          .pushNamedAndRemoveUntil(RouteNames.bottomNavBar, (route) => false);
+    } else if (onboardingScreen != null) {
+      Navigator.of(context)
+          .pushNamedAndRemoveUntil(RouteNames.signInScreen, (route) => false);
+    } else {
+      Navigator.of(context)
+          .pushNamedAndRemoveUntil(RouteNames.onboarding, (route) => false);
+    }
+    // token != null
+    //     ? Navigator.of(context)
+    //         .pushNamedAndRemoveUntil(RouteNames.bottomNavBar, (route) => false)
+    //     : Navigator.of(context)
+    //         .pushNamedAndRemoveUntil(RouteNames.signInScreen, (route) => false);
   }
 }
